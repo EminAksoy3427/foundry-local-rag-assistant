@@ -35,3 +35,20 @@ Prompt + Context
 Foundry Local LLM
      ↓
 Answer
+
+
+## Proje Durumu
+
+- [x] GitHub repository oluşturuldu
+- [x] Python .gitignore eklendi
+- [x] MIT License eklendi
+- [x] Proje klasör yapısı hazırlandı
+- [x] İlk Python dosyası oluşturuldu
+- [x] Python sanal ortam kurulumu
+- [x] Foundry Local SDK kurulumu
+- [x] Basit Foundry Local model testi
+- [ ] Embedding denemesi
+- [ ] SQLite veritabanı
+- [ ] Retrieval pipeline
+- [ ] LLM entegrasyonu
+- [ ] CLI arayüz

@@ -32,3 +32,23 @@ RAG = Retrieve + Augment + Generate
 - Proje klasor yapisi olustu.
 - Ilk Python dosyasi yazildi.
 - README eklendi.
+
+## Gun 2 - Python Ortami ve Foundry Local Testi
+
+Bugun projeye ozel Python sanal ortami olusturuldu ve Foundry Local SDK ile basit bir model testi yapildi.
+
+Bu adimin amaci, ileride RAG pipeline'inin Generate asamasinda kullanacagimiz yerel LLM'in bilgisayarda calistigini dogrulamaktir.
+
+Test akisi:
+
+1. Foundry Local baslatildi.
+2. Model bilgisi alindi.
+3. Model indirildi veya cache'den kontrol edildi.
+4. Model yuklendi.
+5. Modele basit bir soru soruldu.
+6. Model cevap uretti.
+7. Model kapatildi.
+
+Sonuc:
+
+Foundry Local testi basariyla tamamlandi.
