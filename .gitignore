@@ -216,3 +216,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project generated files
+storage/*.db
+storage/*.sqlite
+storage/*.sqlite3
