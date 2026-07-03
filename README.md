@@ -39,6 +39,8 @@ Answer
 
 ## Proje Durumu
 
+## Proje Durumu
+
 - [x] GitHub repository oluşturuldu
 - [x] Python .gitignore eklendi
 - [x] MIT License eklendi
@@ -47,8 +49,17 @@ Answer
 - [x] Python sanal ortam kurulumu
 - [x] Foundry Local SDK kurulumu
 - [x] Basit Foundry Local model testi
-- [ ] Embedding denemesi
+- [x] Embedding denemesi
 - [ ] SQLite veritabanı
 - [ ] Retrieval pipeline
 - [ ] LLM entegrasyonu
 - [ ] CLI arayüz
+
+
+## Embedding Demo
+
+```powershell
+python src\embedding_demo.py
+```
+
+Bu demo, örnek dokümanları ve kullanıcı sorusunu embedding vektörlerine çevirir. Ardından cosine similarity ile en alakalı dokümanı bulur.

@@ -52,3 +52,29 @@ Test akisi:
 Sonuc:
 
 Foundry Local testi basariyla tamamlandi.
+
+
+## Gun 3 - Embedding ve Benzerlik Aramasi
+
+Bugun RAG sisteminin Retrieve asamasinin temel mantigi ogrenildi.
+
+Embedding, bir metni sayisal vektore cevirmektir. Bu sayede bilgisayar iki metnin anlamca birbirine yakin olup olmadigini hesaplayabilir.
+
+Bugun yapilan demo:
+
+1. Ornek dokumanlar belirlendi.
+2. Her dokuman embedding'e cevrildi.
+3. Kullanici sorusu embedding'e cevrildi.
+4. Soru embedding'i ile dokuman embedding'leri cosine similarity ile karsilastirildi.
+5. En yuksek skora sahip dokuman en alakali sonuc olarak secildi.
+
+Sonuc:
+
+Sistem, "How does RAG make answers more reliable?" sorusu icin en alakali dokuman olarak RAG'in hallucination'i azalttigini anlatan dokumani secti.
+
+Gun 3 ciktisi:
+
+- src/embedding_demo.py eklendi.
+- Foundry Local embedding modeli test edildi.
+- Cosine similarity fonksiyonu yazildi.
+- Soruya en alakali dokumani bulma mantigi calisti.
