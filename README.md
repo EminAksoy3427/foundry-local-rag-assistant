@@ -50,7 +50,7 @@ Answer
 - [x] Foundry Local SDK kurulumu
 - [x] Basit Foundry Local model testi
 - [x] Embedding denemesi
-- [ ] SQLite veritabanı
+- [X] SQLite veritabanı
 - [ ] Retrieval pipeline
 - [ ] LLM entegrasyonu
 - [ ] CLI arayüz
@@ -63,3 +63,13 @@ python src\embedding_demo.py
 ```
 
 Bu demo, örnek dokümanları ve kullanıcı sorusunu embedding vektörlerine çevirir. Ardından cosine similarity ile en alakalı dokümanı bulur.
+
+## SQLite Demo
+
+```powershell
+python src\sqlite_demo.py
+```
+
+Bu demo, `storage/rag.db` dosyasını oluşturur ve örnek doküman parçalarını `documents` tablosuna kaydeder.
+
+Not: `storage/rag.db` otomatik üretilen bir dosyadır ve GitHub'a yüklenmez.

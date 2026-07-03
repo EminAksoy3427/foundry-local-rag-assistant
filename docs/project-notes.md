@@ -78,3 +78,40 @@ Gun 3 ciktisi:
 - Foundry Local embedding modeli test edildi.
 - Cosine similarity fonksiyonu yazildi.
 - Soruya en alakali dokumani bulma mantigi calisti.
+
+## Gun 4 - SQLite Veritabani
+
+Bugun RAG projesinin yerel veri katmani icin SQLite kullanildi.
+
+SQLite'in projedeki gorevi:
+
+- Dokuman parcalarini saklamak
+- Her parcanin kaynak dosya adini tutmak
+- Ileride embedding vektorlerini saklamak
+- Retrieval asamasinda kayitlari tekrar okumak
+
+Olusturulan tablo:
+
+documents
+
+Alanlar:
+
+- id: Otomatik benzersiz kayit numarasi
+- source: Dokumanin geldigi kaynak dosya
+- chunk_index: Dokuman icindeki parca sirasi
+- chunk_text: Asil dokuman parcasi
+- embedding: Ileride embedding vektorunun saklanacagi alan
+- created_at: Kayit tarihi
+
+Bugun yapilan demo:
+
+1. storage/rag.db olusturuldu.
+2. documents tablosu kuruldu.
+3. Ornek dokuman parcalari tabloya eklendi.
+4. Kayitlar SQLite'tan tekrar okundu.
+
+Gun 4 ciktisi:
+
+- src/db.py eklendi.
+- src/sqlite_demo.py eklendi.
+- SQLite ile veri yazma ve okuma test edildi.
