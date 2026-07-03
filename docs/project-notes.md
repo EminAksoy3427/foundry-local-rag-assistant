@@ -146,3 +146,30 @@ Gun 5 ciktisi:
 - src/document_loader.py eklendi.
 - src/document_loader_demo.py eklendi.
 - Python ile dokuman okuma test edildi.
+
+
+## Gun 6 - Chunking
+
+Bugun dokumanlari kucuk parcalara bolme mantigi ogrenildi.
+
+Chunking, uzun dokumanlari daha kucuk ve aranabilir parcalara ayirma islemidir.
+
+Neden chunking kullaniyoruz?
+
+- Uzun dokumanin tamamini modele vermek verimsizdir.
+- Kullanici sorusu genellikle dokumanin kucuk bir bolumuyle ilgilidir.
+- Embedding aramasinda kucuk ve net parcalar daha iyi sonuc verir.
+- Ileride cevaplarda kaynak gostermek daha kolay olur.
+
+Bugun yapilanlar:
+
+1. data/documents icindeki dokumanlar okundu.
+2. Her dokuman paragraflara ayrildi.
+3. Her paragraf bir chunk olarak hazirlandi.
+4. Her chunk icin source, chunk_index ve chunk_text bilgileri olusturuldu.
+
+Gun 6 ciktisi:
+
+- src/chunker.py eklendi.
+- src/chunking_demo.py eklendi.
+- Dokumanlari chunk'lara bolme demosu calisti.

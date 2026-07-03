@@ -50,7 +50,7 @@ Answer
 - [x] Embedding denemesi
 - [x] SQLite veritabanı
 - [x] Doküman seti ve dosya okuma
-- [ ] Chunking
+- [X] Chunking
 - [ ] Retrieval pipeline
 - [ ] LLM entegrasyonu
 - [ ] CLI arayüz
@@ -81,3 +81,17 @@ python src\document_loader_demo.py
 ```
 
 Bu demo, `data/documents` klasöründeki `.txt` dosyalarını okur ve her dokümanın kaynak adını, karakter sayısını, kelime sayısını ve kısa ön izlemesini gösterir.
+
+## Chunking Demo
+
+```powershell
+python src\chunking_demo.py
+```
+
+Bu demo, `data/documents` klasöründeki `.txt` dokümanları okur ve her dokümanı paragraflara göre küçük chunk'lara böler.
+
+Her chunk şu bilgileri içerir:
+
+- source
+- chunk_index
+- chunk_text
