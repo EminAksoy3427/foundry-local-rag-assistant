@@ -115,3 +115,34 @@ Gun 4 ciktisi:
 - src/db.py eklendi.
 - src/sqlite_demo.py eklendi.
 - SQLite ile veri yazma ve okuma test edildi.
+
+## Gun 5 - Dokuman Seti ve Dosya Okuma
+
+Bugun RAG projesi icin ilk gercek dokuman seti hazirlandi.
+
+Eklenen dokumanlar:
+
+- rag_notes.txt
+- foundry_local_notes.txt
+- sqlite_notes.txt
+- project_overview.txt
+
+Bu adimin amaci, dokumanlari artik Python listesi icinde degil, gercek dosyalar olarak saklamaktir.
+
+Document loader'in gorevi:
+
+1. data/documents klasorunu bulmak
+2. .txt dosyalarini okumak
+3. Her dokumani source ve text bilgisiyle listelemek
+4. Ileride chunking ve embedding islemlerine veri saglamak
+
+Neden source bilgisi tutuyoruz?
+
+Cunku RAG sisteminde cevap verirken bilginin hangi dokumandan geldigini bilmek isteriz. Ileride kaynak gostermek icin source alani onemli olacak.
+
+Gun 5 ciktisi:
+
+- data/documents icine ornek .txt dokumanlar eklendi.
+- src/document_loader.py eklendi.
+- src/document_loader_demo.py eklendi.
+- Python ile dokuman okuma test edildi.

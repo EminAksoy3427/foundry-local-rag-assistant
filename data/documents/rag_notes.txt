@@ -1,0 +1,7 @@
+RAG, Retrieval-Augmented Generation ifadesinin kisaltmasidir.
+
+RAG sistemlerinde once kullanici sorusuyla ilgili dokuman parcalari bulunur. Daha sonra bu parcalar modele baglam olarak verilir. Model cevabi bu baglama dayanarak uretir.
+
+Bu yontem, modelin tahmin ederek cevap vermesini azaltir. Cevaplar dokumanlara dayandigi icin daha guvenilir hale gelir.
+
+RAG uc ana asamadan olusur: retrieve, augment ve generate.

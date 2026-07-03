@@ -39,8 +39,6 @@ Answer
 
 ## Proje Durumu
 
-## Proje Durumu
-
 - [x] GitHub repository oluşturuldu
 - [x] Python .gitignore eklendi
 - [x] MIT License eklendi
@@ -50,7 +48,9 @@ Answer
 - [x] Foundry Local SDK kurulumu
 - [x] Basit Foundry Local model testi
 - [x] Embedding denemesi
-- [X] SQLite veritabanı
+- [x] SQLite veritabanı
+- [x] Doküman seti ve dosya okuma
+- [ ] Chunking
 - [ ] Retrieval pipeline
 - [ ] LLM entegrasyonu
 - [ ] CLI arayüz
@@ -73,3 +73,11 @@ python src\sqlite_demo.py
 Bu demo, `storage/rag.db` dosyasını oluşturur ve örnek doküman parçalarını `documents` tablosuna kaydeder.
 
 Not: `storage/rag.db` otomatik üretilen bir dosyadır ve GitHub'a yüklenmez.
+
+## Document Loader Demo
+
+```powershell
+python src\document_loader_demo.py
+```
+
+Bu demo, `data/documents` klasöründeki `.txt` dosyalarını okur ve her dokümanın kaynak adını, karakter sayısını, kelime sayısını ve kısa ön izlemesini gösterir.

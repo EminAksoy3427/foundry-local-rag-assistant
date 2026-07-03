@@ -1,0 +1,7 @@
+Bu projenin amaci, yerel calisan bir dokuman soru-cevap asistani gelistirmektir.
+
+Kullanici bir soru sordugunda sistem once yerel dokumanlar icinden ilgili bilgileri bulur. Ardindan bu bilgileri Foundry Local uzerinde calisan modele verir.
+
+Model, verilen dokuman baglamina dayanarak cevap uretir. Eger cevap dokumanlarda yoksa sistemin bunu belirtmesi beklenir.
+
+Proje Python, Foundry Local, embeddings, SQLite ve RAG mimarisi kullanilarak gelistirilir.

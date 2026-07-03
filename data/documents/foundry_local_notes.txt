@@ -1,0 +1,7 @@
+Foundry Local, yapay zeka modellerini kullanicinin kendi cihazinda calistirmayi saglayan bir Microsoft aracidir.
+
+Bu projede Foundry Local, LLM'in yerel bilgisayarda calismasini saglar. Boylece cevap uretimi icin bulut servisine gitmek gerekmez.
+
+Foundry Local ile model once cihaza indirilir, sonra Python SDK uzerinden uygulama icinde kullanilir.
+
+Yerel model kullanimi, gizlilik ve offline calisma acisindan avantaj saglar.
