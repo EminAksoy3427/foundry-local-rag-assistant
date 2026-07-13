@@ -146,3 +146,30 @@ Current test result:
 - Top result: `rag_notes.txt`
 - Top similarity score: `0.8245`
 - Returned chunks: 3
+
+
+### Day 10 — Context and Prompt Builder
+
+The project can now transform retrieved document chunks into structured context and prompts for a local language model.
+
+The prompt-building pipeline:
+
+1. Retrieves the top matching chunks for a user question
+2. Validates the retrieved chunk structure
+3. Formats each chunk with its source file and chunk index
+4. Combines the chunks into a structured context
+5. Creates a system prompt with grounding rules
+6. Creates a user prompt containing both the context and the question
+
+New modules:
+
+- `src/context_builder.py` — builds structured RAG context and prompts
+- `src/context_builder_demo.py` — displays retrieval results, context, and prompts
+
+The system prompt instructs the model to:
+
+- Use only the supplied context
+- Avoid unsupported claims
+- State clearly when the context is insufficient
+- Answer in the same language as the user
+- Include document and chunk references

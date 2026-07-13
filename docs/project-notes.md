@@ -296,3 +296,67 @@ Retrieval always returns the highest-scoring chunks, even when the query is unre
 ### Next step
 
 Combine retrieved chunks into a structured context that can be passed to the local language model.
+
+
+## Day 10 — Context and Prompt Builder
+
+### Goal
+
+Convert semantic retrieval results into structured context and prompts that can later be sent to a local language model.
+
+### What was implemented
+
+- Added `src/context_builder.py`
+- Added `src/context_builder_demo.py`
+- Added validation for retrieved chunks
+- Built source-aware context sections
+- Included document filenames and chunk indices
+- Created a reusable system prompt
+- Created a user prompt containing the context and question
+- Kept similarity scores out of the LLM context
+- Added validation for empty questions and empty context
+- Verified the complete retrieval-to-prompt flow
+
+### Prompt structure
+
+The context includes:
+
+- Source file
+- Chunk index
+- Chunk text
+
+The system prompt instructs the model to:
+
+- Answer only from the supplied context
+- Avoid guessing or inventing information
+- Clearly state when the answer is not available
+- Respond in the user's language
+- Cite sources using file and chunk information
+
+### Test result
+
+Query:
+
+`RAG cevaplari nasil daha guvenilir hale getirir?`
+
+Retrieved chunks:
+
+- `rag_notes.txt` — Chunk 1
+- `rag_notes.txt` — Chunk 2
+- `rag_notes.txt` — Chunk 4
+
+The generated user prompt successfully contained the complete structured context and the original user question.
+
+### Key learning
+
+Retrieval and generation are separate responsibilities.
+
+The retrieval layer decides which information is relevant. The prompt-building layer decides how that information should be presented to the language model.
+
+A well-structured context helps the model distinguish source metadata, document content, and the user question.
+
+Similarity scores are useful for debugging and ranking, but they are not part of the knowledge itself and therefore do not need to be included in the model prompt.
+
+### Next step
+
+Load a local chat model with Microsoft Foundry Local and generate an answer using the system prompt, retrieved context, and user question.
