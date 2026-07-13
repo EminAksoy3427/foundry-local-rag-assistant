@@ -120,3 +120,29 @@ Run the SQLite ingestion demo:
 
 ```powershell
 python -m src.ingest_demo
+
+### Day 9 — Semantic Retrieval Pipeline
+
+The project can now retrieve the most relevant document chunks for a user query.
+
+The retrieval pipeline:
+
+1. Loads stored document chunks and embeddings from SQLite
+2. Converts the JSON embedding strings back into Python lists
+3. Generates an embedding for the user query with Microsoft Foundry Local
+4. Calculates cosine similarity between the query and every stored chunk
+5. Sorts the chunks by similarity score
+6. Returns the top matching chunks
+
+New modules:
+
+- `src/retrieval.py` — implements semantic retrieval and cosine similarity
+- `src/retrieval_demo.py` — tests retrieval and displays ranked results
+
+Current test result:
+
+- Stored chunks: 16
+- Query: `How does RAG make answers more reliable?`
+- Top result: `rag_notes.txt`
+- Top similarity score: `0.8245`
+- Returned chunks: 3

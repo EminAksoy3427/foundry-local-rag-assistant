@@ -254,3 +254,45 @@ The database is reset only after embedding generation succeeds. This prevents an
 ### Next step
 
 Implement semantic retrieval by embedding a user query, loading stored embeddings from SQLite, calculating cosine similarity, and returning the top matching chunks.
+
+
+## Day 9 — Semantic Retrieval Pipeline
+
+### Goal
+
+Implement semantic search over the document chunks and embeddings stored in SQLite.
+
+### What was implemented
+
+- Added `src/retrieval.py`
+- Added `src/retrieval_demo.py`
+- Implemented JSON embedding deserialization
+- Implemented cosine similarity calculation
+- Generated an embedding for the user query
+- Loaded all stored chunks and embeddings from SQLite
+- Compared the query embedding with every stored embedding
+- Ranked document chunks by similarity score
+- Returned the top matching chunks with source information
+- Added validation for empty queries, invalid `top_k` values, missing documents, and incompatible embedding dimensions
+
+### Test result
+
+- Stored chunks: 16
+- Query: `How does RAG make answers more reliable?`
+- Top result source: `rag_notes.txt`
+- Top similarity score: `0.8245`
+- Returned chunks: 3
+
+### Key learning
+
+Semantic retrieval compares the meaning of texts rather than relying only on exact keyword matches.
+
+The document embeddings are generated once during ingestion and stored in SQLite. For each new user question, only the query embedding needs to be generated.
+
+For the current small document collection, loading all embeddings and calculating cosine similarity in Python is sufficient. A larger production system would normally use a specialized vector database or a vector search extension.
+
+Retrieval always returns the highest-scoring chunks, even when the query is unrelated to the knowledge base. A future improvement can introduce a minimum similarity threshold so weak results can be rejected.
+
+### Next step
+
+Combine retrieved chunks into a structured context that can be passed to the local language model.
