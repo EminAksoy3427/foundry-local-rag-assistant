@@ -3,7 +3,7 @@ import math
 from foundry_local_sdk import Configuration, FoundryLocalManager
 
 
-EMBEDDING_MODEL_ALIAS = "qwen3-0.6b-embedding"
+EMBEDDING_MODEL_ALIAS = "qwen3-embedding-0.6b"
 
 def cosine_similarity(vector_a, vector_b):
     """

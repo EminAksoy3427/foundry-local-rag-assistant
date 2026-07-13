@@ -173,3 +173,42 @@ Gun 6 ciktisi:
 - src/chunker.py eklendi.
 - src/chunking_demo.py eklendi.
 - Dokumanlari chunk'lara bolme demosu calisti.
+
+## Gun 7 - Chunk Embedding Uretimi
+
+Bugun gercek dokuman chunk'lari icin embedding uretildi.
+
+Onceki gunlerde yapilanlar:
+
+- Gun 5: Dokumanlar data/documents klasorunden okundu.
+- Gun 6: Dokumanlar chunk'lara bolundu.
+- Gun 7: Her chunk embedding vektorune cevrildi.
+
+Bu adimin amaci, RAG sisteminin retrieval asamasinda kullanacagi sayisal temsilleri hazirlamaktir.
+
+Embedding neden gerekli?
+
+Bilgisayar metinlerin anlamca yakin olup olmadigini dogrudan anlayamaz. Embedding, metinleri sayisal vektor haline getirir. Daha sonra kullanici sorusunun embedding'i ile dokuman chunk embedding'leri karsilastirilerek en alakali chunk'lar bulunur.
+
+Bugun yapilanlar:
+
+1. src/embedder.py eklendi.
+2. Foundry Local embedding modeli ayri bir yardimci sinif icinde kullanildi.
+3. Dokumanlar okundu.
+4. Dokumanlar chunk'lara bolundu.
+5. Her chunk icin embedding uretildi.
+6. Embedding boyutu kontrol edildi.
+7. Model alias problemi cozuldu. Calisan ana alias: qwen3-embedding-0.6b
+
+Gun 7 sonuc:
+
+- 4 dokuman okundu.
+- 16 chunk uretildi.
+- 16 chunk icin embedding uretildi.
+- Her embedding'in boyutu 1024 olarak dogrulandi.
+
+Gun 7 ciktisi:
+
+- src/embedder.py eklendi.
+- src/chunk_embedding_demo.py eklendi.
+- Gercek dokuman chunk'lari icin embedding uretimi test edildi.

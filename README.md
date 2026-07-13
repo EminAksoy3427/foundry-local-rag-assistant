@@ -50,7 +50,9 @@ Answer
 - [x] Embedding denemesi
 - [x] SQLite veritabanı
 - [x] Doküman seti ve dosya okuma
-- [X] Chunking
+- [x] Chunking
+- [x] Chunk embedding üretimi
+- [ ] SQLite ingestion pipeline
 - [ ] Retrieval pipeline
 - [ ] LLM entegrasyonu
 - [ ] CLI arayüz
@@ -95,3 +97,21 @@ Her chunk şu bilgileri içerir:
 - source
 - chunk_index
 - chunk_text
+
+
+## Chunk Embedding Demo
+
+```powershell
+python src\chunk_embedding_demo.py
+```
+
+Bu demo, `data/documents` klasöründeki dokümanları okur, chunk'lara böler ve her chunk için Foundry Local embedding modeliyle embedding vektörü üretir.
+
+Her embedded chunk şu bilgileri içerir:
+
+- source
+- chunk_index
+- chunk_text
+- embedding
+
+Bu projede ana embedding modeli olarak `qwen3-embedding-0.6b` kullanılmaktadır.
