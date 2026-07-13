@@ -95,3 +95,43 @@ def count_documents():
     with get_connection() as conn:
         cursor = conn.execute("SELECT COUNT(*) FROM documents")
         return cursor.fetchone()[0]
+    
+def insert_documents(documents):
+    """
+    Birden fazla dokuman chunk'ini tek transaction ile SQLite'a kaydeder.
+
+    Her document sozlugu su alanlari icermelidir:
+    - source
+    - chunk_index
+    - chunk_text
+    - embedding
+    """
+    rows = [
+        (
+            document["source"],
+            document["chunk_index"],
+            document["chunk_text"],
+            document.get("embedding"),
+        )
+        for document in documents
+    ]
+
+    if not rows:
+        return 0
+
+    with get_connection() as conn:
+        conn.executemany(
+            """
+            INSERT INTO documents (
+                source,
+                chunk_index,
+                chunk_text,
+                embedding
+            )
+            VALUES (?, ?, ?, ?)
+            """,
+            rows,
+        )
+        conn.commit()
+
+    return len(rows)

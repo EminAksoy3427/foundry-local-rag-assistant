@@ -115,3 +115,8 @@ Her embedded chunk şu bilgileri içerir:
 - embedding
 
 Bu projede ana embedding modeli olarak `qwen3-embedding-0.6b` kullanılmaktadır.
+
+Run the SQLite ingestion demo:
+
+```powershell
+python -m src.ingest_demo

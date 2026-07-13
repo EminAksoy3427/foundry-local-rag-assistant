@@ -212,3 +212,45 @@ Gun 7 ciktisi:
 - src/embedder.py eklendi.
 - src/chunk_embedding_demo.py eklendi.
 - Gercek dokuman chunk'lari icin embedding uretimi test edildi.
+
+
+## Day 8 — SQLite Ingestion Pipeline
+
+### Goal
+
+Combine the document loader, chunker, embedding model, and SQLite database into a complete ingestion pipeline.
+
+### What was implemented
+
+- Added `insert_documents()` to `src/db.py`
+- Used `executemany()` to insert multiple chunks with one database transaction
+- Added `src/ingest.py`
+- Added `src/ingest_demo.py`
+- Loaded real text documents from `data/documents/`
+- Split the documents into paragraph-based chunks
+- Generated a local embedding for every chunk
+- Converted embedding vectors into JSON strings
+- Stored chunk metadata, text, and embeddings in SQLite
+- Read the records back from SQLite
+- Verified that the number of stored records matched the generated chunk count
+- Verified that a stored embedding could be restored with `json.loads()`
+
+### Test result
+
+- Documents loaded: 4
+- Chunks generated: 16
+- Records inserted: 16
+- Records read from SQLite: 16
+- Embedding dimensions: 1024
+
+### Key learning
+
+An ingestion pipeline prepares raw documents for retrieval. It transforms documents into searchable chunks and persists their vector representations so embeddings do not need to be recomputed for every user question.
+
+Embedding vectors are stored as JSON text because the current SQLite schema uses a `TEXT` column. During retrieval, the JSON string can be converted back into a Python list using `json.loads()`.
+
+The database is reset only after embedding generation succeeds. This prevents an embedding error from deleting the previously working database unnecessarily.
+
+### Next step
+
+Implement semantic retrieval by embedding a user query, loading stored embeddings from SQLite, calculating cosine similarity, and returning the top matching chunks.
