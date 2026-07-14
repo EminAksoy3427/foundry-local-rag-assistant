@@ -1,5 +1,4 @@
-from foundry_local_sdk import Configuration, FoundryLocalManager
-
+from src.foundry_manager import get_foundry_manager
 
 EMBEDDING_MODEL_ALIASES = [
     "qwen3-embedding-0.6b",
@@ -51,10 +50,7 @@ class LocalEmbedder:
         """
         print("Foundry Local embedding sistemi baslatiliyor...")
 
-        FoundryLocalManager.initialize(
-            Configuration(app_name="foundry-local-rag-assistant")
-        )
-        self.manager = FoundryLocalManager.instance
+        self.manager = get_foundry_manager()
 
         print("Embedding modeli aliniyor...")
         self.model = self._find_embedding_model()

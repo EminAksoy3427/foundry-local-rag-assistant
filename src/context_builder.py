@@ -2,15 +2,14 @@ SYSTEM_PROMPT = """
 Sen tamamen yerel calisan bir dokuman soru-cevap asistanisin.
 
 Kurallar:
-- Yalnizca kullanici mesajinda verilen baglami kullan.
-- Baglamda cevap yoksa bunu acikca soyle.
-- Tahmin yurutme ve baglam disinda bilgi uydurma.
+- Yalnizca verilen baglama dayanarak cevap ver.
+- Baglamda cevap yoksa "Bu bilgi verilen dokumanlarda bulunmuyor." de.
+- Baglam disinda bilgi ekleme veya tahmin yurutme.
 - Cevabi kullanicinin sordugu dilde ver.
-- Kullandigin bilgilerin kaynaklarini
-  [dosya_adi - Chunk N] biciminde belirt.
-- Cevabi acik, dogrudan ve gereksiz ayrintidan uzak tut.
+- En fazla uc kisa cumle kullan.
+- Liste, baslik veya kaynak bolumu olusturma.
+- Cevabi acik ve dogrudan yaz.
 """.strip()
-
 
 def validate_retrieved_chunks(retrieved_chunks):
     """
@@ -84,6 +83,32 @@ def build_context(retrieved_chunks):
 
     return "\n\n".join(context_sections)
 
+def build_source_references(retrieved_chunks):
+    """
+    Retrieval sonuclarindan tekrarsiz kaynak referanslari olusturur.
+
+    Kaynaklari modelin uretmesine birakmak yerine uygulama tarafinda
+    olusturmak, gosterilen kaynaklarin gercek retrieval sonuclariyla
+    uyumlu olmasini garanti eder.
+    """
+    chunks = validate_retrieved_chunks(retrieved_chunks)
+
+    source_references = []
+    seen_references = set()
+
+    for chunk in chunks:
+        source = str(chunk["source"]).strip()
+        chunk_index = chunk["chunk_index"]
+        reference = f"[{source} - Chunk {chunk_index}]"
+
+        if reference in seen_references:
+            continue
+
+        seen_references.add(reference)
+        source_references.append(reference)
+
+    return source_references
+
 
 def build_user_prompt(question, context):
     """
@@ -100,25 +125,26 @@ def build_user_prompt(question, context):
         raise ValueError("Prompt context'i bos olamaz.")
 
     return (
-        "Asagidaki baglami kullanarak soruyu cevapla.\n\n"
-        "===== BAGLAM =====\n"
-        f"{cleaned_context}\n"
-        "===== BAGLAM SONU =====\n\n"
-        "===== KULLANICI SORUSU =====\n"
-        f"{cleaned_question}"
-    )
-
+    "BAGLAM:\n"
+    f"{cleaned_context}\n\n"
+    "SORU:\n"
+    f"{cleaned_question}\n\n"
+    "CEVAP:"
+)
 
 def build_rag_prompt(question, retrieved_chunks):
     """
     Retrieval sonuclarindan LLM'e gonderilmeye hazir
-    system ve user prompt'larini olusturur.
+    prompt'lari ve kaynak referanslarini olusturur.
     """
-    context = build_context(retrieved_chunks)
+    chunks = validate_retrieved_chunks(retrieved_chunks)
+    context = build_context(chunks)
     user_prompt = build_user_prompt(question, context)
+    source_references = build_source_references(chunks)
 
     return {
         "system_prompt": SYSTEM_PROMPT,
         "user_prompt": user_prompt,
         "context": context,
+        "source_references": source_references,
     }

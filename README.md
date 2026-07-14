@@ -173,3 +173,41 @@ The system prompt instructs the model to:
 - State clearly when the context is insufficient
 - Answer in the same language as the user
 - Include document and chunk references
+
+
+### Day 11 — Local RAG Answer Generation
+
+The project can now generate document-grounded answers with a local language model.
+
+The complete RAG pipeline:
+
+1. Receives a user question
+2. Generates a query embedding with Microsoft Foundry Local
+3. Retrieves the top matching chunks from SQLite
+4. Builds structured context and prompts
+5. Sends the context and question to a local chat model
+6. Streams and collects the generated answer
+7. Displays the actual retrieved sources
+
+New modules:
+
+- `src/foundry_manager.py` — provides a shared Foundry Local manager instance
+- `src/generator.py` — manages the local chat model and streaming generation
+- `src/generation_demo.py` — runs the end-to-end RAG generation pipeline
+
+Updated modules:
+
+- `src/embedder.py` — reuses the shared Foundry Local manager
+- `src/context_builder.py` — uses a simpler grounded prompt and creates deterministic source references
+
+Model evaluation:
+
+- `qwen2.5-0.5b` was too small for reliable Turkish RAG answers
+- `qwen2.5-1.5b` did not follow the supplied context reliably
+- `phi-3.5-mini` produced unclear answers
+- `phi-4-mini` produced the best grounded response and became the default model
+
+Current models:
+
+- Embedding model: `qwen3-embedding-0.6b`
+- Chat model: `phi-4-mini`
