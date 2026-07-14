@@ -684,3 +684,88 @@ The current `0.60` value is experimental and should later be evaluated with a la
 ### Next step
 
 Create a structured evaluation set containing answerable, unanswerable, and edge-case questions, then measure retrieval and fallback behavior systematically.
+
+
+
+## Day 15 — Systematic Retrieval Evaluation
+
+### Goal
+
+Evaluate the retrieval safety threshold with a structured set of answerable, unanswerable, and borderline questions.
+
+### What was implemented
+
+- Added `data/evaluation_questions.json`
+- Added `src/evaluation.py`
+- Added `src/evaluation_demo.py`
+- Added validation for the evaluation dataset
+- Loaded the embedding model once for all evaluation questions
+- Evaluated retrieval without running the chat model
+- Compared predicted statuses with expected statuses
+- Checked whether the top source matched the expected document
+- Calculated overall, status, and source accuracy
+- Calculated true positives, false positives, true negatives, and false negatives
+- Added empty-question and invalid-`top_k` validation tests
+
+### Dataset
+
+The dataset contains:
+
+- 8 supported questions
+- 4 unsupported questions
+- 2 diagnostic borderline questions
+- 14 total questions
+- 12 questions included in strict accuracy calculations
+
+### Evaluation result
+
+- Passed cases: `12`
+- Failed cases: `0`
+- Overall accuracy: `100%`
+- Status decision accuracy: `100%`
+- Top-source accuracy: `100%`
+- True positives: `8`
+- False negatives: `0`
+- True negatives: `4`
+- False positives: `0`
+
+### Threshold analysis
+
+Current minimum similarity threshold:
+
+`0.60`
+
+Lowest supported-question score:
+
+`0.6203`
+
+Highest unsupported-question score:
+
+`0.3312`
+
+The current dataset shows a clear separation between supported and unsupported questions. Therefore, the threshold remains at `0.60`.
+
+### Borderline observations
+
+The following short and ambiguous questions were rejected:
+
+- `Sistem tamamen yerel mi calisir?` — `0.4371`
+- `Veriler nerede saklanir?` — `0.4133`
+
+These questions relate to the project but do not contain enough semantic detail to cross the current threshold.
+
+Lowering the threshold could improve recall for vague questions but may also increase the risk of unsupported answers.
+
+A future improvement can ask the user to clarify low-confidence questions instead of immediately generating an answer.
+
+### Key learning
+
+Retrieval and generation should be evaluated separately.
+
+This evaluation used only the embedding and retrieval layers. The chat model was not run, so retrieval errors could be measured independently of generation quality.
+
+A perfect result on a small test set does not prove production-level accuracy. The dataset should be expanded over time with more natural, ambiguous, multilingual, and adversarial questions.
+
+### Next step
+
+Persist evaluation results and add broader tests for paraphrases, vague questions, source ranking, and threshold calibration.

@@ -1,0 +1,120 @@
+[
+  {
+    "id": "supported_01",
+    "category": "supported",
+    "question": "RAG nedir?",
+    "expected_status": "answered",
+    "acceptable_sources": ["rag_notes.txt"],
+    "include_in_accuracy": true
+  },
+  {
+    "id": "supported_02",
+    "category": "supported",
+    "question": "RAG hangi uc asamadan olusur?",
+    "expected_status": "answered",
+    "acceptable_sources": ["rag_notes.txt"],
+    "include_in_accuracy": true
+  },
+  {
+    "id": "supported_03",
+    "category": "supported",
+    "question": "RAG sisteminde dokuman parcalari modele nasil verilir?",
+    "expected_status": "answered",
+    "acceptable_sources": ["rag_notes.txt"],
+    "include_in_accuracy": true
+  },
+  {
+    "id": "supported_04",
+    "category": "supported",
+    "question": "Foundry Local ne ise yarar?",
+    "expected_status": "answered",
+    "acceptable_sources": ["foundry_local_notes.txt"],
+    "include_in_accuracy": true
+  },
+  {
+    "id": "supported_05",
+    "category": "supported",
+    "question": "Foundry Local yapay zeka modellerini nerede calistirir?",
+    "expected_status": "answered",
+    "acceptable_sources": ["foundry_local_notes.txt"],
+    "include_in_accuracy": true
+  },
+  {
+    "id": "supported_06",
+    "category": "supported",
+    "question": "SQLite neden yerel bir RAG uygulamasi icin uygundur?",
+    "expected_status": "answered",
+    "acceptable_sources": ["sqlite_notes.txt"],
+    "include_in_accuracy": true
+  },
+  {
+    "id": "supported_07",
+    "category": "supported",
+    "question": "SQLite RAG sisteminde hangi bilgileri saklar?",
+    "expected_status": "answered",
+    "acceptable_sources": ["sqlite_notes.txt"],
+    "include_in_accuracy": true
+  },
+  {
+    "id": "supported_08",
+    "category": "supported",
+    "question": "Bu projenin temel amaci nedir?",
+    "expected_status": "answered",
+    "acceptable_sources": ["project_overview.txt"],
+    "include_in_accuracy": true
+  },
+  {
+    "id": "unsupported_01",
+    "category": "unsupported",
+    "question": "Jupiter'in kac uydusu vardir?",
+    "expected_status": "insufficient_context",
+    "acceptable_sources": [],
+    "include_in_accuracy": true
+  },
+  {
+    "id": "unsupported_02",
+    "category": "unsupported",
+    "question": "Fransa'nin baskenti neresidir?",
+    "expected_status": "insufficient_context",
+    "acceptable_sources": [],
+    "include_in_accuracy": true
+  },
+  {
+    "id": "unsupported_03",
+    "category": "unsupported",
+    "question": "Bugun Istanbul'da hava nasil?",
+    "expected_status": "insufficient_context",
+    "acceptable_sources": [],
+    "include_in_accuracy": true
+  },
+  {
+    "id": "unsupported_04",
+    "category": "unsupported",
+    "question": "Fotosentez nasil gerceklesir?",
+    "expected_status": "insufficient_context",
+    "acceptable_sources": [],
+    "include_in_accuracy": true
+  },
+  {
+    "id": "borderline_01",
+    "category": "borderline",
+    "question": "Sistem tamamen yerel mi calisir?",
+    "expected_status": null,
+    "acceptable_sources": [
+      "foundry_local_notes.txt",
+      "project_overview.txt"
+    ],
+    "include_in_accuracy": false
+  },
+  {
+    "id": "borderline_02",
+    "category": "borderline",
+    "question": "Veriler nerede saklanir?",
+    "expected_status": null,
+    "acceptable_sources": [
+      "sqlite_notes.txt",
+      "project_overview.txt"
+    ],
+    "include_in_accuracy": false
+  }
+]

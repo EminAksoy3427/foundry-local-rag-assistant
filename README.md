@@ -317,3 +317,53 @@ Updated modules:
 - `src/retrieval.py` — defines the default similarity threshold
 - `src/rag_service.py` — applies question-level retrieval safety
 - `src/cli.py` — displays answer status, scores, and model usage
+
+
+### Day 15 — Systematic Retrieval Evaluation
+
+The retrieval safety layer was evaluated with a structured test dataset.
+
+Evaluation dataset:
+
+- 8 answerable questions
+- 4 unanswerable questions
+- 2 diagnostic borderline questions
+- 14 total questions
+- 12 questions included in strict accuracy metrics
+
+The evaluation measures:
+
+- Expected and predicted answer status
+- Highest cosine similarity score
+- Top retrieved source
+- Source correctness
+- False positives
+- False negatives
+- Input validation behavior
+
+Results:
+
+- Overall accuracy: `100%`
+- Status decision accuracy: `100%`
+- Top-source accuracy: `100%`
+- True positives: `8`
+- True negatives: `4`
+- False positives: `0`
+- False negatives: `0`
+
+Current threshold:
+
+- Minimum similarity score: `0.60`
+
+Observed score range:
+
+- Lowest supported-question score: `0.6203`
+- Highest unsupported-question score: `0.3312`
+
+The `0.60` threshold was retained because it correctly separated all strict supported and unsupported questions in the current evaluation dataset.
+
+New files:
+
+- `data/evaluation_questions.json` — structured retrieval test dataset
+- `src/evaluation.py` — evaluation and metric calculation logic
+- `src/evaluation_demo.py` — terminal evaluation report
