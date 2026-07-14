@@ -211,3 +211,37 @@ Current models:
 
 - Embedding model: `qwen3-embedding-0.6b`
 - Chat model: `phi-4-mini`
+
+
+### Day 12 — Reusable RAG Service Layer
+
+The project now exposes the complete local RAG workflow through a reusable service function.
+
+The main service function:
+
+    answer_question(question, top_k=3, on_token=None)
+
+The service:
+
+1. Validates the user question
+2. Retrieves the most relevant chunks from SQLite
+3. Builds the grounded context and prompts
+4. Loads the local chat model
+5. Generates a streaming answer
+6. Unloads the model safely
+7. Returns a structured result
+
+The returned result includes:
+
+- Original question
+- Generated answer
+- Retrieved chunks
+- Deterministic source references
+- Local chat model alias
+
+New modules:
+
+- `src/rag_service.py` — contains the reusable end-to-end RAG service
+- `src/rag_service_demo.py` — demonstrates and validates the service output
+
+This service layer separates the RAG business logic from the user interface. Future interfaces can call one function without directly managing retrieval, prompts, or model lifecycle.
