@@ -600,3 +600,87 @@ This separation allows the same service to be reused later by a web interface or
 ### Next step
 
 Improve retrieval safety by adding a minimum similarity threshold and handling questions that are not answered by the local document collection.
+
+
+## Day 14 — Retrieval Safety and Similarity Threshold
+
+### Goal
+
+Prevent the assistant from generating unsupported answers when the local document collection does not contain sufficiently relevant information.
+
+### What was implemented
+
+- Added `DEFAULT_MIN_SIMILARITY_SCORE`
+- Selected an initial experimental threshold of `0.60`
+- Added question-level retrieval safety to `answer_question()`
+- Added the `answered` and `insufficient_context` result statuses
+- Added a deterministic fallback answer
+- Prevented the chat model from loading when context is insufficient
+- Preserved all top-k candidate chunks when the highest score passes the threshold
+- Added candidate chunk information to the service result
+- Added highest similarity score and threshold metadata
+- Updated the CLI to display retrieval safety information
+- Added `src/retrieval_safety_demo.py`
+- Tested one answerable and one unanswerable question
+
+### Safety decision
+
+The threshold is applied to the highest retrieval score at the question level.
+
+If the highest score is below the threshold:
+
+- The question is treated as unsupported
+- No chunks are used as context
+- The chat model is not loaded
+- The fallback answer is returned
+
+If the highest score reaches the threshold:
+
+- The question is treated as answerable
+- All top-k candidate chunks are retained as context
+
+This approach preserves useful supporting chunks even when their individual scores are slightly below the threshold.
+
+### Test 1 — Unsupported question
+
+Question:
+
+`Jupiter'in kac uydusu vardir?`
+
+Result:
+
+- Highest similarity score: `0.3262`
+- Minimum threshold: `0.6000`
+- Status: `insufficient_context`
+- Chat model: not loaded
+- Used chunks: `0`
+- Sources: none
+- Answer: `Bu bilgi verilen dokumanlarda bulunmuyor.`
+
+### Test 2 — Supported question
+
+Question:
+
+`Foundry Local ne ise yarar?`
+
+Result:
+
+- Highest similarity score: `0.6592`
+- Minimum threshold: `0.6000`
+- Status: `answered`
+- Chat model: `phi-4-mini`
+- Candidate chunks: `3`
+- Used chunks: `3`
+- Sources: three chunks from `foundry_local_notes.txt`
+
+### Key learning
+
+Top-k retrieval always returns results, even for unrelated questions. Therefore, the presence of retrieved chunks alone does not prove that the knowledge base contains the answer.
+
+A similarity threshold provides a basic safety gate before generation.
+
+The current `0.60` value is experimental and should later be evaluated with a larger set of supported and unsupported questions.
+
+### Next step
+
+Create a structured evaluation set containing answerable, unanswerable, and edge-case questions, then measure retrieval and fallback behavior systematically.

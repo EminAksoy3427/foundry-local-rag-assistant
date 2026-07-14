@@ -4,6 +4,8 @@ import math
 from src.db import fetch_all_documents
 from src.embedder import LocalEmbedder
 
+DEFAULT_MIN_SIMILARITY_SCORE = 0.60
+
 
 def cosine_similarity(vector_a, vector_b):
     """
@@ -128,3 +130,4 @@ def retrieve_top_chunks(query, top_k=3):
     )
 
     return ranked_documents[:top_k]
+

@@ -108,11 +108,35 @@ def run_cli():
         print("=" * 70)
 
         print_sources(result["source_references"])
+        
 
         print("\nCevap bilgisi")
+
         print("-" * 70)
-        print(f"Model: {result['model_alias']}")
-        print(f"Getirilen chunk sayisi: {len(result['retrieved_chunks'])}")
+        print(f"Durum: {result['status']}")
+
+        model_name = result["model_alias"] or "Yuklenmedi"
+        print(f"Model: {model_name}")
+
+        print(
+              "Kullanilan chunk sayisi: "
+              f"{len(result['retrieved_chunks'])}"
+            )
+        print(
+             "Aday chunk sayisi: "
+             f"{len(result['candidate_chunks'])}"
+            )
+
+        if result["top_similarity_score"] is not None:
+         print(
+              "En yuksek benzerlik skoru: "
+              f"{result['top_similarity_score']:.4f}"
+              )
+
+        print(
+              "Minimum benzerlik esigi: "
+              f"{result['min_similarity_score']:.4f}"
+             )
 
 
 def main():

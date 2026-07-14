@@ -276,3 +276,44 @@ The CLI uses:
 - Chat model: `phi-4-mini`
 - SQLite-backed local knowledge base
 - Reusable RAG service layer
+
+
+### Day 14 — Retrieval Safety and Similarity Threshold
+
+The project now checks whether the local knowledge base contains sufficiently relevant information before loading the chat model.
+
+The retrieval safety flow:
+
+1. Generates an embedding for the user question
+2. Retrieves the top candidate chunks from SQLite
+3. Reads the highest cosine similarity score
+4. Compares the highest score with a minimum threshold
+5. Generates an answer only when sufficient context exists
+6. Returns a safe fallback when the context is insufficient
+
+Current configuration:
+
+- Minimum similarity threshold: `0.60`
+- Fallback answer: `Bu bilgi verilen dokumanlarda bulunmuyor.`
+
+When the highest similarity score is below the threshold:
+
+- The local chat model is not loaded
+- No document source is presented as supporting evidence
+- The service returns `insufficient_context`
+
+When the highest score reaches the threshold:
+
+- All top-k candidate chunks are preserved as context
+- The local chat model generates a grounded answer
+- Actual retrieval sources are displayed
+
+New module:
+
+- `src/retrieval_safety_demo.py` — tests answerable and unanswerable questions
+
+Updated modules:
+
+- `src/retrieval.py` — defines the default similarity threshold
+- `src/rag_service.py` — applies question-level retrieval safety
+- `src/cli.py` — displays answer status, scores, and model usage
