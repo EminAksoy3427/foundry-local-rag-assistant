@@ -245,3 +245,34 @@ New modules:
 - `src/rag_service_demo.py` — demonstrates and validates the service output
 
 This service layer separates the RAG business logic from the user interface. Future interfaces can call one function without directly managing retrieval, prompts, or model lifecycle.
+
+
+### Day 13 — Interactive Command-Line Interface
+
+The project now includes an interactive command-line interface for asking multiple questions about local documents.
+
+The CLI:
+
+1. Checks whether the SQLite knowledge base contains document chunks
+2. Repeatedly accepts user questions
+3. Calls the reusable `answer_question()` service
+4. Streams the local LLM answer to the terminal
+5. Displays the actual retrieved sources
+6. Shows the selected model and retrieved chunk count
+7. Continues running after recoverable errors
+8. Exits cleanly with `exit`, `quit`, `q`, or Turkish exit commands
+
+New module:
+
+- `src/cli.py` — interactive terminal interface
+
+Updated module:
+
+- `src/main.py` — starts the CLI as the main application entry point
+
+The CLI uses:
+
+- Embedding model: `qwen3-embedding-0.6b`
+- Chat model: `phi-4-mini`
+- SQLite-backed local knowledge base
+- Reusable RAG service layer

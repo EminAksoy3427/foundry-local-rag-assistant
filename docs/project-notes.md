@@ -521,3 +521,82 @@ This separation avoids duplicating the RAG pipeline when adding a CLI, web inter
 ### Next step
 
 Build an interactive command-line interface that repeatedly accepts user questions and calls `answer_question()`.
+
+
+## Day 13 — Interactive Command-Line Interface
+
+### Goal
+
+Build an interactive terminal interface that repeatedly accepts user questions and uses the reusable RAG service.
+
+### What was implemented
+
+- Added `src/cli.py`
+- Updated `src/main.py` as the application entry point
+- Added a startup welcome message
+- Added a SQLite readiness check
+- Added repeated user input through a CLI loop
+- Connected the CLI to `answer_question()`
+- Added streaming answer display
+- Added deterministic source display
+- Added model and retrieval metadata
+- Added empty input validation
+- Added exit commands
+- Added graceful handling for `Ctrl+C` and end-of-file input
+- Added recoverable error handling so one failed question does not close the application
+
+### Supported exit commands
+
+- `exit`
+- `quit`
+- `q`
+- `cikis`
+- `çıkış`
+
+### Test result
+
+Question:
+
+`Foundry Local ne ise yarar?`
+
+Generated answer:
+
+`Foundry Local, yapay zeka modellerini kullanicinin kendi cihazinda calistirmayi saglayan bir Microsoft aracidir.`
+
+Retrieved sources:
+
+- `foundry_local_notes.txt` — Chunk 3
+- `foundry_local_notes.txt` — Chunk 2
+- `foundry_local_notes.txt` — Chunk 1
+
+Configuration:
+
+- SQLite records: 16
+- Chat model: `phi-4-mini`
+- Retrieved chunks: 3
+
+The application exited successfully with the `q` command.
+
+### Key learning
+
+The user interface should not contain the complete RAG implementation.
+
+The CLI is responsible for:
+
+- Reading input
+- Displaying answers
+- Displaying sources
+- Handling user interaction
+
+The RAG service remains responsible for:
+
+- Retrieval
+- Prompt construction
+- Model lifecycle
+- Answer generation
+
+This separation allows the same service to be reused later by a web interface or automated tests.
+
+### Next step
+
+Improve retrieval safety by adding a minimum similarity threshold and handling questions that are not answered by the local document collection.
