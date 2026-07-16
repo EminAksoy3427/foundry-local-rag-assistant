@@ -367,3 +367,49 @@ New files:
 - `data/evaluation_questions.json` — structured retrieval test dataset
 - `src/evaluation.py` — evaluation and metric calculation logic
 - `src/evaluation_demo.py` — terminal evaluation report
+
+
+### Day 16 — Persistent Evaluation Reporting
+
+The project now saves retrieval evaluation results as a version-controlled JSON report.
+
+The reporting pipeline:
+
+1. Loads the structured evaluation dataset
+2. Runs all retrieval test cases
+3. Calculates accuracy and decision metrics
+4. Analyzes supported and unsupported score ranges
+5. Separates failed and diagnostic cases
+6. Saves the results as a structured JSON report
+7. Reads the saved report back for validation
+8. Compares the new metrics with the previous report
+
+New files:
+
+- `src/evaluation_report.py` — builds, saves, loads, and compares reports
+- `src/evaluation_report_demo.py` — runs evaluation and generates the report
+- `reports/evaluation_report.json` — latest version-controlled evaluation result
+
+The report includes:
+
+- Schema version
+- UTC generation timestamp
+- Embedding model
+- Top-k configuration
+- Minimum similarity threshold
+- Accuracy metrics
+- False-positive and false-negative counts
+- Score separation analysis
+- Failed cases
+- Diagnostic borderline cases
+- Individual test-case results
+
+Latest result:
+
+- Total cases: `14`
+- Strict cases: `12`
+- Passed cases: `12`
+- Overall accuracy: `100%`
+- False positives: `0`
+- False negatives: `0`
+- Score separation margin: `0.289075`

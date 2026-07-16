@@ -769,3 +769,92 @@ A perfect result on a small test set does not prove production-level accuracy. T
 ### Next step
 
 Persist evaluation results and add broader tests for paraphrases, vague questions, source ranking, and threshold calibration.
+
+
+## Day 16 — Persistent Evaluation Reporting
+
+### Goal
+
+Persist retrieval evaluation results in a structured, version-controlled JSON report and prepare the project for comparisons across future changes.
+
+### What was implemented
+
+- Added the `reports/` directory
+- Added `src/evaluation_report.py`
+- Added `src/evaluation_report_demo.py`
+- Added report schema versioning
+- Added UTC report generation timestamps
+- Added evaluation configuration metadata
+- Added JSON serialization for individual test cases
+- Added supported and unsupported score analysis
+- Added score separation margin calculation
+- Added failed-case extraction
+- Added diagnostic-case extraction
+- Added safe report writing through a temporary file
+- Added saved-report validation
+- Added comparison with the previous report
+- Generated `reports/evaluation_report.json`
+
+### Report configuration
+
+- Schema version: `1`
+- Embedding model: `qwen3-embedding-0.6b`
+- Top-k: `3`
+- Minimum similarity threshold: `0.60`
+
+### Latest evaluation result
+
+- Total cases: `14`
+- Strict cases: `12`
+- Diagnostic cases: `2`
+- Passed cases: `12`
+- Failed cases: `0`
+- Overall accuracy: `100%`
+- Status decision accuracy: `100%`
+- Top-source accuracy: `100%`
+- False positives: `0`
+- False negatives: `0`
+
+### Score analysis
+
+- Lowest supported-question score: `0.620312`
+- Highest unsupported-question score: `0.331236`
+- Separation margin: `0.289075`
+
+The positive separation margin shows that the supported and unsupported questions in the current dataset are clearly separated.
+
+### Previous report comparison
+
+The report generator detected an earlier report and compared the new metrics with it.
+
+All measured differences were zero:
+
+- Overall accuracy difference: `0.0`
+- Status accuracy difference: `0.0`
+- Source accuracy difference: `0.0`
+- False-positive difference: `0`
+- False-negative difference: `0`
+
+This confirms that the evaluation result remained stable between the two runs.
+
+### Report persistence decision
+
+The SQLite database remains under `storage/` and is excluded from Git because it is a generated local data store.
+
+The evaluation report is stored under `reports/` and committed to Git because it documents the latest verified behavior of the project.
+
+### Key learning
+
+Terminal output is temporary, while a structured report can be:
+
+- Version controlled
+- Compared over time
+- Used in documentation
+- Reviewed during code changes
+- Included in a final project presentation
+
+Writing through a temporary file reduces the risk of leaving a partially written report if the save operation is interrupted.
+
+### Next step
+
+Add generation-quality evaluation for selected questions and record whether the local model produces correct, grounded, concise answers.
