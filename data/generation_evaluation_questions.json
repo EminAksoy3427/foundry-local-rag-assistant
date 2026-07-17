@@ -1,0 +1,66 @@
+[
+  {
+    "id": "generation_supported_01",
+    "category": "supported",
+    "question": "RAG cevaplari nasil daha guvenilir hale getirir?",
+    "expected_status": "answered",
+    "acceptable_sources": ["rag_notes.txt"],
+    "required_concept_groups": [
+      ["dokuman", "belge"],
+      ["baglam", "context", "destek", "dayan"]
+    ],
+    "min_answer_chars": 30,
+    "max_answer_chars": 500
+  },
+  {
+    "id": "generation_supported_02",
+    "category": "supported",
+    "question": "Foundry Local ne ise yarar?",
+    "expected_status": "answered",
+    "acceptable_sources": ["foundry_local_notes.txt"],
+    "required_concept_groups": [
+      ["model", "yapay zeka"],
+      ["cihaz", "yerel", "local"]
+    ],
+    "min_answer_chars": 30,
+    "max_answer_chars": 400
+  },
+  {
+    "id": "generation_supported_03",
+    "category": "supported",
+    "question": "SQLite neden yerel bir RAG uygulamasi icin uygundur?",
+    "expected_status": "answered",
+    "acceptable_sources": ["sqlite_notes.txt"],
+    "required_concept_groups": [
+      ["sqlite"],
+      ["yerel", "local"],
+      ["dosya", "sunucu", "serverless", "hafif"]
+    ],
+    "min_answer_chars": 30,
+    "max_answer_chars": 500
+  },
+  {
+    "id": "generation_supported_04",
+    "category": "supported",
+    "question": "Bu projenin temel amaci nedir?",
+    "expected_status": "answered",
+    "acceptable_sources": ["project_overview.txt"],
+    "required_concept_groups": [
+      ["yerel", "local"],
+      ["dokuman", "belge"],
+      ["asistan", "soru-cevap", "soru", "cevap"]
+    ],
+    "min_answer_chars": 30,
+    "max_answer_chars": 500
+  },
+  {
+    "id": "generation_unsupported_01",
+    "category": "unsupported",
+    "question": "Jupiter'in kac uydusu vardir?",
+    "expected_status": "insufficient_context",
+    "acceptable_sources": [],
+    "required_concept_groups": [],
+    "min_answer_chars": 20,
+    "max_answer_chars": 150
+  }
+]

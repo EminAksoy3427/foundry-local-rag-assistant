@@ -1,7 +1,7 @@
 SQLite, hafif ve dosya tabanli bir veritabani sistemidir.
 
-Bu projede SQLite, dokuman parcalarini ve ileride bu parcalarin embedding vektorlerini saklamak icin kullanilir.
+Bu projede SQLite; dokuman parcalarini, kaynak bilgilerini ve embedding vektorlerini saklamak icin kullanilir.
 
-SQLite icin ayri bir sunucu kurmaya gerek yoktur. Veritabani tek bir dosya olarak storage klasoru icinde tutulabilir.
+SQLite icin ayri bir veritabani sunucusu kurmaya gerek yoktur. Veritabani tek bir dosya olarak storage klasorunde tutulabilir. Bu nedenle tamamen yerel bir RAG uygulamasi icin uygundur.
 
-RAG sisteminde kullanici sorusu geldiginde, SQLite icindeki dokuman parcalari okunur ve benzerlik aramasi yapilir.
+Kullanici sorusu geldiginde Python uygulamasi kayitlari SQLite'tan okur ve embedding vektorleri arasindaki kosinus benzerligini hesaplar. SQLite verileri saklar; benzerlik hesabini uygulama kodu yapar.

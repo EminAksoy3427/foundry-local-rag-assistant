@@ -413,3 +413,106 @@ Latest result:
 - False positives: `0`
 - False negatives: `0`
 - Score separation margin: `0.289075`
+
+
+### Day 17 — Generation Evaluation and Hybrid Source Ranking
+
+The project now evaluates final answer quality in addition to raw retrieval accuracy.
+
+Generation evaluation checks:
+
+- Expected answer status
+- Correct source usage
+- Required concept coverage
+- Answer length
+- Local chat model usage
+- Safe fallback behavior
+- Unexpected fallback text
+- Empty source behavior for unsupported questions
+
+Generation evaluation dataset:
+
+- 4 answerable questions
+- 1 unanswerable question
+- 5 total cases
+
+Latest generation result:
+
+- Passed cases: `5`
+- Failed cases: `0`
+- Overall accuracy: `100%`
+- Status accuracy: `100%`
+- Source accuracy: `100%`
+- Concept accuracy: `100%`
+- Length accuracy: `100%`
+- Clean-answer accuracy: `100%`
+- Fallback accuracy: `100%`
+
+The retrieval pipeline now uses hybrid source ranking.
+
+Updated flow:
+
+1. Retrieve a wider pool of candidate chunks
+2. Check the highest semantic score against the safety threshold
+3. Group candidate chunks by source
+4. Calculate lexical query coverage for each source
+5. Combine semantic similarity with lexical coverage
+6. Select the highest-ranked source
+7. Send only the best chunks from that source to the chat model
+
+Current configuration:
+
+- Context top-k: `3`
+- Retrieval candidate multiplier: `3`
+- Default candidate pool: `9`
+- Minimum similarity threshold: `0.60`
+- Lexical ranking weight: `0.05`
+
+Source-selection formula:
+
+    selection_score =
+        semantic_score +
+        lexical_weight * lexical_coverage
+
+This fixed a regression where a SQLite question ranked a general RAG chunk slightly above the correct SQLite document.
+
+Before hybrid source ranking:
+
+- Semantic top source: `rag_notes.txt`
+- Primary source: `rag_notes.txt`
+- Generated answer used incorrect context
+
+After hybrid source ranking:
+
+- Semantic top source: `rag_notes.txt`
+- Hybrid primary source: `sqlite_notes.txt`
+- Selected context contains only SQLite chunks
+- Generated answer correctly describes the information stored by SQLite
+
+Final retrieval regression result:
+
+- Strict cases: `12`
+- Passed cases: `12`
+- Overall accuracy: `100%`
+- Source accuracy: `100%`
+- False positives: `0`
+- False negatives: `0`
+
+New files:
+
+- `data/generation_evaluation_questions.json`
+- `src/generation_evaluation.py`
+- `src/generation_evaluation_demo.py`
+- `reports/generation_evaluation_report.json`
+
+Updated files:
+
+- `src/retrieval.py`
+- `src/rag_service.py`
+- `src/evaluation.py`
+- `src/context_builder.py`
+- `data/documents/sqlite_notes.txt`
+
+Limitation:
+
+Automated keyword and structural checks cannot fully measure grammar, fluency, natural expression, or subtle factual quality. Generated answers still require human review.

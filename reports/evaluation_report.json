@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-07-16T14:54:44.641123+00:00",
+  "generated_at_utc": "2026-07-17T15:40:34.426506+00:00",
   "configuration": {
     "embedding_model": "qwen3-embedding-0.6b",
     "top_k": 3,
@@ -46,10 +46,15 @@
       ],
       "top_source": "sqlite_notes.txt",
       "source_correct": false,
-      "top_similarity_score": 0.437054,
+      "top_similarity_score": 0.448076,
       "include_in_accuracy": false,
       "passed": null,
       "candidate_chunks": [
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.448076
+        },
         {
           "source": "sqlite_notes.txt",
           "chunk_index": 1,
@@ -64,6 +69,31 @@
           "source": "project_overview.txt",
           "chunk_index": 2,
           "similarity_score": 0.413817
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.413482
+        },
+        {
+          "source": "rag_notes.txt",
+          "chunk_index": 4,
+          "similarity_score": 0.385436
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.381176
+        },
+        {
+          "source": "foundry_local_notes.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.36176
+        },
+        {
+          "source": "foundry_local_notes.txt",
+          "chunk_index": 4,
+          "similarity_score": 0.360995
         }
       ]
     },
@@ -91,13 +121,43 @@
         },
         {
           "source": "sqlite_notes.txt",
-          "chunk_index": 4,
-          "similarity_score": 0.356216
+          "chunk_index": 2,
+          "similarity_score": 0.356677
         },
         {
           "source": "rag_notes.txt",
           "chunk_index": 2,
           "similarity_score": 0.349084
+        },
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.342192
+        },
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.324275
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.300651
+        },
+        {
+          "source": "foundry_local_notes.txt",
+          "chunk_index": 4,
+          "similarity_score": 0.287546
+        },
+        {
+          "source": "foundry_local_notes.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.260818
+        },
+        {
+          "source": "rag_notes.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.249729
         }
       ]
     }
@@ -130,9 +190,39 @@
           "similarity_score": 0.611462
         },
         {
+          "source": "rag_notes.txt",
+          "chunk_index": 2,
+          "similarity_score": 0.550906
+        },
+        {
           "source": "sqlite_notes.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.465396
+        },
+        {
+          "source": "project_overview.txt",
           "chunk_index": 4,
-          "similarity_score": 0.557452
+          "similarity_score": 0.407539
+        },
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.329941
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 2,
+          "similarity_score": 0.324331
+        },
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 2,
+          "similarity_score": 0.323591
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.311061
         }
       ]
     },
@@ -163,9 +253,39 @@
           "similarity_score": 0.485032
         },
         {
+          "source": "rag_notes.txt",
+          "chunk_index": 2,
+          "similarity_score": 0.449046
+        },
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.384286
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.329584
+        },
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.327102
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 4,
+          "similarity_score": 0.320847
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 2,
+          "similarity_score": 0.305025
+        },
+        {
           "source": "sqlite_notes.txt",
           "chunk_index": 4,
-          "similarity_score": 0.451228
+          "similarity_score": 0.290164
         }
       ]
     },
@@ -191,14 +311,44 @@
           "similarity_score": 0.823456
         },
         {
-          "source": "sqlite_notes.txt",
-          "chunk_index": 4,
-          "similarity_score": 0.702506
-        },
-        {
           "source": "rag_notes.txt",
           "chunk_index": 4,
           "similarity_score": 0.578012
+        },
+        {
+          "source": "rag_notes.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.572748
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.545604
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 2,
+          "similarity_score": 0.506199
+        },
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.48205
+        },
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 2,
+          "similarity_score": 0.471066
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 4,
+          "similarity_score": 0.43485
+        },
+        {
+          "source": "rag_notes.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.409145
         }
       ]
     },
@@ -232,6 +382,36 @@
           "source": "foundry_local_notes.txt",
           "chunk_index": 1,
           "similarity_score": 0.520769
+        },
+        {
+          "source": "rag_notes.txt",
+          "chunk_index": 4,
+          "similarity_score": 0.513207
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 4,
+          "similarity_score": 0.509158
+        },
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.468594
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 2,
+          "similarity_score": 0.460691
+        },
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.407938
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.391447
         }
       ]
     },
@@ -265,6 +445,36 @@
           "source": "foundry_local_notes.txt",
           "chunk_index": 2,
           "similarity_score": 0.610865
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 2,
+          "similarity_score": 0.545528
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 4,
+          "similarity_score": 0.488216
+        },
+        {
+          "source": "foundry_local_notes.txt",
+          "chunk_index": 4,
+          "similarity_score": 0.444876
+        },
+        {
+          "source": "rag_notes.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.425222
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.418884
+        },
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.393832
         }
       ]
     },
@@ -280,14 +490,14 @@
       ],
       "top_source": "sqlite_notes.txt",
       "source_correct": true,
-      "top_similarity_score": 0.688039,
+      "top_similarity_score": 0.797121,
       "include_in_accuracy": true,
       "passed": true,
       "candidate_chunks": [
         {
           "source": "sqlite_notes.txt",
-          "chunk_index": 4,
-          "similarity_score": 0.688039
+          "chunk_index": 3,
+          "similarity_score": 0.797121
         },
         {
           "source": "rag_notes.txt",
@@ -298,6 +508,36 @@
           "source": "project_overview.txt",
           "chunk_index": 4,
           "similarity_score": 0.627581
+        },
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.613432
+        },
+        {
+          "source": "rag_notes.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.58683
+        },
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 2,
+          "similarity_score": 0.577926
+        },
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 4,
+          "similarity_score": 0.575671
+        },
+        {
+          "source": "rag_notes.txt",
+          "chunk_index": 2,
+          "similarity_score": 0.536754
+        },
+        {
+          "source": "foundry_local_notes.txt",
+          "chunk_index": 2,
+          "similarity_score": 0.447971
         }
       ]
     },
@@ -313,24 +553,54 @@
       ],
       "top_source": "sqlite_notes.txt",
       "source_correct": true,
-      "top_similarity_score": 0.796109,
+      "top_similarity_score": 0.695883,
       "include_in_accuracy": true,
       "passed": true,
       "candidate_chunks": [
-        {
-          "source": "sqlite_notes.txt",
-          "chunk_index": 4,
-          "similarity_score": 0.796109
-        },
         {
           "source": "rag_notes.txt",
           "chunk_index": 4,
           "similarity_score": 0.695883
         },
         {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.694931
+        },
+        {
           "source": "rag_notes.txt",
           "chunk_index": 1,
           "similarity_score": 0.634261
+        },
+        {
+          "source": "rag_notes.txt",
+          "chunk_index": 2,
+          "similarity_score": 0.633406
+        },
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.593874
+        },
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 2,
+          "similarity_score": 0.58558
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 4,
+          "similarity_score": 0.574064
+        },
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 4,
+          "similarity_score": 0.532507
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 2,
+          "similarity_score": 0.509576
         }
       ]
     },
@@ -358,12 +628,42 @@
         {
           "source": "sqlite_notes.txt",
           "chunk_index": 2,
-          "similarity_score": 0.318004
+          "similarity_score": 0.364525
         },
         {
           "source": "foundry_local_notes.txt",
           "chunk_index": 2,
           "similarity_score": 0.316164
+        },
+        {
+          "source": "rag_notes.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.311463
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 4,
+          "similarity_score": 0.298139
+        },
+        {
+          "source": "foundry_local_notes.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.283807
+        },
+        {
+          "source": "rag_notes.txt",
+          "chunk_index": 4,
+          "similarity_score": 0.278582
+        },
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.277328
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.26292
         }
       ]
     },
@@ -395,6 +695,36 @@
           "source": "project_overview.txt",
           "chunk_index": 3,
           "similarity_score": 0.275705
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 2,
+          "similarity_score": 0.254637
+        },
+        {
+          "source": "rag_notes.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.24329
+        },
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 4,
+          "similarity_score": 0.222033
+        },
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 2,
+          "similarity_score": 0.217382
+        },
+        {
+          "source": "foundry_local_notes.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.209128
+        },
+        {
+          "source": "rag_notes.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.206486
         }
       ]
     },
@@ -426,6 +756,36 @@
           "source": "project_overview.txt",
           "chunk_index": 2,
           "similarity_score": 0.248461
+        },
+        {
+          "source": "rag_notes.txt",
+          "chunk_index": 4,
+          "similarity_score": 0.235764
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.221573
+        },
+        {
+          "source": "foundry_local_notes.txt",
+          "chunk_index": 2,
+          "similarity_score": 0.199173
+        },
+        {
+          "source": "rag_notes.txt",
+          "chunk_index": 2,
+          "similarity_score": 0.198048
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.194478
+        },
+        {
+          "source": "foundry_local_notes.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.194126
         }
       ]
     },
@@ -454,9 +814,39 @@
           "similarity_score": 0.24469
         },
         {
+          "source": "rag_notes.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.230497
+        },
+        {
+          "source": "foundry_local_notes.txt",
+          "chunk_index": 2,
+          "similarity_score": 0.22416
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 2,
+          "similarity_score": 0.224119
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.216792
+        },
+        {
+          "source": "foundry_local_notes.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.215801
+        },
+        {
           "source": "sqlite_notes.txt",
           "chunk_index": 3,
-          "similarity_score": 0.243072
+          "similarity_score": 0.208928
+        },
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 4,
+          "similarity_score": 0.208344
         }
       ]
     },
@@ -488,6 +878,36 @@
           "source": "sqlite_notes.txt",
           "chunk_index": 1,
           "similarity_score": 0.313101
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.267677
+        },
+        {
+          "source": "rag_notes.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.236337
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.22834
+        },
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 4,
+          "similarity_score": 0.225686
+        },
+        {
+          "source": "foundry_local_notes.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.217436
+        },
+        {
+          "source": "rag_notes.txt",
+          "chunk_index": 2,
+          "similarity_score": 0.216068
         }
       ]
     },
@@ -504,10 +924,15 @@
       ],
       "top_source": "sqlite_notes.txt",
       "source_correct": false,
-      "top_similarity_score": 0.437054,
+      "top_similarity_score": 0.448076,
       "include_in_accuracy": false,
       "passed": null,
       "candidate_chunks": [
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.448076
+        },
         {
           "source": "sqlite_notes.txt",
           "chunk_index": 1,
@@ -522,6 +947,31 @@
           "source": "project_overview.txt",
           "chunk_index": 2,
           "similarity_score": 0.413817
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.413482
+        },
+        {
+          "source": "rag_notes.txt",
+          "chunk_index": 4,
+          "similarity_score": 0.385436
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.381176
+        },
+        {
+          "source": "foundry_local_notes.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.36176
+        },
+        {
+          "source": "foundry_local_notes.txt",
+          "chunk_index": 4,
+          "similarity_score": 0.360995
         }
       ]
     },
@@ -549,13 +999,43 @@
         },
         {
           "source": "sqlite_notes.txt",
-          "chunk_index": 4,
-          "similarity_score": 0.356216
+          "chunk_index": 2,
+          "similarity_score": 0.356677
         },
         {
           "source": "rag_notes.txt",
           "chunk_index": 2,
           "similarity_score": 0.349084
+        },
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.342192
+        },
+        {
+          "source": "sqlite_notes.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.324275
+        },
+        {
+          "source": "project_overview.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.300651
+        },
+        {
+          "source": "foundry_local_notes.txt",
+          "chunk_index": 4,
+          "similarity_score": 0.287546
+        },
+        {
+          "source": "foundry_local_notes.txt",
+          "chunk_index": 1,
+          "similarity_score": 0.260818
+        },
+        {
+          "source": "rag_notes.txt",
+          "chunk_index": 3,
+          "similarity_score": 0.249729
         }
       ]
     }

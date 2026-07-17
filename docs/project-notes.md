@@ -858,3 +858,150 @@ Writing through a temporary file reduces the risk of leaving a partially written
 ### Next step
 
 Add generation-quality evaluation for selected questions and record whether the local model produces correct, grounded, concise answers.
+
+
+## Day 17 — Generation Evaluation and Hybrid Source Ranking
+
+### Goal
+
+Evaluate final RAG answer quality and improve context selection when multiple documents receive similar semantic scores.
+
+### Generation evaluation
+
+A structured generation evaluation dataset was created with:
+
+- 4 supported questions
+- 1 unsupported question
+- 5 total cases
+
+The evaluation checks:
+
+- Status correctness
+- Source correctness
+- Required concept coverage
+- Answer length
+- Model usage
+- Fallback correctness
+- Unexpected fallback text
+- Empty sources for unsupported questions
+
+### Initial findings
+
+The first generation evaluation exposed two problems:
+
+1. Correct paraphrases could fail overly strict keyword checks.
+2. A shallow or misleading answer could pass simple keyword checks.
+
+Manual review also found that unrelated chunks from different documents could be mixed into one context.
+
+### Primary-source context selection
+
+The first improvement retrieved a wider candidate pool and selected chunks from the source of the highest semantic result.
+
+This improved the SQLite explanation, but a regression remained:
+
+- Question: `SQLite RAG sisteminde hangi bilgileri saklar?`
+- Highest semantic source: `rag_notes.txt`
+- Correct source: `sqlite_notes.txt`
+- Semantic score difference: approximately `0.001`
+
+Selecting the source of only the highest chunk was therefore too fragile.
+
+### Hybrid source ranking
+
+Candidate chunks are now grouped by source.
+
+For each source, the system calculates:
+
+- Highest semantic similarity score
+- Lexical query coverage
+- Combined source-selection score
+
+Formula:
+
+    selection_score =
+        semantic_score +
+        0.05 * lexical_coverage
+
+The source with the highest combined score becomes the primary source.
+
+The best three chunks from that source are used as the final model context.
+
+### SQLite regression example
+
+Raw semantic ranking:
+
+- `rag_notes.txt`: `0.6959`
+- `sqlite_notes.txt`: `0.6949`
+
+Hybrid source ranking:
+
+- `sqlite_notes.txt`: `0.7449`
+- `rag_notes.txt`: `0.7084`
+- `project_overview.txt`: `0.6116`
+
+The selected context became:
+
+- `sqlite_notes.txt - Chunk 3`
+- `sqlite_notes.txt - Chunk 1`
+- `sqlite_notes.txt - Chunk 2`
+
+The final answer correctly stated that SQLite stores:
+
+- Document chunks
+- Source information
+- Embedding vectors
+
+### Fallback architecture
+
+Fallback handling was removed from the local model prompt.
+
+The responsibility now belongs entirely to the service layer:
+
+- If the highest semantic score is below `0.60`, the service returns the fallback
+- The local chat model is not loaded
+- No source references are returned
+- The model is only used after retrieval safety succeeds
+
+### Final retrieval result
+
+- Total cases: `14`
+- Strict cases: `12`
+- Diagnostic cases: `2`
+- Passed strict cases: `12`
+- Failed strict cases: `0`
+- Overall accuracy: `100%`
+- Status accuracy: `100%`
+- Source accuracy: `100%`
+- False positives: `0`
+- False negatives: `0`
+
+### Final generation result
+
+- Total cases: `5`
+- Supported cases: `4`
+- Unsupported cases: `1`
+- Passed cases: `5`
+- Failed cases: `0`
+- Overall accuracy: `100%`
+- Status accuracy: `100%`
+- Source accuracy: `100%`
+- Concept accuracy: `100%`
+- Length accuracy: `100%`
+- Clean-answer accuracy: `100%`
+- Fallback accuracy: `100%`
+- Average answer length: `149.60`
+
+### Key learning
+
+Good retrieval requires more than choosing the single highest-scoring chunk.
+
+When semantic scores are close, query terms and document-level evidence can help identify the correct source.
+
+Retrieving broadly and selecting narrowly provides a more coherent prompt without increasing the number of chunks sent to the local model.
+
+Automated evaluation is useful for detecting regressions, but human review is still necessary for grammar, fluency, factual nuance, and usefulness.
+
+### Next step
+
+Measure retrieval, model-loading, generation, and total response times to identify local performance bottlenecks.

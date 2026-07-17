@@ -1,0 +1,314 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-07-17T15:49:28.697379+00:00",
+  "configuration": {
+    "embedding_model": "qwen3-embedding-0.6b",
+    "chat_model": "phi-4-mini",
+    "top_k": 3,
+    "min_similarity_score": 0.6
+  },
+  "summary": {
+    "total_cases": 5,
+    "supported_cases": 4,
+    "unsupported_cases": 1,
+    "passed_cases": 5,
+    "failed_cases": 0,
+    "overall_accuracy": 100.0,
+    "status_accuracy": 100.0,
+    "source_accuracy": 100.0,
+    "concept_accuracy": 100.0,
+    "length_accuracy": 100.0,
+    "clean_answer_accuracy": 100.0,
+    "fallback_accuracy": 100.0,
+    "average_answer_length": 149.6
+  },
+  "failed_cases": [],
+  "cases": [
+    {
+      "id": "generation_supported_01",
+      "category": "supported",
+      "question": "RAG cevaplari nasil daha guvenilir hale getirir?",
+      "expected_status": "answered",
+      "predicted_status": "answered",
+      "status_correct": true,
+      "answer": "RAG cevapları daha güvenilir hale getirir çünkü once kullanici sorusuyla ilgili dokuman parcalari retrieval, augment ve generate adımları kullanarak modelin baglam olarak verildiği için. Bu, modelin daha doğru ve ilgili cevaplar üretmesine olanak tanır.",
+      "answer_length": 253,
+      "min_answer_chars": 30,
+      "max_answer_chars": 500,
+      "length_correct": true,
+      "acceptable_sources": [
+        "rag_notes.txt"
+      ],
+      "source_references": [
+        "[rag_notes.txt - Chunk 1]",
+        "[rag_notes.txt - Chunk 2]",
+        "[rag_notes.txt - Chunk 4]"
+      ],
+      "source_correct": true,
+      "concept_evaluation": {
+        "all_groups_matched": true,
+        "groups": [
+          {
+            "keywords": [
+              "dokuman",
+              "belge"
+            ],
+            "matched": true,
+            "matched_keywords": [
+              "dokuman"
+            ]
+          },
+          {
+            "keywords": [
+              "baglam",
+              "context",
+              "destek",
+              "dayan"
+            ],
+            "matched": true,
+            "matched_keywords": [
+              "baglam"
+            ]
+          }
+        ]
+      },
+      "contains_fallback_answer": false,
+      "unexpected_fallback": false,
+      "fallback_correct": null,
+      "sources_empty": null,
+      "model_alias": "phi-4-mini",
+      "model_usage_correct": true,
+      "top_similarity_score": 0.6349994260658477,
+      "min_similarity_score": 0.6,
+      "passed": true
+    },
+    {
+      "id": "generation_supported_02",
+      "category": "supported",
+      "question": "Foundry Local ne ise yarar?",
+      "expected_status": "answered",
+      "predicted_status": "answered",
+      "status_correct": true,
+      "answer": "Foundry Local, yapay zeka modellerini kullanicinin kendi cihazinda calistirmayi saglayan bir Microsoft aracidir. Bu, bulut hizmetlerine girmeden modelleri yerel bilgisayarda kullanabilmenizi sağlar.",
+      "answer_length": 198,
+      "min_answer_chars": 30,
+      "max_answer_chars": 400,
+      "length_correct": true,
+      "acceptable_sources": [
+        "foundry_local_notes.txt"
+      ],
+      "source_references": [
+        "[foundry_local_notes.txt - Chunk 3]",
+        "[foundry_local_notes.txt - Chunk 2]",
+        "[foundry_local_notes.txt - Chunk 1]"
+      ],
+      "source_correct": true,
+      "concept_evaluation": {
+        "all_groups_matched": true,
+        "groups": [
+          {
+            "keywords": [
+              "model",
+              "yapay zeka"
+            ],
+            "matched": true,
+            "matched_keywords": [
+              "model",
+              "yapay zeka"
+            ]
+          },
+          {
+            "keywords": [
+              "cihaz",
+              "yerel",
+              "local"
+            ],
+            "matched": true,
+            "matched_keywords": [
+              "cihaz",
+              "yerel",
+              "local"
+            ]
+          }
+        ]
+      },
+      "contains_fallback_answer": false,
+      "unexpected_fallback": false,
+      "fallback_correct": null,
+      "sources_empty": null,
+      "model_alias": "phi-4-mini",
+      "model_usage_correct": true,
+      "top_similarity_score": 0.6592381936439967,
+      "min_similarity_score": 0.6,
+      "passed": true
+    },
+    {
+      "id": "generation_supported_03",
+      "category": "supported",
+      "question": "SQLite neden yerel bir RAG uygulamasi icin uygundur?",
+      "expected_status": "answered",
+      "predicted_status": "answered",
+      "status_correct": true,
+      "answer": "SQLite, hafif, dosya tabanlı bir veritabani sistemdir ve tek bir dosya olarak storage klasorunda tutulabilir, bu nedenle tamamen yerel bir RAG uygulamasi icin uygundur.",
+      "answer_length": 168,
+      "min_answer_chars": 30,
+      "max_answer_chars": 500,
+      "length_correct": true,
+      "acceptable_sources": [
+        "sqlite_notes.txt"
+      ],
+      "source_references": [
+        "[sqlite_notes.txt - Chunk 3]",
+        "[sqlite_notes.txt - Chunk 1]",
+        "[sqlite_notes.txt - Chunk 2]"
+      ],
+      "source_correct": true,
+      "concept_evaluation": {
+        "all_groups_matched": true,
+        "groups": [
+          {
+            "keywords": [
+              "sqlite"
+            ],
+            "matched": true,
+            "matched_keywords": [
+              "sqlite"
+            ]
+          },
+          {
+            "keywords": [
+              "yerel",
+              "local"
+            ],
+            "matched": true,
+            "matched_keywords": [
+              "yerel"
+            ]
+          },
+          {
+            "keywords": [
+              "dosya",
+              "sunucu",
+              "serverless",
+              "hafif"
+            ],
+            "matched": true,
+            "matched_keywords": [
+              "dosya",
+              "hafif"
+            ]
+          }
+        ]
+      },
+      "contains_fallback_answer": false,
+      "unexpected_fallback": false,
+      "fallback_correct": null,
+      "sources_empty": null,
+      "model_alias": "phi-4-mini",
+      "model_usage_correct": true,
+      "top_similarity_score": 0.7971211043840257,
+      "min_similarity_score": 0.6,
+      "passed": true
+    },
+    {
+      "id": "generation_supported_04",
+      "category": "supported",
+      "question": "Bu projenin temel amaci nedir?",
+      "expected_status": "answered",
+      "predicted_status": "answered",
+      "status_correct": true,
+      "answer": "Bu projenin temel amaci, yerel calisan bir dokuman soru-cevap asistanini geliştirmektir.",
+      "answer_length": 88,
+      "min_answer_chars": 30,
+      "max_answer_chars": 500,
+      "length_correct": true,
+      "acceptable_sources": [
+        "project_overview.txt"
+      ],
+      "source_references": [
+        "[project_overview.txt - Chunk 1]",
+        "[project_overview.txt - Chunk 4]",
+        "[project_overview.txt - Chunk 3]"
+      ],
+      "source_correct": true,
+      "concept_evaluation": {
+        "all_groups_matched": true,
+        "groups": [
+          {
+            "keywords": [
+              "yerel",
+              "local"
+            ],
+            "matched": true,
+            "matched_keywords": [
+              "yerel"
+            ]
+          },
+          {
+            "keywords": [
+              "dokuman",
+              "belge"
+            ],
+            "matched": true,
+            "matched_keywords": [
+              "dokuman"
+            ]
+          },
+          {
+            "keywords": [
+              "asistan",
+              "soru-cevap",
+              "soru",
+              "cevap"
+            ],
+            "matched": true,
+            "matched_keywords": [
+              "asistan",
+              "soru-cevap",
+              "soru",
+              "cevap"
+            ]
+          }
+        ]
+      },
+      "contains_fallback_answer": false,
+      "unexpected_fallback": false,
+      "fallback_correct": null,
+      "sources_empty": null,
+      "model_alias": "phi-4-mini",
+      "model_usage_correct": true,
+      "top_similarity_score": 0.6203117801635039,
+      "min_similarity_score": 0.6,
+      "passed": true
+    },
+    {
+      "id": "generation_unsupported_01",
+      "category": "unsupported",
+      "question": "Jupiter'in kac uydusu vardir?",
+      "expected_status": "insufficient_context",
+      "predicted_status": "insufficient_context",
+      "status_correct": true,
+      "answer": "Bu bilgi verilen dokumanlarda bulunmuyor.",
+      "answer_length": 41,
+      "min_answer_chars": 20,
+      "max_answer_chars": 150,
+      "length_correct": true,
+      "acceptable_sources": [],
+      "source_references": [],
+      "source_correct": null,
+      "concept_evaluation": {
+        "all_groups_matched": true,
+        "groups": []
+      },
+      "contains_fallback_answer": true,
+      "unexpected_fallback": null,
+      "fallback_correct": true,
+      "sources_empty": true,
+      "model_alias": null,
+      "model_usage_correct": true,
+      "top_similarity_score": 0.3262311488238899,
+      "min_similarity_score": 0.6,
+      "passed": true
+    }
+  ]
+}
