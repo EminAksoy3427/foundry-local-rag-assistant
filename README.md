@@ -516,3 +516,172 @@ Updated files:
 Limitation:
 
 Automated keyword and structural checks cannot fully measure grammar, fluency, natural expression, or subtle factual quality. Generated answers still require human review.
+
+
+### Day 18 — Performance Measurement and Persistent Model Sessions
+
+The project now measures the execution time of each major RAG pipeline stage.
+
+Measured stages include:
+
+- SQLite document loading
+- Embedding model loading
+- Query embedding generation
+- Embedding model unloading
+- Cosine similarity calculation and ranking
+- Hybrid source ranking
+- Context selection
+- Prompt construction
+- Chat model loading
+- Answer generation
+- Chat model unloading
+- Total service time
+
+Three repeated benchmark cases were used:
+
+- Answerable SQLite question
+- Answerable Foundry Local question
+- Unsupported Jupiter question
+
+Each case was executed three times.
+
+## Stateless performance baseline
+
+Baseline benchmark results:
+
+- Total runs: `9`
+- Passed runs: `9`
+- Correctness rate: `100%`
+- Answerable median latency: `25.2748 seconds`
+- Unsupported median latency: `3.0760 seconds`
+
+Main service bottlenecks:
+
+1. Answer generation
+2. Chat model loading
+3. Retrieval
+
+Main retrieval bottleneck:
+
+- Embedding model loading
+
+Stateless answerable-stage median values:
+
+- Answer generation: `11.8997 seconds`
+- Chat model loading: `8.6434 seconds`
+- Retrieval: `2.4662 seconds`
+
+Retrieval-stage median values:
+
+- Embedding model loading: `2.1602 seconds`
+- Query embedding generation: `0.5750 seconds`
+- Embedding model unloading: `0.0940 seconds`
+- SQLite reading: `0.0086 seconds`
+- Similarity ranking: `0.0053 seconds`
+
+## Persistent RAG session
+
+A new `LocalRAGSession` class keeps local models available across multiple questions.
+
+Session behavior:
+
+1. The embedding model is loaded once when the session starts.
+2. The same embedding model is reused for every question.
+3. The chat model is loaded lazily on the first answerable question.
+4. The loaded chat model is reused for later answerable questions.
+5. Unsupported questions do not invoke the chat model.
+6. Both models are safely unloaded when the session closes.
+
+The existing stateless `answer_question()` interface remains supported.
+
+This allows two execution modes:
+
+    Stateless usage:
+        answer_question(question)
+
+    Persistent usage:
+        with LocalRAGSession() as session:
+            session.answer_question(question)
+
+## Optimized persistent-session result
+
+Persistent benchmark results:
+
+- Total measured runs: `9`
+- Passed runs: `9`
+- Correctness rate: `100%`
+- Model reuse checks: passed
+
+Answerable questions:
+
+- Baseline median: `25.2748 seconds`
+- Optimized median: `13.6945 seconds`
+- Saved time: `11.5803 seconds`
+- Improvement: `45.82%`
+- Speedup: `1.85x`
+
+Unsupported questions:
+
+- Baseline median: `3.0760 seconds`
+- Optimized median: `0.6877 seconds`
+- Saved time: `2.3883 seconds`
+- Improvement: `77.64%`
+- Speedup: `4.47x`
+
+Warm case medians:
+
+- SQLite question: `11.9033 seconds`
+- Foundry Local question: `15.4109 seconds`
+- Unsupported question: `0.6877 seconds`
+
+First-user experience:
+
+- Session startup: `3.9259 seconds`
+- First answer service time: `18.9104 seconds`
+- Startup plus first answer: `22.8364 seconds`
+
+The main warm-request bottleneck is now answer generation rather than model loading.
+
+## Performance reports
+
+The project stores three performance reports:
+
+- `reports/performance_report.json`
+  - Original stateless benchmark output
+- `reports/performance_baseline.json`
+  - Fixed reference copy of the pre-optimization result
+- `reports/performance_optimized.json`
+  - Persistent-session benchmark result
+
+## New files
+
+- `src/rag_session.py`
+- `src/performance.py`
+- `src/performance_demo.py`
+- `src/session_performance.py`
+- `src/session_performance_demo.py`
+- `reports/performance_report.json`
+- `reports/performance_baseline.json`
+- `reports/performance_optimized.json`
+
+## Updated files
+
+- `src/embedder.py`
+- `src/generator.py`
+- `src/retrieval.py`
+- `src/rag_service.py`
+- `src/cli.py`
+
+## Running the benchmarks
+
+Run the stateless benchmark:
+
+    python -m src.performance_demo
+
+Run the persistent-session benchmark:
+
+    python -m src.session_performance_demo
+
+Run the optimized interactive CLI:
+
+    python -m src.main

@@ -1,6 +1,7 @@
 import json
 import math
 import re
+from time import perf_counter
 
 from src.db import fetch_all_documents
 from src.embedder import LocalEmbedder
@@ -52,16 +53,13 @@ TURKISH_CHARACTER_MAP = str.maketrans(
 
 def cosine_similarity(vector_a, vector_b):
     """
-    Iki embedding vektoru arasindaki cosine similarity
-    skorunu hesaplar.
-
-    Sonuc genellikle -1 ile 1 arasindadir.
-    Skor 1'e yaklastikca metinlerin anlamsal
-    benzerligi artar.
+    Iki embedding vektoru arasindaki cosine
+    similarity skorunu hesaplar.
     """
     if len(vector_a) != len(vector_b):
         raise ValueError(
-            "Embedding boyutlari birbiriyle uyusmuyor. "
+            "Embedding boyutlari birbiriyle "
+            "uyusmuyor. "
             f"Birinci: {len(vector_a)}, "
             f"ikinci: {len(vector_b)}"
         )
@@ -75,11 +73,17 @@ def cosine_similarity(vector_a, vector_b):
     )
 
     magnitude_a = math.sqrt(
-        sum(value * value for value in vector_a)
+        sum(
+            value * value
+            for value in vector_a
+        )
     )
 
     magnitude_b = math.sqrt(
-        sum(value * value for value in vector_b)
+        sum(
+            value * value
+            for value in vector_b
+        )
     )
 
     if magnitude_a == 0 or magnitude_b == 0:
@@ -100,11 +104,14 @@ def deserialize_embedding(embedding_text):
             "SQLite kaydinda embedding bulunamadi."
         )
 
-    embedding = json.loads(embedding_text)
+    embedding = json.loads(
+        embedding_text
+    )
 
     if not isinstance(embedding, list):
         raise ValueError(
-            "Embedding JSON verisi bir liste degil."
+            "Embedding JSON verisi bir liste "
+            "degil."
         )
 
     return [
@@ -120,15 +127,14 @@ def rank_documents(
     """
     Kullanici sorusunun embedding'ini tum SQLite
     kayitlariyla karsilastirir.
-
-    Her kayda similarity_score ekler ve sonuclari
-    en yuksek skordan en dusuk skora dogru siralar.
     """
     ranked_documents = []
 
     for document in stored_documents:
-        stored_embedding = deserialize_embedding(
-            document["embedding"]
+        stored_embedding = (
+            deserialize_embedding(
+                document["embedding"]
+            )
         )
 
         similarity_score = cosine_similarity(
@@ -143,8 +149,12 @@ def rank_documents(
                 "chunk_index": document[
                     "chunk_index"
                 ],
-                "chunk_text": document["chunk_text"],
-                "similarity_score": similarity_score,
+                "chunk_text": document[
+                    "chunk_text"
+                ],
+                "similarity_score": (
+                    similarity_score
+                ),
             }
         )
 
@@ -158,20 +168,22 @@ def rank_documents(
     return ranked_documents
 
 
-def retrieve_top_chunks(
+def retrieve_top_chunks_with_metrics(
     query,
     top_k=3,
+    embedder=None,
+    manage_embedder_lifecycle=None,
 ):
     """
-    Kullanici sorusu icin en alakali top-k chunk'i
-    getirir.
+    En alakali chunk'lari ve retrieval performans
+    metriklerini dondurur.
 
-    Adimlar:
-    1. Sorunun embedding'ini uret
-    2. SQLite kayitlarini oku
-    3. Cosine similarity skorlarini hesapla
-    4. Sonuclari sirala
-    5. En yuksek skorlu top-k chunk'i dondur
+    embedder verilmezse fonksiyon kendi
+    LocalEmbedder nesnesini olusturur ve is
+    bittiginde kapatir.
+
+    Yuklenmis bir embedder verilirse model tekrar
+    yuklenmeden ayni oturumda kullanilir.
     """
     cleaned_query = str(query).strip()
 
@@ -185,39 +197,157 @@ def retrieve_top_chunks(
             "top_k sifirdan buyuk olmalidir."
         )
 
+    total_start = perf_counter()
+
+    timings = {
+        "database_read_seconds": 0.0,
+        "embedding_model_load_seconds": 0.0,
+        "query_embedding_seconds": 0.0,
+        "embedding_model_unload_seconds": 0.0,
+        "similarity_ranking_seconds": 0.0,
+        "retrieval_total_seconds": 0.0,
+    }
+
+    database_start = perf_counter()
+
     stored_documents = fetch_all_documents()
+
+    timings["database_read_seconds"] = (
+        perf_counter() - database_start
+    )
 
     if not stored_documents:
         raise ValueError(
-            "SQLite veritabaninda aranacak dokuman "
-            "bulunamadi. Once ingestion pipeline "
+            "SQLite veritabaninda aranacak "
+            "dokuman bulunamadi. "
+            "Once ingestion pipeline "
             "calistirilmali."
         )
 
-    embedder = LocalEmbedder()
+    owns_embedder = embedder is None
+
+    active_embedder = (
+        LocalEmbedder()
+        if owns_embedder
+        else embedder
+    )
+
+    if manage_embedder_lifecycle is None:
+        manage_embedder_lifecycle = (
+            owns_embedder
+        )
+
+    embedding_model_reused = (
+        active_embedder.is_loaded
+    )
 
     try:
         print("Soru embedding'i uretiliyor...")
-        embedder.load()
 
-        query_embedding = embedder.embed_text(
-            cleaned_query
+        if not active_embedder.is_loaded:
+            model_load_start = perf_counter()
+
+            active_embedder.load()
+
+            timings[
+                "embedding_model_load_seconds"
+            ] = (
+                perf_counter()
+                - model_load_start
+            )
+
+        query_embedding_start = perf_counter()
+
+        query_embedding = (
+            active_embedder.embed_text(
+                cleaned_query
+            )
         )
+
+        timings["query_embedding_seconds"] = (
+            perf_counter()
+            - query_embedding_start
+        )
+
     finally:
-        embedder.unload()
+        if (
+            manage_embedder_lifecycle
+            and active_embedder.is_loaded
+        ):
+            model_unload_start = (
+                perf_counter()
+            )
+
+            active_embedder.unload()
+
+            timings[
+                "embedding_model_unload_seconds"
+            ] = (
+                perf_counter()
+                - model_unload_start
+            )
+
+    ranking_start = perf_counter()
 
     ranked_documents = rank_documents(
         query_embedding=query_embedding,
         stored_documents=stored_documents,
     )
 
-    return ranked_documents[:top_k]
+    timings["similarity_ranking_seconds"] = (
+        perf_counter() - ranking_start
+    )
+
+    timings["retrieval_total_seconds"] = (
+        perf_counter() - total_start
+    )
+
+    return {
+        "chunks": ranked_documents[:top_k],
+        "timings": timings,
+        "stored_document_count": len(
+            stored_documents
+        ),
+        "requested_top_k": top_k,
+        "embedding_model_reused": (
+            embedding_model_reused
+        ),
+        "embedder_lifecycle_managed": (
+            manage_embedder_lifecycle
+        ),
+    }
+
+
+def retrieve_top_chunks(
+    query,
+    top_k=3,
+    embedder=None,
+    manage_embedder_lifecycle=None,
+):
+    """
+    En alakali top-k chunk'i getirir.
+
+    Varsayilan kullanim onceki davranisla
+    uyumludur. embedder verilmezse model yuklenir
+    ve is bitince kapatilir.
+    """
+    retrieval_result = (
+        retrieve_top_chunks_with_metrics(
+            query=query,
+            top_k=top_k,
+            embedder=embedder,
+            manage_embedder_lifecycle=(
+                manage_embedder_lifecycle
+            ),
+        )
+    )
+
+    return retrieval_result["chunks"]
 
 
 def normalize_for_lexical_match(text):
     """
-    Metni basit kelime eslestirmesi icin
-    normalize eder.
+    Metni lexical eslestirme icin normalize eder.
     """
     normalized = str(text).translate(
         TURKISH_CHARACTER_MAP
@@ -240,8 +370,8 @@ def tokenize_for_lexical_match(text):
     tokens = []
     seen_tokens = set()
 
-    normalized_text = normalize_for_lexical_match(
-        text
+    normalized_text = (
+        normalize_for_lexical_match(text)
     )
 
     for token in normalized_text.split():
@@ -265,18 +395,15 @@ def lexical_tokens_match(
     right_token,
 ):
     """
-    Tam kelime veya ortak kok benzeri on ek
-    eslesmesini kontrol eder.
-
-    Ornek:
-    - bilgi / bilgilerini
-    - saklar / saklamak
+    Tam kelime veya ortak on ek eslesmesini
+    kontrol eder.
     """
     if left_token == right_token:
         return True
 
     if (
-        len(left_token) < LEXICAL_PREFIX_LENGTH
+        len(left_token)
+        < LEXICAL_PREFIX_LENGTH
         or len(right_token)
         < LEXICAL_PREFIX_LENGTH
     ):
@@ -294,11 +421,12 @@ def calculate_source_query_coverage(
 ):
     """
     Sorudaki anlamli kelimelerin ne kadarinin
-    bir kaynagin aday chunk'larinda karsilandigini
-    hesaplar.
+    kaynak chunk'larinda karsilandigini hesaplar.
     """
-    question_tokens = tokenize_for_lexical_match(
-        question
+    question_tokens = (
+        tokenize_for_lexical_match(
+            question
+        )
     )
 
     if not question_tokens:
@@ -315,8 +443,10 @@ def calculate_source_query_coverage(
         for chunk in source_chunks
     )
 
-    source_tokens = tokenize_for_lexical_match(
-        combined_source_text
+    source_tokens = (
+        tokenize_for_lexical_match(
+            combined_source_text
+        )
     )
 
     matched_question_tokens = 0
@@ -346,18 +476,7 @@ def rank_candidate_sources(
 ):
     """
     Retrieval adaylarini kaynaklara gore gruplar
-    ve kaynak duzeyinde siralar.
-
-    Kaynak secim skoru:
-
-        en yuksek semantik skor
-        +
-        lexical agirlik * soru kapsama orani
-
-    Bu yontem, semantik skorlari birbirine cok
-    yakin olan kaynaklarda sorudaki belirgin
-    kavramlari daha iyi karsilayan dokumani
-    one cikarir.
+    ve hibrit kaynak skoru hesaplar.
     """
     if not 0.0 <= lexical_weight <= 1.0:
         raise ValueError(
@@ -397,7 +516,8 @@ def rank_candidate_sources(
 
         selection_score = (
             semantic_score
-            + lexical_weight * lexical_coverage
+            + lexical_weight
+            * lexical_coverage
         )
 
         source_rankings.append(
@@ -407,7 +527,9 @@ def rank_candidate_sources(
                 "lexical_coverage": (
                     lexical_coverage
                 ),
-                "selection_score": selection_score,
+                "selection_score": (
+                    selection_score
+                ),
                 "candidate_chunk_count": len(
                     source_chunks
                 ),
@@ -432,12 +554,8 @@ def select_context_chunks_by_primary_source(
     source_rankings=None,
 ):
     """
-    Hibrit kaynak siralamasinda ilk gelen kaynaga
-    ait en guclu chunk'lari context olarak secer.
-
-    source_rankings daha once hesaplandiysa tekrar
-    hesaplama yapmamak icin parametre olarak
-    verilebilir.
+    Hibrit siralamada ilk gelen kaynagin en iyi
+    chunk'larini context olarak secer.
     """
     if context_top_k <= 0:
         raise ValueError(
@@ -449,9 +567,13 @@ def select_context_chunks_by_primary_source(
         return []
 
     if source_rankings is None:
-        source_rankings = rank_candidate_sources(
-            question=question,
-            candidate_chunks=candidate_chunks,
+        source_rankings = (
+            rank_candidate_sources(
+                question=question,
+                candidate_chunks=(
+                    candidate_chunks
+                ),
+            )
         )
 
     if not source_rankings:

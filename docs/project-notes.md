@@ -1005,3 +1005,287 @@ Automated evaluation is useful for detecting regressions, but human review is st
 ### Next step
 
 Measure retrieval, model-loading, generation, and total response times to identify local performance bottlenecks.
+
+
+## Day 18 — Performance Measurement and Persistent Sessions
+
+### Goal
+
+Measure the latency of each RAG pipeline stage, identify the actual bottlenecks, and improve repeated-question performance without reducing answer quality.
+
+### Initial baseline
+
+The first end-to-end comparison used:
+
+- One answerable SQLite question
+- One unsupported Jupiter question
+
+Initial results:
+
+- Answerable request: approximately `25.83 seconds`
+- Unsupported request: approximately `2.05 seconds`
+
+The unsupported question was much faster because the chat model was not loaded and no answer generation was performed.
+
+### Detailed instrumentation
+
+Timing instrumentation was added to the retrieval and service layers.
+
+Measured retrieval stages:
+
+- Database reading
+- Embedding model loading
+- Query embedding generation
+- Embedding model unloading
+- Similarity calculation and ranking
+- Total retrieval time
+
+Measured service stages:
+
+- Hybrid source ranking
+- Context selection
+- Prompt construction
+- Chat model loading
+- Answer generation
+- Chat model unloading
+- Total service time
+
+### Retrieval findings
+
+A detailed retrieval test produced:
+
+- SQLite reading: `0.0011 seconds`
+- Embedding model loading: `5.0078 seconds`
+- Query embedding generation: `0.6827 seconds`
+- Embedding model unloading: `0.0726 seconds`
+- Similarity ranking: `0.0090 seconds`
+- Total retrieval: `5.7732 seconds`
+
+The embedding model loading step represented most of the retrieval cost.
+
+SQLite reading, cosine similarity, and source ranking were not meaningful bottlenecks for the current 16-chunk dataset.
+
+### Repeated stateless benchmark
+
+The stateless benchmark contained:
+
+- 3 cases
+- 3 repetitions per case
+- 9 total runs
+
+Results:
+
+- Passed runs: `9`
+- Failed runs: `0`
+- Correctness rate: `100%`
+
+Answerable requests:
+
+- Mean: `25.2069 seconds`
+- Median: `25.2748 seconds`
+- Minimum: `19.5303 seconds`
+- Maximum: `30.6632 seconds`
+
+Unsupported requests:
+
+- Mean: `2.7810 seconds`
+- Median: `3.0760 seconds`
+- Minimum: `2.0381 seconds`
+- Maximum: `3.2289 seconds`
+
+Answerable requests were approximately `8.22x` slower than unsupported requests.
+
+### Stateless bottlenecks
+
+Answerable service bottlenecks:
+
+1. Answer generation: `11.8997 seconds`
+2. Chat model loading: `8.6434 seconds`
+3. Retrieval: `2.4662 seconds`
+
+Retrieval bottlenecks:
+
+1. Embedding model loading: `2.1602 seconds`
+2. Query embedding generation: `0.5750 seconds`
+3. Embedding model unloading: `0.0940 seconds`
+
+Model lifecycle operations were therefore a major optimization opportunity.
+
+### Persistent model architecture
+
+The project now supports persistent model sessions through `LocalRAGSession`.
+
+Session lifecycle:
+
+    Session start
+    → load embedding model once
+    → keep embedding model available
+
+    First answerable question
+    → lazy-load chat model
+    → generate answer
+    → keep chat model available
+
+    Later questions
+    → reuse embedding model
+    → reuse chat model when needed
+
+    Unsupported questions
+    → reuse embedding model
+    → return safe fallback
+    → do not invoke chat model
+
+    Session close
+    → unload chat model
+    → unload embedding model
+
+### Backward compatibility
+
+The original stateless interface remains available:
+
+    answer_question(question)
+
+When no external model objects are supplied:
+
+- The embedding model is loaded and unloaded inside the request.
+- The chat model is loaded and unloaded inside answerable requests.
+
+The persistent session passes external model instances to the same service layer and disables per-request lifecycle management.
+
+### Persistent-session smoke test
+
+The first persistent session test confirmed:
+
+- Embedding and chat models can remain loaded simultaneously.
+- The embedding model is reused across every question.
+- The chat model is loaded only for the first supported question.
+- The chat model is reused for later supported questions.
+- Unsupported questions do not invoke generation.
+- Both models unload safely at session shutdown.
+
+Measured examples:
+
+First supported question:
+
+- Embedding loading inside request: `0.0000 seconds`
+- Chat model loading: `14.2622 seconds`
+- Total service time: `26.4498 seconds`
+
+Second supported question:
+
+- Embedding loading: `0.0000 seconds`
+- Chat model loading: `0.0000 seconds`
+- Total service time: `15.7027 seconds`
+
+Unsupported question:
+
+- Embedding loading: `0.0000 seconds`
+- Chat model loading: `0.0000 seconds`
+- Generation: `0.0000 seconds`
+- Total service time: `0.7406 seconds`
+
+### Persistent-session benchmark
+
+The optimized benchmark used:
+
+- One session startup
+- One chat model warm-up request
+- 3 cases
+- 3 measured repetitions per case
+- 9 total measured runs
+- One session shutdown
+
+Results:
+
+- Passed runs: `9`
+- Failed runs: `0`
+- Correctness rate: `100%`
+- Answerable model reuse: correct
+- Unsupported model behavior: correct
+
+Warm answerable requests:
+
+- Mean: `13.7260 seconds`
+- Median: `13.6945 seconds`
+- Minimum: `11.8592 seconds`
+- Maximum: `15.7938 seconds`
+
+Warm unsupported requests:
+
+- Mean: `0.6959 seconds`
+- Median: `0.6877 seconds`
+- Minimum: `0.6631 seconds`
+- Maximum: `0.7370 seconds`
+
+### Baseline comparison
+
+Answerable requests:
+
+- Baseline median: `25.2748 seconds`
+- Optimized median: `13.6945 seconds`
+- Saved time: `11.5803 seconds`
+- Improvement: `45.82%`
+- Speedup: `1.85x`
+
+Unsupported requests:
+
+- Baseline median: `3.0760 seconds`
+- Optimized median: `0.6877 seconds`
+- Saved time: `2.3883 seconds`
+- Improvement: `77.64%`
+- Speedup: `4.47x`
+
+### First-user experience
+
+Session startup still has an initial loading cost:
+
+- Session startup: `3.9259 seconds`
+- First answer service time: `18.9104 seconds`
+- Startup plus first answer: `22.8364 seconds`
+
+The largest benefit therefore appears in the second and later questions.
+
+### Regression results
+
+Retrieval evaluation after optimization:
+
+- Strict cases: `12`
+- Passed: `12`
+- Failed: `0`
+- Overall accuracy: `100%`
+- Status accuracy: `100%`
+- Source accuracy: `100%`
+- False positives: `0`
+- False negatives: `0`
+
+Generation evaluation after optimization:
+
+- Total cases: `5`
+- Passed: `5`
+- Failed: `0`
+- Overall accuracy: `100%`
+- Source accuracy: `100%`
+- Concept accuracy: `100%`
+- Clean-answer accuracy: `100%`
+- Fallback accuracy: `100%`
+
+### Key learning
+
+Local model loading is expensive enough that model lifecycle design has a major effect on interactive performance.
+
+For one-off scripts, stateless lifecycle management remains simple and safe.
+
+For an interactive CLI, keeping models alive across multiple questions significantly reduces latency.
+
+After removing repeated model-loading costs, answer generation becomes the main bottleneck.
+
+### Next optimization candidates
+
+Potential future experiments:
+
+- Compare smaller chat models
+- Reduce the maximum generation token limit
+- Measure time to first token separately
+- Compare answer quality and latency across model aliases
+- Cache SQLite documents and deserialized embeddings in memory
+- Test whether shorter prompts reduce generation latency

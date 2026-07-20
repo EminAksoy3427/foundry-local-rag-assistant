@@ -1,0 +1,691 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-20T09:47:14.248639+00:00",
+  "mode": "persistent_session",
+  "configuration": {
+    "repeats": 3,
+    "case_count": 3,
+    "total_benchmark_runs": 9,
+    "warmup_case": "session_warmup"
+  },
+  "startup_metrics": {
+    "embedding_model_load_seconds": 3.925919299999805,
+    "session_start_total_seconds": 3.9259217999988323,
+    "already_started": false
+  },
+  "warmup": {
+    "case_id": "session_warmup",
+    "repetition": 0,
+    "question": "SQLite RAG sisteminde hangi bilgileri saklar?",
+    "expected_status": "answered",
+    "actual_status": "answered",
+    "status_correct": true,
+    "expected_source": "sqlite_notes.txt",
+    "actual_source": "sqlite_notes.txt",
+    "source_correct": true,
+    "passed": true,
+    "model_alias": "phi-4-mini",
+    "embedding_model_reused": true,
+    "chat_model_used": true,
+    "chat_model_reused": false,
+    "answer_length": 95,
+    "performance_metrics": {
+      "database_read_seconds": 0.0012936000002810033,
+      "embedding_model_load_seconds": 0.0,
+      "query_embedding_seconds": 0.5059339999988879,
+      "embedding_model_unload_seconds": 0.0,
+      "similarity_ranking_seconds": 0.005716600000596372,
+      "retrieval_total_seconds": 0.5129773000007845,
+      "source_ranking_seconds": 0.00023850000070524402,
+      "context_selection_seconds": 3.099999958067201e-06,
+      "prompt_build_seconds": 2.7099998987978324e-05,
+      "chat_model_load_seconds": 8.322922800000015,
+      "generation_seconds": 10.073889499999495,
+      "chat_model_unload_seconds": 0.0,
+      "service_total_seconds": 18.910428799999863
+    },
+    "first_user_total_seconds": 22.836350599998696
+  },
+  "shutdown_metrics": {
+    "chat_model_unload_seconds": 0.6416097000001173,
+    "embedding_model_unload_seconds": 0.24765759999900183,
+    "session_close_total_seconds": 0.8893298000002687
+  },
+  "summary": {
+    "total_runs": 9,
+    "passed_runs": 9,
+    "failed_runs": 0,
+    "correctness_rate": 100.0,
+    "answered_total_seconds": {
+      "count": 6,
+      "mean": 13.72604783333342,
+      "median": 13.694530750000013,
+      "minimum": 11.85920569999871,
+      "maximum": 15.793802800000776
+    },
+    "unsupported_total_seconds": {
+      "count": 3,
+      "mean": 0.6959451666662062,
+      "median": 0.6876981000004889,
+      "minimum": 0.6631147999996756,
+      "maximum": 0.7370225999984541
+    },
+    "answered_comparison": {
+      "baseline_seconds": 25.27478499999961,
+      "optimized_seconds": 13.694530750000013,
+      "saved_seconds": 11.580254249999598,
+      "improvement_percentage": 45.81741941622759,
+      "speedup_ratio": 1.84561161396491
+    },
+    "unsupported_comparison": {
+      "baseline_seconds": 3.0760396999994555,
+      "optimized_seconds": 0.6876981000004889,
+      "saved_seconds": 2.3883415999989666,
+      "improvement_percentage": 77.6433932240663,
+      "speedup_ratio": 4.472950703218852
+    },
+    "answered_model_reuse_correct": true,
+    "unsupported_model_behavior_correct": true
+  },
+  "cases": [
+    {
+      "id": "supported_sqlite",
+      "question": "SQLite RAG sisteminde hangi bilgileri saklar?",
+      "expected_status": "answered",
+      "expected_source": "sqlite_notes.txt",
+      "run_count": 3,
+      "passed_runs": 3,
+      "failed_runs": 0,
+      "all_runs_passed": true,
+      "metrics": {
+        "database_read_seconds": {
+          "count": 3,
+          "mean": 0.0034728333333381065,
+          "median": 0.002194700000472949,
+          "minimum": 0.0021225999989837874,
+          "maximum": 0.006101200000557583
+        },
+        "embedding_model_load_seconds": {
+          "count": 3,
+          "mean": 0.0,
+          "median": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "query_embedding_seconds": {
+          "count": 3,
+          "mean": 0.7574151999997412,
+          "median": 0.6590121999997791,
+          "minimum": 0.6399399000001722,
+          "maximum": 0.9732934999992722
+        },
+        "embedding_model_unload_seconds": {
+          "count": 3,
+          "mean": 0.0,
+          "median": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "similarity_ranking_seconds": {
+          "count": 3,
+          "mean": 0.012369599999753214,
+          "median": 0.011430900000050315,
+          "minimum": 0.01060689999940223,
+          "maximum": 0.0150709999998071
+        },
+        "retrieval_total_seconds": {
+          "count": 3,
+          "mean": 0.7732697333334121,
+          "median": 0.6718244000003324,
+          "minimum": 0.6571420000000217,
+          "maximum": 0.9908427999998821
+        },
+        "source_ranking_seconds": {
+          "count": 3,
+          "mean": 0.0007847333332999066,
+          "median": 0.000549700000192388,
+          "minimum": 0.00028559999918797985,
+          "maximum": 0.001518900000519352
+        },
+        "context_selection_seconds": {
+          "count": 3,
+          "mean": 6.166665722654822e-06,
+          "median": 7.2999991971300915e-06,
+          "minimum": 3.6999990697950125e-06,
+          "maximum": 7.499998901039362e-06
+        },
+        "prompt_build_seconds": {
+          "count": 3,
+          "mean": 0.0003403999993073133,
+          "median": 5.8799998441827483e-05,
+          "minimum": 4.979999903298449e-05,
+          "maximum": 0.000912600000447128
+        },
+        "chat_model_load_seconds": {
+          "count": 3,
+          "mean": 0.0,
+          "median": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "generation_seconds": {
+          "count": 3,
+          "mean": 11.168559166666455,
+          "median": 11.201359099999536,
+          "minimum": 11.073284899999635,
+          "maximum": 11.231033500000194
+        },
+        "chat_model_unload_seconds": {
+          "count": 3,
+          "mean": 0.0,
+          "median": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "service_total_seconds": {
+          "count": 3,
+          "mean": 11.943058700000014,
+          "median": 11.903269100001125,
+          "minimum": 11.85920569999871,
+          "maximum": 12.066701300000204
+        }
+      }
+    },
+    {
+      "id": "supported_foundry_local",
+      "question": "Foundry Local ne ise yarar?",
+      "expected_status": "answered",
+      "expected_source": "foundry_local_notes.txt",
+      "run_count": 3,
+      "passed_runs": 3,
+      "failed_runs": 0,
+      "all_runs_passed": true,
+      "metrics": {
+        "database_read_seconds": {
+          "count": 3,
+          "mean": 0.001892466667413828,
+          "median": 0.0019124000009469455,
+          "minimum": 0.0016922000013437355,
+          "maximum": 0.002072799999950803
+        },
+        "embedding_model_load_seconds": {
+          "count": 3,
+          "mean": 0.0,
+          "median": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "query_embedding_seconds": {
+          "count": 3,
+          "mean": 0.6262162666662334,
+          "median": 0.6189479000004212,
+          "minimum": 0.6019772999989073,
+          "maximum": 0.6577235999993718
+        },
+        "embedding_model_unload_seconds": {
+          "count": 3,
+          "mean": 0.0,
+          "median": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "similarity_ranking_seconds": {
+          "count": 3,
+          "mean": 0.011321866667155215,
+          "median": 0.012464499999623513,
+          "minimum": 0.008248200001617079,
+          "maximum": 0.013252900000225054
+        },
+        "retrieval_total_seconds": {
+          "count": 3,
+          "mean": 0.6394405666663564,
+          "median": 0.6331135000000359,
+          "minimum": 0.6171526999987691,
+          "maximum": 0.6680555000002641
+        },
+        "source_ranking_seconds": {
+          "count": 3,
+          "mean": 0.00035569999939374003,
+          "median": 0.00033090000033553224,
+          "minimum": 0.0002876999988075113,
+          "maximum": 0.0004484999990381766
+        },
+        "context_selection_seconds": {
+          "count": 3,
+          "mean": 5.099999422479111e-06,
+          "median": 5.599998985417187e-06,
+          "minimum": 3.899998773704283e-06,
+          "maximum": 5.800000508315861e-06
+        },
+        "prompt_build_seconds": {
+          "count": 3,
+          "mean": 3.719999949680641e-05,
+          "median": 3.5400000342633575e-05,
+          "minimum": 2.6399999114801176e-05,
+          "maximum": 4.979999903298449e-05
+        },
+        "chat_model_load_seconds": {
+          "count": 3,
+          "mean": 0.0,
+          "median": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "generation_seconds": {
+          "count": 3,
+          "mean": 14.869077833332389,
+          "median": 14.74246949999906,
+          "minimum": 14.70459259999916,
+          "maximum": 15.160171399998944
+        },
+        "chat_model_unload_seconds": {
+          "count": 3,
+          "mean": 0.0,
+          "median": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "service_total_seconds": {
+          "count": 3,
+          "mean": 15.509036966666827,
+          "median": 15.410947899999883,
+          "minimum": 15.322360199999821,
+          "maximum": 15.793802800000776
+        }
+      }
+    },
+    {
+      "id": "unsupported_jupiter",
+      "question": "Jupiter'in kac uydusu vardir?",
+      "expected_status": "insufficient_context",
+      "expected_source": null,
+      "run_count": 3,
+      "passed_runs": 3,
+      "failed_runs": 0,
+      "all_runs_passed": true,
+      "metrics": {
+        "database_read_seconds": {
+          "count": 3,
+          "mean": 0.0023907000001296788,
+          "median": 0.00243399999999383,
+          "minimum": 0.0023027999995974824,
+          "maximum": 0.0024353000007977244
+        },
+        "embedding_model_load_seconds": {
+          "count": 3,
+          "mean": 0.0,
+          "median": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "query_embedding_seconds": {
+          "count": 3,
+          "mean": 0.6831359000001006,
+          "median": 0.6734754999997676,
+          "minimum": 0.6497457000004943,
+          "maximum": 0.7261865000000398
+        },
+        "embedding_model_unload_seconds": {
+          "count": 3,
+          "mean": 0.0,
+          "median": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "similarity_ranking_seconds": {
+          "count": 3,
+          "mean": 0.010149466666310522,
+          "median": 0.010288699999364326,
+          "minimum": 0.008306800000354997,
+          "maximum": 0.01185289999921224
+        },
+        "retrieval_total_seconds": {
+          "count": 3,
+          "mean": 0.6956872333339561,
+          "median": 0.6876430000011169,
+          "minimum": 0.6624795000006998,
+          "maximum": 0.7369392000000516
+        },
+        "source_ranking_seconds": {
+          "count": 3,
+          "mean": 0.0,
+          "median": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "context_selection_seconds": {
+          "count": 3,
+          "mean": 0.0,
+          "median": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "prompt_build_seconds": {
+          "count": 3,
+          "mean": 0.0,
+          "median": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "chat_model_load_seconds": {
+          "count": 3,
+          "mean": 0.0,
+          "median": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "generation_seconds": {
+          "count": 3,
+          "mean": 0.0,
+          "median": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "chat_model_unload_seconds": {
+          "count": 3,
+          "mean": 0.0,
+          "median": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "service_total_seconds": {
+          "count": 3,
+          "mean": 0.6959451666662062,
+          "median": 0.6876981000004889,
+          "minimum": 0.6631147999996756,
+          "maximum": 0.7370225999984541
+        }
+      }
+    }
+  ],
+  "runs": [
+    {
+      "case_id": "supported_sqlite",
+      "repetition": 1,
+      "question": "SQLite RAG sisteminde hangi bilgileri saklar?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "status_correct": true,
+      "expected_source": "sqlite_notes.txt",
+      "actual_source": "sqlite_notes.txt",
+      "source_correct": true,
+      "passed": true,
+      "model_alias": "phi-4-mini",
+      "embedding_model_reused": true,
+      "chat_model_used": true,
+      "chat_model_reused": true,
+      "answer_length": 95,
+      "performance_metrics": {
+        "database_read_seconds": 0.006101200000557583,
+        "embedding_model_load_seconds": 0.0,
+        "query_embedding_seconds": 0.9732934999992722,
+        "embedding_model_unload_seconds": 0.0,
+        "similarity_ranking_seconds": 0.011430900000050315,
+        "retrieval_total_seconds": 0.9908427999998821,
+        "source_ranking_seconds": 0.001518900000519352,
+        "context_selection_seconds": 7.499998901039362e-06,
+        "prompt_build_seconds": 0.000912600000447128,
+        "chat_model_load_seconds": 0.0,
+        "generation_seconds": 11.073284899999635,
+        "chat_model_unload_seconds": 0.0,
+        "service_total_seconds": 12.066701300000204
+      }
+    },
+    {
+      "case_id": "supported_foundry_local",
+      "repetition": 1,
+      "question": "Foundry Local ne ise yarar?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "status_correct": true,
+      "expected_source": "foundry_local_notes.txt",
+      "actual_source": "foundry_local_notes.txt",
+      "source_correct": true,
+      "passed": true,
+      "model_alias": "phi-4-mini",
+      "embedding_model_reused": true,
+      "chat_model_used": true,
+      "chat_model_reused": true,
+      "answer_length": 198,
+      "performance_metrics": {
+        "database_read_seconds": 0.002072799999950803,
+        "embedding_model_load_seconds": 0.0,
+        "query_embedding_seconds": 0.6577235999993718,
+        "embedding_model_unload_seconds": 0.0,
+        "similarity_ranking_seconds": 0.008248200001617079,
+        "retrieval_total_seconds": 0.6680555000002641,
+        "source_ranking_seconds": 0.0002876999988075113,
+        "context_selection_seconds": 3.899998773704283e-06,
+        "prompt_build_seconds": 2.6399999114801176e-05,
+        "chat_model_load_seconds": 0.0,
+        "generation_seconds": 14.74246949999906,
+        "chat_model_unload_seconds": 0.0,
+        "service_total_seconds": 15.410947899999883
+      }
+    },
+    {
+      "case_id": "unsupported_jupiter",
+      "repetition": 1,
+      "question": "Jupiter'in kac uydusu vardir?",
+      "expected_status": "insufficient_context",
+      "actual_status": "insufficient_context",
+      "status_correct": true,
+      "expected_source": null,
+      "actual_source": null,
+      "source_correct": true,
+      "passed": true,
+      "model_alias": null,
+      "embedding_model_reused": true,
+      "chat_model_used": false,
+      "chat_model_reused": false,
+      "answer_length": 41,
+      "performance_metrics": {
+        "database_read_seconds": 0.00243399999999383,
+        "embedding_model_load_seconds": 0.0,
+        "query_embedding_seconds": 0.6497457000004943,
+        "embedding_model_unload_seconds": 0.0,
+        "similarity_ranking_seconds": 0.010288699999364326,
+        "retrieval_total_seconds": 0.6624795000006998,
+        "source_ranking_seconds": 0.0,
+        "context_selection_seconds": 0.0,
+        "prompt_build_seconds": 0.0,
+        "chat_model_load_seconds": 0.0,
+        "generation_seconds": 0.0,
+        "chat_model_unload_seconds": 0.0,
+        "service_total_seconds": 0.6631147999996756
+      }
+    },
+    {
+      "case_id": "supported_sqlite",
+      "repetition": 2,
+      "question": "SQLite RAG sisteminde hangi bilgileri saklar?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "status_correct": true,
+      "expected_source": "sqlite_notes.txt",
+      "actual_source": "sqlite_notes.txt",
+      "source_correct": true,
+      "passed": true,
+      "model_alias": "phi-4-mini",
+      "embedding_model_reused": true,
+      "chat_model_used": true,
+      "chat_model_reused": true,
+      "answer_length": 95,
+      "performance_metrics": {
+        "database_read_seconds": 0.0021225999989837874,
+        "embedding_model_load_seconds": 0.0,
+        "query_embedding_seconds": 0.6399399000001722,
+        "embedding_model_unload_seconds": 0.0,
+        "similarity_ranking_seconds": 0.0150709999998071,
+        "retrieval_total_seconds": 0.6571420000000217,
+        "source_ranking_seconds": 0.000549700000192388,
+        "context_selection_seconds": 7.2999991971300915e-06,
+        "prompt_build_seconds": 4.979999903298449e-05,
+        "chat_model_load_seconds": 0.0,
+        "generation_seconds": 11.201359099999536,
+        "chat_model_unload_seconds": 0.0,
+        "service_total_seconds": 11.85920569999871
+      }
+    },
+    {
+      "case_id": "supported_foundry_local",
+      "repetition": 2,
+      "question": "Foundry Local ne ise yarar?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "status_correct": true,
+      "expected_source": "foundry_local_notes.txt",
+      "actual_source": "foundry_local_notes.txt",
+      "source_correct": true,
+      "passed": true,
+      "model_alias": "phi-4-mini",
+      "embedding_model_reused": true,
+      "chat_model_used": true,
+      "chat_model_reused": true,
+      "answer_length": 198,
+      "performance_metrics": {
+        "database_read_seconds": 0.0019124000009469455,
+        "embedding_model_load_seconds": 0.0,
+        "query_embedding_seconds": 0.6019772999989073,
+        "embedding_model_unload_seconds": 0.0,
+        "similarity_ranking_seconds": 0.013252900000225054,
+        "retrieval_total_seconds": 0.6171526999987691,
+        "source_ranking_seconds": 0.0004484999990381766,
+        "context_selection_seconds": 5.800000508315861e-06,
+        "prompt_build_seconds": 4.979999903298449e-05,
+        "chat_model_load_seconds": 0.0,
+        "generation_seconds": 14.70459259999916,
+        "chat_model_unload_seconds": 0.0,
+        "service_total_seconds": 15.322360199999821
+      }
+    },
+    {
+      "case_id": "unsupported_jupiter",
+      "repetition": 2,
+      "question": "Jupiter'in kac uydusu vardir?",
+      "expected_status": "insufficient_context",
+      "actual_status": "insufficient_context",
+      "status_correct": true,
+      "expected_source": null,
+      "actual_source": null,
+      "source_correct": true,
+      "passed": true,
+      "model_alias": null,
+      "embedding_model_reused": true,
+      "chat_model_used": false,
+      "chat_model_reused": false,
+      "answer_length": 41,
+      "performance_metrics": {
+        "database_read_seconds": 0.0023027999995974824,
+        "embedding_model_load_seconds": 0.0,
+        "query_embedding_seconds": 0.6734754999997676,
+        "embedding_model_unload_seconds": 0.0,
+        "similarity_ranking_seconds": 0.01185289999921224,
+        "retrieval_total_seconds": 0.6876430000011169,
+        "source_ranking_seconds": 0.0,
+        "context_selection_seconds": 0.0,
+        "prompt_build_seconds": 0.0,
+        "chat_model_load_seconds": 0.0,
+        "generation_seconds": 0.0,
+        "chat_model_unload_seconds": 0.0,
+        "service_total_seconds": 0.6876981000004889
+      }
+    },
+    {
+      "case_id": "supported_sqlite",
+      "repetition": 3,
+      "question": "SQLite RAG sisteminde hangi bilgileri saklar?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "status_correct": true,
+      "expected_source": "sqlite_notes.txt",
+      "actual_source": "sqlite_notes.txt",
+      "source_correct": true,
+      "passed": true,
+      "model_alias": "phi-4-mini",
+      "embedding_model_reused": true,
+      "chat_model_used": true,
+      "chat_model_reused": true,
+      "answer_length": 95,
+      "performance_metrics": {
+        "database_read_seconds": 0.002194700000472949,
+        "embedding_model_load_seconds": 0.0,
+        "query_embedding_seconds": 0.6590121999997791,
+        "embedding_model_unload_seconds": 0.0,
+        "similarity_ranking_seconds": 0.01060689999940223,
+        "retrieval_total_seconds": 0.6718244000003324,
+        "source_ranking_seconds": 0.00028559999918797985,
+        "context_selection_seconds": 3.6999990697950125e-06,
+        "prompt_build_seconds": 5.8799998441827483e-05,
+        "chat_model_load_seconds": 0.0,
+        "generation_seconds": 11.231033500000194,
+        "chat_model_unload_seconds": 0.0,
+        "service_total_seconds": 11.903269100001125
+      }
+    },
+    {
+      "case_id": "supported_foundry_local",
+      "repetition": 3,
+      "question": "Foundry Local ne ise yarar?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "status_correct": true,
+      "expected_source": "foundry_local_notes.txt",
+      "actual_source": "foundry_local_notes.txt",
+      "source_correct": true,
+      "passed": true,
+      "model_alias": "phi-4-mini",
+      "embedding_model_reused": true,
+      "chat_model_used": true,
+      "chat_model_reused": true,
+      "answer_length": 198,
+      "performance_metrics": {
+        "database_read_seconds": 0.0016922000013437355,
+        "embedding_model_load_seconds": 0.0,
+        "query_embedding_seconds": 0.6189479000004212,
+        "embedding_model_unload_seconds": 0.0,
+        "similarity_ranking_seconds": 0.012464499999623513,
+        "retrieval_total_seconds": 0.6331135000000359,
+        "source_ranking_seconds": 0.00033090000033553224,
+        "context_selection_seconds": 5.599998985417187e-06,
+        "prompt_build_seconds": 3.5400000342633575e-05,
+        "chat_model_load_seconds": 0.0,
+        "generation_seconds": 15.160171399998944,
+        "chat_model_unload_seconds": 0.0,
+        "service_total_seconds": 15.793802800000776
+      }
+    },
+    {
+      "case_id": "unsupported_jupiter",
+      "repetition": 3,
+      "question": "Jupiter'in kac uydusu vardir?",
+      "expected_status": "insufficient_context",
+      "actual_status": "insufficient_context",
+      "status_correct": true,
+      "expected_source": null,
+      "actual_source": null,
+      "source_correct": true,
+      "passed": true,
+      "model_alias": null,
+      "embedding_model_reused": true,
+      "chat_model_used": false,
+      "chat_model_reused": false,
+      "answer_length": 41,
+      "performance_metrics": {
+        "database_read_seconds": 0.0024353000007977244,
+        "embedding_model_load_seconds": 0.0,
+        "query_embedding_seconds": 0.7261865000000398,
+        "embedding_model_unload_seconds": 0.0,
+        "similarity_ranking_seconds": 0.008306800000354997,
+        "retrieval_total_seconds": 0.7369392000000516,
+        "source_ranking_seconds": 0.0,
+        "context_selection_seconds": 0.0,
+        "prompt_build_seconds": 0.0,
+        "chat_model_load_seconds": 0.0,
+        "generation_seconds": 0.0,
+        "chat_model_unload_seconds": 0.0,
+        "service_total_seconds": 0.7370225999984541
+      }
+    }
+  ]
+}
