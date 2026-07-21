@@ -1517,3 +1517,178 @@ Potential next steps:
 - Measure prompt token count
 - Cache deserialized document embeddings in memory
 - Evaluate answer quality with a larger question set
+
+
+## Day 20 — Local Chat Model Comparison
+
+### Goal
+
+Compare multiple Foundry Local chat models under the same retrieval, prompt, generation, and evaluation conditions.
+
+The purpose was not simply to find the fastest model. The selected model also needed to:
+
+- Use the correct retrieved source
+- Include the required answer concepts
+- Produce a complete answer
+- Avoid unsupported fallback behavior
+- Reuse persistent model resources correctly
+- Pass every quality and safety case
+
+### Models
+
+The benchmark compared:
+
+- `phi-4-mini`
+- `phi-3.5-mini`
+- `qwen2.5-1.5b`
+
+### Fixed experiment settings
+
+- Embedding model: `qwen3-embedding-0.6b`
+- Max tokens: `160`
+- Temperature: `0.0`
+- Retrieval top-k: `3`
+- Similarity threshold: `0.6000`
+- Same SQLite database
+- Same retrieved context
+- Same system and user prompt structure
+- Same evaluation questions
+
+### Technical compatibility test
+
+Before the full benchmark, every model was tested independently.
+
+All three models successfully:
+
+- Loaded from the Foundry Local catalog
+- Created a chat client
+- Produced a streaming response
+- Returned generation metrics
+- Unloaded safely
+
+Technical compatibility alone was not treated as sufficient evidence of model quality.
+
+### Benchmark design
+
+Each model completed:
+
+- One model load
+- One warm-up request
+- Four supported questions
+- One unsupported question
+- Two repetitions of every measured case
+- One model unload
+
+Total:
+
+    3 × 5 × 2 = 30 measured runs
+
+### phi-4-mini result
+
+- Passed: `10/10`
+- Quality rate: `100%`
+- Supported cases: `8/8`
+- Unsupported cases: `2/2`
+- Load time: `11.0719 seconds`
+- TTFT median: `5.7346 seconds`
+- Generation median: `10.7710 seconds`
+- Service median: `11.3297 seconds`
+- Median answer length: `183 characters`
+
+The model produced complete, concise, source-grounded answers for every case.
+
+### phi-3.5-mini result
+
+- Passed: `4/10`
+- Quality rate: `40%`
+- Supported cases: `2/8`
+- Unsupported cases: `2/2`
+- Load time: `7.6304 seconds`
+- TTFT median: `8.2320 seconds`
+- Generation median: `21.2476 seconds`
+- Service median: `21.8154 seconds`
+- Median answer length: `333 characters`
+
+Failure causes included:
+
+- Responses ending in the middle of a word
+- Missing required project concepts
+- Repetitive or unclear Turkish
+- Longer generation time than `phi-4-mini`
+
+This model was both slower and less reliable for the current RAG prompt.
+
+### qwen2.5-1.5b result
+
+- Passed: `8/10`
+- Quality rate: `80%`
+- Supported cases: `6/8`
+- Unsupported cases: `2/2`
+- Load time: `3.7939 seconds`
+- TTFT median: `2.9827 seconds`
+- Generation median: `6.5016 seconds`
+- Service median: `7.0251 seconds`
+- Median answer length: `327.5 characters`
+
+The model was substantially faster than both Phi models.
+
+However, both executions of the RAG reliability question failed because:
+
+- The answer became unnecessarily long
+- The final generation was truncated
+- The answer did not end cleanly
+- All required concepts were not present in the completed text
+
+### Unsupported-case interpretation
+
+All models passed the unsupported Jupiter case.
+
+This result does not show that every chat model made the correct safety decision.
+
+The retrieval layer detected insufficient context before generation and skipped the chat model entirely.
+
+Therefore, unsupported-question safety is primarily enforced by the deterministic service layer rather than the selected chat model.
+
+### Final decision
+
+The default model remains:
+
+    phi-4-mini
+
+It was the only model with a `100%` result across:
+
+- Quality
+- Source grounding
+- Concept coverage
+- Complete answers
+- Model lifecycle
+- Persistent reuse
+- Unsupported-question behavior
+
+`qwen2.5-1.5b` was the fastest raw model, but the project does not select a model that fails quality tests.
+
+### Key learning
+
+The fastest model is not necessarily the fastest acceptable model.
+
+Model loading time is important for one-off scripts, but it is amortized in the persistent CLI session.
+
+For an interactive RAG assistant, the most important selection order is:
+
+1. Correctness and source grounding
+2. Complete and clean answers
+3. Safety behavior
+4. Stable model lifecycle
+5. TTFT and generation latency
+
+### Future experiments
+
+Potential follow-up work:
+
+- Test `qwen2.5-1.5b` with a stricter concise-answer prompt
+- Test model-specific max-token limits
+- Compare additional Qwen and Phi model sizes
+- Expand the evaluation dataset
+- Measure memory usage for each model
+- Randomize benchmark model order
+- Use more repetitions to reduce timing variance

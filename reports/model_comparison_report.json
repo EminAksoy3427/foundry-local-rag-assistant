@@ -1,0 +1,1938 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-21T08:02:43.764771+00:00",
+  "benchmark_type": "local_chat_model_comparison",
+  "models": [
+    "phi-4-mini",
+    "phi-3.5-mini",
+    "qwen2.5-1.5b"
+  ],
+  "max_tokens": 160,
+  "temperature": 0.0,
+  "repeats": 2,
+  "supported_case_count": 4,
+  "unsupported_case_count": 1,
+  "measured_run_count": 30,
+  "embedding_model_load_seconds": 5.088574299996253,
+  "model_summaries": [
+    {
+      "model_alias": "phi-4-mini",
+      "available": true,
+      "load_success": true,
+      "load_seconds": 11.07193369999004,
+      "load_error": null,
+      "unload_success": true,
+      "unload_seconds": 0.42489320000458974,
+      "total_runs": 10,
+      "passed_runs": 10,
+      "failed_runs": 0,
+      "quality_rate": 100.0,
+      "all_quality_checks_passed": true,
+      "supported_runs": 8,
+      "supported_passed_runs": 8,
+      "unsupported_runs": 2,
+      "unsupported_passed_runs": 2,
+      "time_to_first_token_seconds": {
+        "count": 8,
+        "mean": 5.703731537500062,
+        "median": 5.7346211499971105,
+        "minimum": 5.423796299990499,
+        "maximum": 5.9216964000079315
+      },
+      "generation_total_seconds": {
+        "count": 8,
+        "mean": 10.543804350001665,
+        "median": 10.770990299992263,
+        "minimum": 8.534649300010642,
+        "maximum": 12.26495180001075
+      },
+      "streaming_seconds": {
+        "count": 8,
+        "mean": 4.840072812501603,
+        "median": 4.988892599998508,
+        "minimum": 2.7868720999977086,
+        "maximum": 6.721099100002903
+      },
+      "answer_character_count": {
+        "count": 8,
+        "mean": 176.75,
+        "median": 183.0,
+        "minimum": 88.0,
+        "maximum": 253.0
+      },
+      "service_total_seconds": {
+        "count": 8,
+        "mean": 11.09671952500321,
+        "median": 11.329667900005006,
+        "minimum": 9.07325290000881,
+        "maximum": 12.795601199992234
+      }
+    },
+    {
+      "model_alias": "phi-3.5-mini",
+      "available": true,
+      "load_success": true,
+      "load_seconds": 7.6303612000047,
+      "load_error": null,
+      "unload_success": true,
+      "unload_seconds": 0.22624119999818504,
+      "total_runs": 10,
+      "passed_runs": 4,
+      "failed_runs": 6,
+      "quality_rate": 40.0,
+      "all_quality_checks_passed": false,
+      "supported_runs": 8,
+      "supported_passed_runs": 2,
+      "unsupported_runs": 2,
+      "unsupported_passed_runs": 2,
+      "time_to_first_token_seconds": {
+        "count": 8,
+        "mean": 8.279207162499006,
+        "median": 8.232047450001119,
+        "minimum": 7.9678242999943905,
+        "maximum": 8.74995409999974
+      },
+      "generation_total_seconds": {
+        "count": 8,
+        "mean": 20.178594612496454,
+        "median": 21.247607499994047,
+        "minimum": 15.362161899989587,
+        "maximum": 23.18360570000368
+      },
+      "streaming_seconds": {
+        "count": 8,
+        "mean": 11.899387449997448,
+        "median": 12.989821699993627,
+        "minimum": 7.390424600002007,
+        "maximum": 14.433651600003941
+      },
+      "answer_character_count": {
+        "count": 8,
+        "mean": 303.0,
+        "median": 333.0,
+        "minimum": 188.0,
+        "maximum": 358.0
+      },
+      "service_total_seconds": {
+        "count": 8,
+        "mean": 20.73899802500273,
+        "median": 21.815371600001527,
+        "minimum": 15.906803200006834,
+        "maximum": 23.760618699991028
+      }
+    },
+    {
+      "model_alias": "qwen2.5-1.5b",
+      "available": true,
+      "load_success": true,
+      "load_seconds": 3.793936099988059,
+      "load_error": null,
+      "unload_success": true,
+      "unload_seconds": 0.11961259999952745,
+      "total_runs": 10,
+      "passed_runs": 8,
+      "failed_runs": 2,
+      "quality_rate": 80.0,
+      "all_quality_checks_passed": false,
+      "supported_runs": 8,
+      "supported_passed_runs": 6,
+      "unsupported_runs": 2,
+      "unsupported_passed_runs": 2,
+      "time_to_first_token_seconds": {
+        "count": 8,
+        "mean": 2.9914389124987792,
+        "median": 2.9826536500040675,
+        "minimum": 2.8797617000091122,
+        "maximum": 3.158603399991989
+      },
+      "generation_total_seconds": {
+        "count": 8,
+        "mean": 6.252379924999332,
+        "median": 6.50157659999968,
+        "minimum": 3.78771359998791,
+        "maximum": 8.196233299997402
+      },
+      "streaming_seconds": {
+        "count": 8,
+        "mean": 3.2609410125005525,
+        "median": 3.4376938000059454,
+        "minimum": 0.8628622999967774,
+        "maximum": 5.313701699997182
+      },
+      "answer_character_count": {
+        "count": 8,
+        "mean": 311.75,
+        "median": 327.5,
+        "minimum": 71.0,
+        "maximum": 521.0
+      },
+      "service_total_seconds": {
+        "count": 8,
+        "mean": 6.770261000001483,
+        "median": 7.025090950002777,
+        "minimum": 4.308892700006254,
+        "maximum": 8.709348599993973
+      }
+    }
+  ],
+  "fastest_valid_model": {
+    "model_alias": "phi-4-mini",
+    "available": true,
+    "load_success": true,
+    "load_seconds": 11.07193369999004,
+    "load_error": null,
+    "unload_success": true,
+    "unload_seconds": 0.42489320000458974,
+    "total_runs": 10,
+    "passed_runs": 10,
+    "failed_runs": 0,
+    "quality_rate": 100.0,
+    "all_quality_checks_passed": true,
+    "supported_runs": 8,
+    "supported_passed_runs": 8,
+    "unsupported_runs": 2,
+    "unsupported_passed_runs": 2,
+    "time_to_first_token_seconds": {
+      "count": 8,
+      "mean": 5.703731537500062,
+      "median": 5.7346211499971105,
+      "minimum": 5.423796299990499,
+      "maximum": 5.9216964000079315
+    },
+    "generation_total_seconds": {
+      "count": 8,
+      "mean": 10.543804350001665,
+      "median": 10.770990299992263,
+      "minimum": 8.534649300010642,
+      "maximum": 12.26495180001075
+    },
+    "streaming_seconds": {
+      "count": 8,
+      "mean": 4.840072812501603,
+      "median": 4.988892599998508,
+      "minimum": 2.7868720999977086,
+      "maximum": 6.721099100002903
+    },
+    "answer_character_count": {
+      "count": 8,
+      "mean": 176.75,
+      "median": 183.0,
+      "minimum": 88.0,
+      "maximum": 253.0
+    },
+    "service_total_seconds": {
+      "count": 8,
+      "mean": 11.09671952500321,
+      "median": 11.329667900005006,
+      "minimum": 9.07325290000881,
+      "maximum": 12.795601199992234
+    }
+  },
+  "runs": [
+    {
+      "model_alias": "phi-4-mini",
+      "case_id": "latency_rag",
+      "question": "RAG cevaplari nasil daha guvenilir hale getirir?",
+      "repetition": 1,
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_source": "rag_notes.txt",
+      "actual_source": "rag_notes.txt",
+      "answer": "RAG cevapları daha güvenilir hale getirir çünkü once kullanici sorusuyla ilgili dokuman parcalari retrieval, augment ve generate adımları kullanarak modelin baglam olarak verildiği için. Bu, modelin daha doğru ve ilgili cevaplar üretmesine olanak tanır.",
+      "answer_length": 253,
+      "passed": true,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "source_correct": true,
+        "concepts_correct": true,
+        "clean_ending": true,
+        "answer_length_valid": true,
+        "fallback_not_used": true,
+        "embedding_reused": true,
+        "chat_model_used": true,
+        "chat_model_reused": true,
+        "model_alias_correct": true
+      },
+      "concept_groups": [
+        {
+          "terms": [
+            "dokuman",
+            "belge"
+          ],
+          "matched_terms": [
+            "dokuman"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "baglam",
+            "context",
+            "destek",
+            "dayan"
+          ],
+          "matched_terms": [
+            "baglam"
+          ],
+          "passed": true
+        }
+      ],
+      "generation_metrics": {
+        "time_to_first_token_seconds": 5.423796299990499,
+        "generation_total_seconds": 11.88904470000125,
+        "streaming_seconds": 6.465248400010751,
+        "streaming_chunk_count": 60,
+        "answer_character_count": 253
+      },
+      "service_total_seconds": 12.437893499998609
+    },
+    {
+      "model_alias": "phi-4-mini",
+      "case_id": "latency_foundry_local",
+      "question": "Foundry Local ne ise yarar?",
+      "repetition": 1,
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_source": "foundry_local_notes.txt",
+      "actual_source": "foundry_local_notes.txt",
+      "answer": "Foundry Local, yapay zeka modellerini kullanicinin kendi cihazinda calistirmayi saglayan bir Microsoft aracidir. Bu, bulut hizmetlerine girmeden modelleri yerel bilgisayarda kullanabilmenizi sağlar.",
+      "answer_length": 198,
+      "passed": true,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "source_correct": true,
+        "concepts_correct": true,
+        "clean_ending": true,
+        "answer_length_valid": true,
+        "fallback_not_used": true,
+        "embedding_reused": true,
+        "chat_model_used": true,
+        "chat_model_reused": true,
+        "model_alias_correct": true
+      },
+      "concept_groups": [
+        {
+          "terms": [
+            "model",
+            "yapay zeka"
+          ],
+          "matched_terms": [
+            "model",
+            "yapay zeka"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "cihaz",
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "cihaz",
+            "yerel",
+            "local"
+          ],
+          "passed": true
+        }
+      ],
+      "generation_metrics": {
+        "time_to_first_token_seconds": 5.792231499988702,
+        "generation_total_seconds": 10.996140599992941,
+        "streaming_seconds": 5.203909100004239,
+        "streaming_chunk_count": 49,
+        "answer_character_count": 198
+      },
+      "service_total_seconds": 11.540340899999137
+    },
+    {
+      "model_alias": "phi-4-mini",
+      "case_id": "latency_sqlite",
+      "question": "SQLite neden yerel bir RAG uygulamasi icin uygundur?",
+      "repetition": 1,
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_source": "sqlite_notes.txt",
+      "actual_source": "sqlite_notes.txt",
+      "answer": "SQLite, hafif, dosya tabanlı bir veritabani sistemdir ve tek bir dosya olarak storage klasorunda tutulabilir, bu nedenle tamamen yerel bir RAG uygulamasi icin uygundur.",
+      "answer_length": 168,
+      "passed": true,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "source_correct": true,
+        "concepts_correct": true,
+        "clean_ending": true,
+        "answer_length_valid": true,
+        "fallback_not_used": true,
+        "embedding_reused": true,
+        "chat_model_used": true,
+        "chat_model_reused": true,
+        "model_alias_correct": true
+      },
+      "concept_groups": [
+        {
+          "terms": [
+            "sqlite"
+          ],
+          "matched_terms": [
+            "sqlite"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "yerel"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "dosya",
+            "sunucu",
+            "serverless",
+            "hafif"
+          ],
+          "matched_terms": [
+            "dosya",
+            "hafif"
+          ],
+          "passed": true
+        }
+      ],
+      "generation_metrics": {
+        "time_to_first_token_seconds": 5.7191310999915,
+        "generation_total_seconds": 10.545839999991586,
+        "streaming_seconds": 4.826708900000085,
+        "streaming_chunk_count": 45,
+        "answer_character_count": 168
+      },
+      "service_total_seconds": 11.118994900010875
+    },
+    {
+      "model_alias": "phi-4-mini",
+      "case_id": "latency_project",
+      "question": "Bu projenin temel amaci nedir?",
+      "repetition": 1,
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_source": "project_overview.txt",
+      "actual_source": "project_overview.txt",
+      "answer": "Bu projenin temel amaci, yerel calisan bir dokuman soru-cevap asistanini geliştirmektir.",
+      "answer_length": 88,
+      "passed": true,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "source_correct": true,
+        "concepts_correct": true,
+        "clean_ending": true,
+        "answer_length_valid": true,
+        "fallback_not_used": true,
+        "embedding_reused": true,
+        "chat_model_used": true,
+        "chat_model_reused": true,
+        "model_alias_correct": true
+      },
+      "concept_groups": [
+        {
+          "terms": [
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "yerel"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "dokuman",
+            "belge"
+          ],
+          "matched_terms": [
+            "dokuman"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "asistan",
+            "soru-cevap",
+            "soru",
+            "cevap"
+          ],
+          "matched_terms": [
+            "asistan",
+            "soru-cevap",
+            "soru",
+            "cevap"
+          ],
+          "passed": true
+        }
+      ],
+      "generation_metrics": {
+        "time_to_first_token_seconds": 5.681119800006854,
+        "generation_total_seconds": 8.534649300010642,
+        "streaming_seconds": 2.8535295000037877,
+        "streaming_chunk_count": 26,
+        "answer_character_count": 88
+      },
+      "service_total_seconds": 9.07325290000881
+    },
+    {
+      "model_alias": "phi-4-mini",
+      "case_id": "model_unsupported_jupiter",
+      "question": "Jupiter'in kac uydusu vardir?",
+      "repetition": 1,
+      "expected_status": "insufficient_context",
+      "actual_status": "insufficient_context",
+      "expected_source": null,
+      "actual_source": null,
+      "answer": "Bu bilgi verilen dokumanlarda bulunmuyor.",
+      "answer_length": 41,
+      "passed": true,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "fallback_correct": true,
+        "source_empty": true,
+        "chat_model_not_used": true,
+        "generation_skipped": true,
+        "embedding_reused": true
+      },
+      "generation_metrics": {
+        "time_to_first_token_seconds": 0.0,
+        "generation_total_seconds": 0.0,
+        "streaming_seconds": 0.0,
+        "streaming_chunk_count": 0,
+        "answer_character_count": 0
+      },
+      "service_total_seconds": 0.5576650000002701
+    },
+    {
+      "model_alias": "phi-4-mini",
+      "case_id": "latency_rag",
+      "question": "RAG cevaplari nasil daha guvenilir hale getirir?",
+      "repetition": 2,
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_source": "rag_notes.txt",
+      "actual_source": "rag_notes.txt",
+      "answer": "RAG cevapları daha güvenilir hale getirir çünkü once kullanici sorusuyla ilgili dokuman parcalari retrieval, augment ve generate adımları kullanarak modelin baglam olarak verildiği için. Bu, modelin daha doğru ve ilgili cevaplar üretmesine olanak tanır.",
+      "answer_length": 253,
+      "passed": true,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "source_correct": true,
+        "concepts_correct": true,
+        "clean_ending": true,
+        "answer_length_valid": true,
+        "fallback_not_used": true,
+        "embedding_reused": true,
+        "chat_model_used": true,
+        "chat_model_reused": true,
+        "model_alias_correct": true
+      },
+      "concept_groups": [
+        {
+          "terms": [
+            "dokuman",
+            "belge"
+          ],
+          "matched_terms": [
+            "dokuman"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "baglam",
+            "context",
+            "destek",
+            "dayan"
+          ],
+          "matched_terms": [
+            "baglam"
+          ],
+          "passed": true
+        }
+      ],
+      "generation_metrics": {
+        "time_to_first_token_seconds": 5.543852700007847,
+        "generation_total_seconds": 12.26495180001075,
+        "streaming_seconds": 6.721099100002903,
+        "streaming_chunk_count": 60,
+        "answer_character_count": 253
+      },
+      "service_total_seconds": 12.795601199992234
+    },
+    {
+      "model_alias": "phi-4-mini",
+      "case_id": "latency_foundry_local",
+      "question": "Foundry Local ne ise yarar?",
+      "repetition": 2,
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_source": "foundry_local_notes.txt",
+      "actual_source": "foundry_local_notes.txt",
+      "answer": "Foundry Local, yapay zeka modellerini kullanicinin kendi cihazinda calistirmayi saglayan bir Microsoft aracidir. Bu, bulut hizmetlerine girmeden modelleri yerel bilgisayarda kullanabilmenizi sağlar.",
+      "answer_length": 198,
+      "passed": true,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "source_correct": true,
+        "concepts_correct": true,
+        "clean_ending": true,
+        "answer_length_valid": true,
+        "fallback_not_used": true,
+        "embedding_reused": true,
+        "chat_model_used": true,
+        "chat_model_reused": true,
+        "model_alias_correct": true
+      },
+      "concept_groups": [
+        {
+          "terms": [
+            "model",
+            "yapay zeka"
+          ],
+          "matched_terms": [
+            "model",
+            "yapay zeka"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "cihaz",
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "cihaz",
+            "yerel",
+            "local"
+          ],
+          "passed": true
+        }
+      ],
+      "generation_metrics": {
+        "time_to_first_token_seconds": 5.9216964000079315,
+        "generation_total_seconds": 11.072772700004862,
+        "streaming_seconds": 5.15107629999693,
+        "streaming_chunk_count": 49,
+        "answer_character_count": 198
+      },
+      "service_total_seconds": 11.639870900005917
+    },
+    {
+      "model_alias": "phi-4-mini",
+      "case_id": "latency_sqlite",
+      "question": "SQLite neden yerel bir RAG uygulamasi icin uygundur?",
+      "repetition": 2,
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_source": "sqlite_notes.txt",
+      "actual_source": "sqlite_notes.txt",
+      "answer": "SQLite, hafif, dosya tabanlı bir veritabani sistemdir ve tek bir dosya olarak storage klasorunda tutulabilir, bu nedenle tamamen yerel bir RAG uygulamasi icin uygundur.",
+      "answer_length": 168,
+      "passed": true,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "source_correct": true,
+        "concepts_correct": true,
+        "clean_ending": true,
+        "answer_length_valid": true,
+        "fallback_not_used": true,
+        "embedding_reused": true,
+        "chat_model_used": true,
+        "chat_model_reused": true,
+        "model_alias_correct": true
+      },
+      "concept_groups": [
+        {
+          "terms": [
+            "sqlite"
+          ],
+          "matched_terms": [
+            "sqlite"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "yerel"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "dosya",
+            "sunucu",
+            "serverless",
+            "hafif"
+          ],
+          "matched_terms": [
+            "dosya",
+            "hafif"
+          ],
+          "passed": true
+        }
+      ],
+      "generation_metrics": {
+        "time_to_first_token_seconds": 5.7979133000044385,
+        "generation_total_seconds": 10.510052400000859,
+        "streaming_seconds": 4.7121390999964206,
+        "streaming_chunk_count": 45,
+        "answer_character_count": 168
+      },
+      "service_total_seconds": 11.080516300004092
+    },
+    {
+      "model_alias": "phi-4-mini",
+      "case_id": "latency_project",
+      "question": "Bu projenin temel amaci nedir?",
+      "repetition": 2,
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_source": "project_overview.txt",
+      "actual_source": "project_overview.txt",
+      "answer": "Bu projenin temel amaci, yerel calisan bir dokuman soru-cevap asistanini geliştirmektir.",
+      "answer_length": 88,
+      "passed": true,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "source_correct": true,
+        "concepts_correct": true,
+        "clean_ending": true,
+        "answer_length_valid": true,
+        "fallback_not_used": true,
+        "embedding_reused": true,
+        "chat_model_used": true,
+        "chat_model_reused": true,
+        "model_alias_correct": true
+      },
+      "concept_groups": [
+        {
+          "terms": [
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "yerel"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "dokuman",
+            "belge"
+          ],
+          "matched_terms": [
+            "dokuman"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "asistan",
+            "soru-cevap",
+            "soru",
+            "cevap"
+          ],
+          "matched_terms": [
+            "asistan",
+            "soru-cevap",
+            "soru",
+            "cevap"
+          ],
+          "passed": true
+        }
+      ],
+      "generation_metrics": {
+        "time_to_first_token_seconds": 5.750111200002721,
+        "generation_total_seconds": 8.53698330000043,
+        "streaming_seconds": 2.7868720999977086,
+        "streaming_chunk_count": 26,
+        "answer_character_count": 88
+      },
+      "service_total_seconds": 9.087285600005998
+    },
+    {
+      "model_alias": "phi-4-mini",
+      "case_id": "model_unsupported_jupiter",
+      "question": "Jupiter'in kac uydusu vardir?",
+      "repetition": 2,
+      "expected_status": "insufficient_context",
+      "actual_status": "insufficient_context",
+      "expected_source": null,
+      "actual_source": null,
+      "answer": "Bu bilgi verilen dokumanlarda bulunmuyor.",
+      "answer_length": 41,
+      "passed": true,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "fallback_correct": true,
+        "source_empty": true,
+        "chat_model_not_used": true,
+        "generation_skipped": true,
+        "embedding_reused": true
+      },
+      "generation_metrics": {
+        "time_to_first_token_seconds": 0.0,
+        "generation_total_seconds": 0.0,
+        "streaming_seconds": 0.0,
+        "streaming_chunk_count": 0,
+        "answer_character_count": 0
+      },
+      "service_total_seconds": 0.5244185000046855
+    },
+    {
+      "model_alias": "phi-3.5-mini",
+      "case_id": "latency_rag",
+      "question": "RAG cevaplari nasil daha guvenilir hale getirir?",
+      "repetition": 1,
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_source": "rag_notes.txt",
+      "actual_source": "rag_notes.txt",
+      "answer": "RAG cevaplari daha guvenilir hale getirir çünkü kullanıcı sorusuyla ilgili dokuman parcaları bulmak ve modele baglama yönteminden yan yürüten, bu durumda bilgileri daha doğru ve bilgilendiği yan yürüten bir cevap sağlar. Bu retrieve, augment ve generate süper yöntemle, RAG sistem daha akıllı ve bilgi sağlayışını artırır.",
+      "answer_length": 322,
+      "passed": true,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "source_correct": true,
+        "concepts_correct": true,
+        "clean_ending": true,
+        "answer_length_valid": true,
+        "fallback_not_used": true,
+        "embedding_reused": true,
+        "chat_model_used": true,
+        "chat_model_reused": true,
+        "model_alias_correct": true
+      },
+      "concept_groups": [
+        {
+          "terms": [
+            "dokuman",
+            "belge"
+          ],
+          "matched_terms": [
+            "dokuman"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "baglam",
+            "context",
+            "destek",
+            "dayan"
+          ],
+          "matched_terms": [
+            "baglam"
+          ],
+          "passed": true
+        }
+      ],
+      "generation_metrics": {
+        "time_to_first_token_seconds": 8.123087300002226,
+        "generation_total_seconds": 20.189546299996437,
+        "streaming_seconds": 12.066458999994211,
+        "streaming_chunk_count": 139,
+        "answer_character_count": 322
+      },
+      "service_total_seconds": 20.759307000000263
+    },
+    {
+      "model_alias": "phi-3.5-mini",
+      "case_id": "latency_foundry_local",
+      "question": "Foundry Local ne ise yarar?",
+      "repetition": 1,
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_source": "foundry_local_notes.txt",
+      "actual_source": "foundry_local_notes.txt",
+      "answer": "Foundry Local, yapay zeka modellerini kullanıcının kendi cihazında modelleri uygulayabilme yeteneği sağlamak için Microsoft tarafından geliştirilmiş bir araçtır. Bu, kullanıcıların yerel bilgisayarda kalıcı ve özelleştirilmiş bir modellenin bulut servisine geri dönüşümünü sağlamak için gerekmiştir, bu da modellenin uygulamanın daha kolaylık ve etkili olmas",
+      "answer_length": 358,
+      "passed": false,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "source_correct": true,
+        "concepts_correct": true,
+        "clean_ending": false,
+        "answer_length_valid": true,
+        "fallback_not_used": true,
+        "embedding_reused": true,
+        "chat_model_used": true,
+        "chat_model_reused": true,
+        "model_alias_correct": true
+      },
+      "concept_groups": [
+        {
+          "terms": [
+            "model",
+            "yapay zeka"
+          ],
+          "matched_terms": [
+            "model",
+            "yapay zeka"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "cihaz",
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "cihaz",
+            "yerel",
+            "local"
+          ],
+          "passed": true
+        }
+      ],
+      "generation_metrics": {
+        "time_to_first_token_seconds": 8.341007600000012,
+        "generation_total_seconds": 22.362252099992475,
+        "streaming_seconds": 14.021244499992463,
+        "streaming_chunk_count": 160,
+        "answer_character_count": 358
+      },
+      "service_total_seconds": 22.918045100013842
+    },
+    {
+      "model_alias": "phi-3.5-mini",
+      "case_id": "latency_sqlite",
+      "question": "SQLite neden yerel bir RAG uygulamasi icin uygundur?",
+      "repetition": 1,
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_source": "sqlite_notes.txt",
+      "actual_source": "sqlite_notes.txt",
+      "answer": "SQLite, dosya tabanlı ve yerli bir veritabani sistemi olan yerlidir, bu nedenleri, SQLite'nin dosya \"sqlite_notes.txt\" dosyasında yerli RAG uygulamasının gerekçe olarak kullanılmasını sağlar. Veritabanının dosy tabanlı olduğu, dosyaları yerel bir dosy olarak saklamak ve aralıklı işlemek için gerekidir, bu da yerli uygulamaların gerekliliği sa",
+      "answer_length": 344,
+      "passed": false,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "source_correct": true,
+        "concepts_correct": true,
+        "clean_ending": false,
+        "answer_length_valid": true,
+        "fallback_not_used": true,
+        "embedding_reused": true,
+        "chat_model_used": true,
+        "chat_model_reused": true,
+        "model_alias_correct": true
+      },
+      "concept_groups": [
+        {
+          "terms": [
+            "sqlite"
+          ],
+          "matched_terms": [
+            "sqlite"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "yerel"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "dosya",
+            "sunucu",
+            "serverless",
+            "hafif"
+          ],
+          "matched_terms": [
+            "dosya"
+          ],
+          "passed": true
+        }
+      ],
+      "generation_metrics": {
+        "time_to_first_token_seconds": 8.74995409999974,
+        "generation_total_seconds": 23.18360570000368,
+        "streaming_seconds": 14.433651600003941,
+        "streaming_chunk_count": 160,
+        "answer_character_count": 344
+      },
+      "service_total_seconds": 23.760618699991028
+    },
+    {
+      "model_alias": "phi-3.5-mini",
+      "case_id": "latency_project",
+      "question": "Bu projenin temel amaci nedir?",
+      "repetition": 1,
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_source": "project_overview.txt",
+      "actual_source": "project_overview.txt",
+      "answer": "Temel amacı: Verilen dokuman baglamını kullanarak model cevabı uretme\n\nNeden: Kaynak (Kaynak 3) verildi, bu da projenin temel amacını açıkça belirtir, bu da sorunun nedenini cevaplamıştır.",
+      "answer_length": 188,
+      "passed": false,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "source_correct": true,
+        "concepts_correct": false,
+        "clean_ending": true,
+        "answer_length_valid": true,
+        "fallback_not_used": true,
+        "embedding_reused": true,
+        "chat_model_used": true,
+        "chat_model_reused": true,
+        "model_alias_correct": true
+      },
+      "concept_groups": [
+        {
+          "terms": [
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [],
+          "passed": false
+        },
+        {
+          "terms": [
+            "dokuman",
+            "belge"
+          ],
+          "matched_terms": [
+            "dokuman"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "asistan",
+            "soru-cevap",
+            "soru",
+            "cevap"
+          ],
+          "matched_terms": [
+            "soru",
+            "cevap"
+          ],
+          "passed": true
+        }
+      ],
+      "generation_metrics": {
+        "time_to_first_token_seconds": 7.9678242999943905,
+        "generation_total_seconds": 15.39431419999164,
+        "streaming_seconds": 7.42648989999725,
+        "streaming_chunk_count": 85,
+        "answer_character_count": 188
+      },
+      "service_total_seconds": 15.94829440000467
+    },
+    {
+      "model_alias": "phi-3.5-mini",
+      "case_id": "model_unsupported_jupiter",
+      "question": "Jupiter'in kac uydusu vardir?",
+      "repetition": 1,
+      "expected_status": "insufficient_context",
+      "actual_status": "insufficient_context",
+      "expected_source": null,
+      "actual_source": null,
+      "answer": "Bu bilgi verilen dokumanlarda bulunmuyor.",
+      "answer_length": 41,
+      "passed": true,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "fallback_correct": true,
+        "source_empty": true,
+        "chat_model_not_used": true,
+        "generation_skipped": true,
+        "embedding_reused": true
+      },
+      "generation_metrics": {
+        "time_to_first_token_seconds": 0.0,
+        "generation_total_seconds": 0.0,
+        "streaming_seconds": 0.0,
+        "streaming_chunk_count": 0,
+        "answer_character_count": 0
+      },
+      "service_total_seconds": 0.5663753999979235
+    },
+    {
+      "model_alias": "phi-3.5-mini",
+      "case_id": "latency_rag",
+      "question": "RAG cevaplari nasil daha guvenilir hale getirir?",
+      "repetition": 2,
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_source": "rag_notes.txt",
+      "actual_source": "rag_notes.txt",
+      "answer": "RAG cevaplari daha guvenilir hale getirir çünkü kullanıcı sorusuyla ilgili dokuman parcaları bulmak ve modele baglama yönteminden yan yürüten, bu durumda bilgileri daha doğru ve bilgilendiği yan yürüten bir cevap sağlar. Bu retrieve, augment ve generate süper yöntemle, RAG sistem daha akıllı ve bilgi sağlayışını artırır.",
+      "answer_length": 322,
+      "passed": true,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "source_correct": true,
+        "concepts_correct": true,
+        "clean_ending": true,
+        "answer_length_valid": true,
+        "fallback_not_used": true,
+        "embedding_reused": true,
+        "chat_model_used": true,
+        "chat_model_reused": true,
+        "model_alias_correct": true
+      },
+      "concept_groups": [
+        {
+          "terms": [
+            "dokuman",
+            "belge"
+          ],
+          "matched_terms": [
+            "dokuman"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "baglam",
+            "context",
+            "destek",
+            "dayan"
+          ],
+          "matched_terms": [
+            "baglam"
+          ],
+          "passed": true
+        }
+      ],
+      "generation_metrics": {
+        "time_to_first_token_seconds": 8.007207200003904,
+        "generation_total_seconds": 20.217035399997258,
+        "streaming_seconds": 12.209828199993353,
+        "streaming_chunk_count": 139,
+        "answer_character_count": 322
+      },
+      "service_total_seconds": 20.81266670000332
+    },
+    {
+      "model_alias": "phi-3.5-mini",
+      "case_id": "latency_foundry_local",
+      "question": "Foundry Local ne ise yarar?",
+      "repetition": 2,
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_source": "foundry_local_notes.txt",
+      "actual_source": "foundry_local_notes.txt",
+      "answer": "Foundry Local, yapay zeka modellerini kullanıcının kendi cihazında modelleri uygulayabilme yeteneği sağlamak için Microsoft tarafından geliştirilmiş bir araçtır. Bu, kullanıcıların yerel bilgisayarda kalıcı ve özelleştirilmiş bir modellenin bulut servisine geri dönüşümünü sağlamak için gerekmiştir, bu da modellenin uygulamanın daha kolaylık ve etkili olmas",
+      "answer_length": 358,
+      "passed": false,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "source_correct": true,
+        "concepts_correct": true,
+        "clean_ending": false,
+        "answer_length_valid": true,
+        "fallback_not_used": true,
+        "embedding_reused": true,
+        "chat_model_used": true,
+        "chat_model_reused": true,
+        "model_alias_correct": true
+      },
+      "concept_groups": [
+        {
+          "terms": [
+            "model",
+            "yapay zeka"
+          ],
+          "matched_terms": [
+            "model",
+            "yapay zeka"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "cihaz",
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "cihaz",
+            "yerel",
+            "local"
+          ],
+          "passed": true
+        }
+      ],
+      "generation_metrics": {
+        "time_to_first_token_seconds": 8.508364399996935,
+        "generation_total_seconds": 22.278179599990835,
+        "streaming_seconds": 13.7698151999939,
+        "streaming_chunk_count": 160,
+        "answer_character_count": 358
+      },
+      "service_total_seconds": 22.818076499999734
+    },
+    {
+      "model_alias": "phi-3.5-mini",
+      "case_id": "latency_sqlite",
+      "question": "SQLite neden yerel bir RAG uygulamasi icin uygundur?",
+      "repetition": 2,
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_source": "sqlite_notes.txt",
+      "actual_source": "sqlite_notes.txt",
+      "answer": "SQLite, dosya tabanlı ve yerli bir veritabani sistemi olan yerlidir, bu nedenleri, SQLite'nin dosya \"sqlite_notes.txt\" dosyasında yerli RAG uygulamasının gerekçe olarak kullanılmasını sağlar. Veritabanının dosy tabanlı olduğu, dosyaları yerel bir dosy olarak saklamak ve aralıklı işlemek için gerekidir, bu da yerli uygulamaların gerekliliği sa",
+      "answer_length": 344,
+      "passed": false,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "source_correct": true,
+        "concepts_correct": true,
+        "clean_ending": false,
+        "answer_length_valid": true,
+        "fallback_not_used": true,
+        "embedding_reused": true,
+        "chat_model_used": true,
+        "chat_model_reused": true,
+        "model_alias_correct": true
+      },
+      "concept_groups": [
+        {
+          "terms": [
+            "sqlite"
+          ],
+          "matched_terms": [
+            "sqlite"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "yerel"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "dosya",
+            "sunucu",
+            "serverless",
+            "hafif"
+          ],
+          "matched_terms": [
+            "dosya"
+          ],
+          "passed": true
+        }
+      ],
+      "generation_metrics": {
+        "time_to_first_token_seconds": 8.564475100007257,
+        "generation_total_seconds": 22.441661700009718,
+        "streaming_seconds": 13.87718660000246,
+        "streaming_chunk_count": 160,
+        "answer_character_count": 344
+      },
+      "service_total_seconds": 22.988172600002144
+    },
+    {
+      "model_alias": "phi-3.5-mini",
+      "case_id": "latency_project",
+      "question": "Bu projenin temel amaci nedir?",
+      "repetition": 2,
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_source": "project_overview.txt",
+      "actual_source": "project_overview.txt",
+      "answer": "Temel amacı: Verilen dokuman baglamını kullanarak model cevabı uretme\n\nNeden: Kaynak (Kaynak 3) verildi, bu da projenin temel amacını açıkça belirtir, bu da sorunun nedenini cevaplamıştır.",
+      "answer_length": 188,
+      "passed": false,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "source_correct": true,
+        "concepts_correct": false,
+        "clean_ending": true,
+        "answer_length_valid": true,
+        "fallback_not_used": true,
+        "embedding_reused": true,
+        "chat_model_used": true,
+        "chat_model_reused": true,
+        "model_alias_correct": true
+      },
+      "concept_groups": [
+        {
+          "terms": [
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [],
+          "passed": false
+        },
+        {
+          "terms": [
+            "dokuman",
+            "belge"
+          ],
+          "matched_terms": [
+            "dokuman"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "asistan",
+            "soru-cevap",
+            "soru",
+            "cevap"
+          ],
+          "matched_terms": [
+            "soru",
+            "cevap"
+          ],
+          "passed": true
+        }
+      ],
+      "generation_metrics": {
+        "time_to_first_token_seconds": 7.971737299987581,
+        "generation_total_seconds": 15.362161899989587,
+        "streaming_seconds": 7.390424600002007,
+        "streaming_chunk_count": 85,
+        "answer_character_count": 188
+      },
+      "service_total_seconds": 15.906803200006834
+    },
+    {
+      "model_alias": "phi-3.5-mini",
+      "case_id": "model_unsupported_jupiter",
+      "question": "Jupiter'in kac uydusu vardir?",
+      "repetition": 2,
+      "expected_status": "insufficient_context",
+      "actual_status": "insufficient_context",
+      "expected_source": null,
+      "actual_source": null,
+      "answer": "Bu bilgi verilen dokumanlarda bulunmuyor.",
+      "answer_length": 41,
+      "passed": true,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "fallback_correct": true,
+        "source_empty": true,
+        "chat_model_not_used": true,
+        "generation_skipped": true,
+        "embedding_reused": true
+      },
+      "generation_metrics": {
+        "time_to_first_token_seconds": 0.0,
+        "generation_total_seconds": 0.0,
+        "streaming_seconds": 0.0,
+        "streaming_chunk_count": 0,
+        "answer_character_count": 0
+      },
+      "service_total_seconds": 0.5163231999904383
+    },
+    {
+      "model_alias": "qwen2.5-1.5b",
+      "case_id": "latency_rag",
+      "question": "RAG cevaplari nasil daha guvenilir hale getirir?",
+      "repetition": 1,
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_source": "rag_notes.txt",
+      "actual_source": "rag_notes.txt",
+      "answer": "RAG sistemleri, sorulan soruya ve sorulduğu konuda daha güvenli bir şekilde cevabı vermek için iki aşamada çalışır:\n\n1. **Retrieve**: Bu aşamada, sorulan soruyu öğrenen modeli kullanılarak sorulan sorunun içeriğini bulur. Bu, soru ile ilgili bilgileri içerir.\n\n2. **Augment**: Bu aşamada, Retrieve aşamasından elde edilen bilgileri kullanarak, sorulan sorunun çözümü veya sonucunu oluşturur. Bu aşamada genellikle uzmanlık veya bilimsel yöntemler kullanılabilir.\n\nSon olarak, **Generate** aşamasında, tüm elde edilen bilg",
+      "answer_length": 521,
+      "passed": false,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "source_correct": true,
+        "concepts_correct": false,
+        "clean_ending": false,
+        "answer_length_valid": true,
+        "fallback_not_used": true,
+        "embedding_reused": true,
+        "chat_model_used": true,
+        "chat_model_reused": true,
+        "model_alias_correct": true
+      },
+      "concept_groups": [
+        {
+          "terms": [
+            "dokuman",
+            "belge"
+          ],
+          "matched_terms": [],
+          "passed": false
+        },
+        {
+          "terms": [
+            "baglam",
+            "context",
+            "destek",
+            "dayan"
+          ],
+          "matched_terms": [],
+          "passed": false
+        }
+      ],
+      "generation_metrics": {
+        "time_to_first_token_seconds": 2.8825316000002204,
+        "generation_total_seconds": 8.196233299997402,
+        "streaming_seconds": 5.313701699997182,
+        "streaming_chunk_count": 160,
+        "answer_character_count": 521
+      },
+      "service_total_seconds": 8.709348599993973
+    },
+    {
+      "model_alias": "qwen2.5-1.5b",
+      "case_id": "latency_foundry_local",
+      "question": "Foundry Local ne ise yarar?",
+      "repetition": 1,
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_source": "foundry_local_notes.txt",
+      "actual_source": "foundry_local_notes.txt",
+      "answer": "Foundry Local, yapay zeka modellerini kullanicinin kendi cihazında çalıştırma yeteneğidir. Bu, LLM (Language Model)'in yerel bilgisayarda çalışmasını sağlar ve bu şekilde daha az zaman kaybı yaşanır.",
+      "answer_length": 199,
+      "passed": true,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "source_correct": true,
+        "concepts_correct": true,
+        "clean_ending": true,
+        "answer_length_valid": true,
+        "fallback_not_used": true,
+        "embedding_reused": true,
+        "chat_model_used": true,
+        "chat_model_reused": true,
+        "model_alias_correct": true
+      },
+      "concept_groups": [
+        {
+          "terms": [
+            "model",
+            "yapay zeka"
+          ],
+          "matched_terms": [
+            "model",
+            "yapay zeka"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "cihaz",
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "cihaz",
+            "yerel",
+            "local"
+          ],
+          "passed": true
+        }
+      ],
+      "generation_metrics": {
+        "time_to_first_token_seconds": 3.011770599987358,
+        "generation_total_seconds": 5.067208699998446,
+        "streaming_seconds": 2.055438100011088,
+        "streaming_chunk_count": 60,
+        "answer_character_count": 199
+      },
+      "service_total_seconds": 5.575747099996079
+    },
+    {
+      "model_alias": "qwen2.5-1.5b",
+      "case_id": "latency_sqlite",
+      "question": "SQLite neden yerel bir RAG uygulamasi icin uygundur?",
+      "repetition": 1,
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_source": "sqlite_notes.txt",
+      "actual_source": "sqlite_notes.txt",
+      "answer": "SQLite'nin yerel bir RAG uygulamasına uygun olduğu nedeni, veritabanı sisteminin tek bir dosya olarak storage klasorunda tutulabileceğini gösteriyor. Bu, RAG uygulamasının daha az uzaktan çalıştırılabilmesine olanak tanır. Ayrıca, SQLite'nin hafif ve dosya tabanlı bir veritabanı sistemidir, bu da RAG uygulamasında daha az performans kaybına yol açmasını engeller. Bu nedenler aracılığıyla, SQLite'nin yerel bir RAG uygulamasına uygun olduğunu gösteriyor.",
+      "answer_length": 456,
+      "passed": true,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "source_correct": true,
+        "concepts_correct": true,
+        "clean_ending": true,
+        "answer_length_valid": true,
+        "fallback_not_used": true,
+        "embedding_reused": true,
+        "chat_model_used": true,
+        "chat_model_reused": true,
+        "model_alias_correct": true
+      },
+      "concept_groups": [
+        {
+          "terms": [
+            "sqlite"
+          ],
+          "matched_terms": [
+            "sqlite"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "yerel"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "dosya",
+            "sunucu",
+            "serverless",
+            "hafif"
+          ],
+          "matched_terms": [
+            "dosya",
+            "hafif"
+          ],
+          "passed": true
+        }
+      ],
+      "generation_metrics": {
+        "time_to_first_token_seconds": 3.158603399991989,
+        "generation_total_seconds": 8.00113699999929,
+        "streaming_seconds": 4.8425336000073,
+        "streaming_chunk_count": 144,
+        "answer_character_count": 456
+      },
+      "service_total_seconds": 8.540896799997427
+    },
+    {
+      "model_alias": "qwen2.5-1.5b",
+      "case_id": "latency_project",
+      "question": "Bu projenin temel amaci nedir?",
+      "repetition": 1,
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_source": "project_overview.txt",
+      "actual_source": "project_overview.txt",
+      "answer": "Temel amac yerel calisan bir dokuman soru-cevap asistani gelistirmekti.",
+      "answer_length": 71,
+      "passed": true,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "source_correct": true,
+        "concepts_correct": true,
+        "clean_ending": true,
+        "answer_length_valid": true,
+        "fallback_not_used": true,
+        "embedding_reused": true,
+        "chat_model_used": true,
+        "chat_model_reused": true,
+        "model_alias_correct": true
+      },
+      "concept_groups": [
+        {
+          "terms": [
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "yerel"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "dokuman",
+            "belge"
+          ],
+          "matched_terms": [
+            "dokuman"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "asistan",
+            "soru-cevap",
+            "soru",
+            "cevap"
+          ],
+          "matched_terms": [
+            "asistan",
+            "soru-cevap",
+            "soru",
+            "cevap"
+          ],
+          "passed": true
+        }
+      ],
+      "generation_metrics": {
+        "time_to_first_token_seconds": 2.9175416999933077,
+        "generation_total_seconds": 3.78771359998791,
+        "streaming_seconds": 0.8701718999946024,
+        "streaming_chunk_count": 24,
+        "answer_character_count": 71
+      },
+      "service_total_seconds": 4.308892700006254
+    },
+    {
+      "model_alias": "qwen2.5-1.5b",
+      "case_id": "model_unsupported_jupiter",
+      "question": "Jupiter'in kac uydusu vardir?",
+      "repetition": 1,
+      "expected_status": "insufficient_context",
+      "actual_status": "insufficient_context",
+      "expected_source": null,
+      "actual_source": null,
+      "answer": "Bu bilgi verilen dokumanlarda bulunmuyor.",
+      "answer_length": 41,
+      "passed": true,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "fallback_correct": true,
+        "source_empty": true,
+        "chat_model_not_used": true,
+        "generation_skipped": true,
+        "embedding_reused": true
+      },
+      "generation_metrics": {
+        "time_to_first_token_seconds": 0.0,
+        "generation_total_seconds": 0.0,
+        "streaming_seconds": 0.0,
+        "streaming_chunk_count": 0,
+        "answer_character_count": 0
+      },
+      "service_total_seconds": 0.5034019000013359
+    },
+    {
+      "model_alias": "qwen2.5-1.5b",
+      "case_id": "latency_rag",
+      "question": "RAG cevaplari nasil daha guvenilir hale getirir?",
+      "repetition": 2,
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_source": "rag_notes.txt",
+      "actual_source": "rag_notes.txt",
+      "answer": "RAG sistemleri, sorulan soruya ve sorulduğu konuda daha güvenli bir şekilde cevabı vermek için iki aşamada çalışır:\n\n1. **Retrieve**: Bu aşamada, sorulan soruyu öğrenen modeli kullanılarak sorulan sorunun içeriğini bulur. Bu, soru ile ilgili bilgileri içerir.\n\n2. **Augment**: Bu aşamada, Retrieve aşamasından elde edilen bilgileri kullanarak, sorulan sorunun çözümü veya sonucunu oluşturur. Bu aşamada genellikle uzmanlık veya bilimsel yöntemler kullanılabilir.\n\nSon olarak, **Generate** aşamasında, tüm elde edilen bilg",
+      "answer_length": 521,
+      "passed": false,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "source_correct": true,
+        "concepts_correct": false,
+        "clean_ending": false,
+        "answer_length_valid": true,
+        "fallback_not_used": true,
+        "embedding_reused": true,
+        "chat_model_used": true,
+        "chat_model_reused": true,
+        "model_alias_correct": true
+      },
+      "concept_groups": [
+        {
+          "terms": [
+            "dokuman",
+            "belge"
+          ],
+          "matched_terms": [],
+          "passed": false
+        },
+        {
+          "terms": [
+            "baglam",
+            "context",
+            "destek",
+            "dayan"
+          ],
+          "matched_terms": [],
+          "passed": false
+        }
+      ],
+      "generation_metrics": {
+        "time_to_first_token_seconds": 2.8797617000091122,
+        "generation_total_seconds": 8.177185200009262,
+        "streaming_seconds": 5.29742350000015,
+        "streaming_chunk_count": 160,
+        "answer_character_count": 521
+      },
+      "service_total_seconds": 8.671328600001289
+    },
+    {
+      "model_alias": "qwen2.5-1.5b",
+      "case_id": "latency_foundry_local",
+      "question": "Foundry Local ne ise yarar?",
+      "repetition": 2,
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_source": "foundry_local_notes.txt",
+      "actual_source": "foundry_local_notes.txt",
+      "answer": "Foundry Local, yapay zeka modellerini kullanicinin kendi cihazında çalıştırma yeteneğidir. Bu, LLM (Language Model)'in yerel bilgisayarda çalışmasını sağlar ve bu şekilde daha az zaman kaybı yaşanır.",
+      "answer_length": 199,
+      "passed": true,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "source_correct": true,
+        "concepts_correct": true,
+        "clean_ending": true,
+        "answer_length_valid": true,
+        "fallback_not_used": true,
+        "embedding_reused": true,
+        "chat_model_used": true,
+        "chat_model_reused": true,
+        "model_alias_correct": true
+      },
+      "concept_groups": [
+        {
+          "terms": [
+            "model",
+            "yapay zeka"
+          ],
+          "matched_terms": [
+            "model",
+            "yapay zeka"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "cihaz",
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "cihaz",
+            "yerel",
+            "local"
+          ],
+          "passed": true
+        }
+      ],
+      "generation_metrics": {
+        "time_to_first_token_seconds": 3.007511700008763,
+        "generation_total_seconds": 5.03295920000528,
+        "streaming_seconds": 2.025447499996517,
+        "streaming_chunk_count": 60,
+        "answer_character_count": 199
+      },
+      "service_total_seconds": 5.552210699999705
+    },
+    {
+      "model_alias": "qwen2.5-1.5b",
+      "case_id": "latency_sqlite",
+      "question": "SQLite neden yerel bir RAG uygulamasi icin uygundur?",
+      "repetition": 2,
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_source": "sqlite_notes.txt",
+      "actual_source": "sqlite_notes.txt",
+      "answer": "SQLite'nin yerel bir RAG uygulamasına uygun olduğu nedeni, veritabanı sisteminin tek bir dosya olarak storage klasorunda tutulabileceğini gösteriyor. Bu, RAG uygulamasının daha az uzaktan çalıştırılabilmesine olanak tanır. Ayrıca, SQLite'nin hafif ve dosya tabanlı bir veritabanı sistemidir, bu da RAG uygulamasında daha az performans kaybına yol açmasını engeller. Bu nedenler aracılığıyla, SQLite'nin yerel bir RAG uygulamasına uygun olduğunu gösteriyor.",
+      "answer_length": 456,
+      "passed": true,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "source_correct": true,
+        "concepts_correct": true,
+        "clean_ending": true,
+        "answer_length_valid": true,
+        "fallback_not_used": true,
+        "embedding_reused": true,
+        "chat_model_used": true,
+        "chat_model_reused": true,
+        "model_alias_correct": true
+      },
+      "concept_groups": [
+        {
+          "terms": [
+            "sqlite"
+          ],
+          "matched_terms": [
+            "sqlite"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "yerel"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "dosya",
+            "sunucu",
+            "serverless",
+            "hafif"
+          ],
+          "matched_terms": [
+            "dosya",
+            "hafif"
+          ],
+          "passed": true
+        }
+      ],
+      "generation_metrics": {
+        "time_to_first_token_seconds": 3.1159950000001118,
+        "generation_total_seconds": 7.935944500000915,
+        "streaming_seconds": 4.819949500000803,
+        "streaming_chunk_count": 144,
+        "answer_character_count": 456
+      },
+      "service_total_seconds": 8.474434800009476
+    },
+    {
+      "model_alias": "qwen2.5-1.5b",
+      "case_id": "latency_project",
+      "question": "Bu projenin temel amaci nedir?",
+      "repetition": 2,
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "expected_source": "project_overview.txt",
+      "actual_source": "project_overview.txt",
+      "answer": "Temel amac yerel calisan bir dokuman soru-cevap asistani gelistirmekti.",
+      "answer_length": 71,
+      "passed": true,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "source_correct": true,
+        "concepts_correct": true,
+        "clean_ending": true,
+        "answer_length_valid": true,
+        "fallback_not_used": true,
+        "embedding_reused": true,
+        "chat_model_used": true,
+        "chat_model_reused": true,
+        "model_alias_correct": true
+      },
+      "concept_groups": [
+        {
+          "terms": [
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "yerel"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "dokuman",
+            "belge"
+          ],
+          "matched_terms": [
+            "dokuman"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "asistan",
+            "soru-cevap",
+            "soru",
+            "cevap"
+          ],
+          "matched_terms": [
+            "asistan",
+            "soru-cevap",
+            "soru",
+            "cevap"
+          ],
+          "passed": true
+        }
+      ],
+      "generation_metrics": {
+        "time_to_first_token_seconds": 2.957795599999372,
+        "generation_total_seconds": 3.8206578999961494,
+        "streaming_seconds": 0.8628622999967774,
+        "streaming_chunk_count": 24,
+        "answer_character_count": 71
+      },
+      "service_total_seconds": 4.329228700007661
+    },
+    {
+      "model_alias": "qwen2.5-1.5b",
+      "case_id": "model_unsupported_jupiter",
+      "question": "Jupiter'in kac uydusu vardir?",
+      "repetition": 2,
+      "expected_status": "insufficient_context",
+      "actual_status": "insufficient_context",
+      "expected_source": null,
+      "actual_source": null,
+      "answer": "Bu bilgi verilen dokumanlarda bulunmuyor.",
+      "answer_length": 41,
+      "passed": true,
+      "error": null,
+      "checks": {
+        "status_correct": true,
+        "fallback_correct": true,
+        "source_empty": true,
+        "chat_model_not_used": true,
+        "generation_skipped": true,
+        "embedding_reused": true
+      },
+      "generation_metrics": {
+        "time_to_first_token_seconds": 0.0,
+        "generation_total_seconds": 0.0,
+        "streaming_seconds": 0.0,
+        "streaming_chunk_count": 0,
+        "answer_character_count": 0
+      },
+      "service_total_seconds": 0.5158958999963943
+    }
+  ],
+  "selection_note": "Only models that pass every quality and safety check are eligible for fastest-valid-model selection."
+}

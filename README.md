@@ -832,3 +832,128 @@ Unsupported questions still skip the chat model and return the deterministic fal
 ## Running the generation regression test
 
     python -m src.generation_evaluation_demo
+
+
+
+### Day 20 — Local Chat Model Comparison
+
+Three Foundry Local chat models were compared using the same RAG pipeline:
+
+- `phi-4-mini`
+- `phi-3.5-mini`
+- `qwen2.5-1.5b`
+
+The following settings remained fixed:
+
+- Embedding model: `qwen3-embedding-0.6b`
+- Maximum generation tokens: `160`
+- Temperature: `0.0`
+- Top-k context chunks: `3`
+- Minimum similarity threshold: `0.6000`
+- Same SQLite knowledge base
+- Same prompts and evaluation questions
+
+Each model was:
+
+1. Loaded once
+2. Warmed up once
+3. Tested with four answerable questions
+4. Tested with one unsupported question
+5. Evaluated twice per case
+6. Safely unloaded
+
+This produced:
+
+    3 models
+    × 5 cases
+    × 2 repetitions
+    = 30 measured runs
+
+## Model compatibility smoke test
+
+All models successfully completed their technical lifecycle:
+
+- Model discovery
+- Download or cache validation
+- Model loading
+- Streaming generation
+- Model unloading
+
+Technical compatibility does not guarantee acceptable answer quality.
+
+## Model comparison results
+
+### phi-4-mini
+
+- Passed runs: `10/10`
+- Quality rate: `100%`
+- Answerable cases: `8/8`
+- Unsupported cases: `2/2`
+- Model loading time: `11.0719 seconds`
+- Median TTFT: `5.7346 seconds`
+- Median generation time: `10.7710 seconds`
+- Median service time: `11.3297 seconds`
+- Median answer length: `183 characters`
+
+### phi-3.5-mini
+
+- Passed runs: `4/10`
+- Quality rate: `40%`
+- Answerable cases: `2/8`
+- Unsupported cases: `2/2`
+- Model loading time: `7.6304 seconds`
+- Median TTFT: `8.2320 seconds`
+- Median generation time: `21.2476 seconds`
+- Median service time: `21.8154 seconds`
+- Median answer length: `333 characters`
+
+Failure reasons included:
+
+- Truncated answers
+- Missing required answer concepts
+- Poorer sentence quality
+- Longer generation latency
+
+### qwen2.5-1.5b
+
+- Passed runs: `8/10`
+- Quality rate: `80%`
+- Answerable cases: `6/8`
+- Unsupported cases: `2/2`
+- Model loading time: `3.7939 seconds`
+- Median TTFT: `2.9827 seconds`
+- Median generation time: `6.5016 seconds`
+- Median service time: `7.0251 seconds`
+- Median answer length: `327.5 characters`
+
+The model was substantially faster than `phi-4-mini`, but failed both repetitions of the RAG reliability case.
+
+The failed answers:
+
+- Did not include all required concepts
+- Reached the generation limit before completing the answer
+- Did not end cleanly
+
+## Model decision
+
+The default model remains:
+
+    CHAT_MODEL_ALIAS = "phi-4-mini"
+
+`phi-4-mini` was the only model that passed every quality, grounding, formatting, lifecycle, and safety check.
+
+`qwen2.5-1.5b` was the fastest model, but it was not eligible for selection because it did not achieve a `100%` quality rate.
+
+Model loading time has less impact in the interactive CLI because `LocalRAGSession` loads the model once and reuses it across questions.
+
+For this project, answer quality and reliable completion were prioritized over raw inference speed.
+
+## New files
+
+- `src/model_comparison.py`
+- `src/model_comparison_demo.py`
+- `reports/model_comparison_report.json`
+
+## Running the model comparison
+
+    python -m src.model_comparison_demo
