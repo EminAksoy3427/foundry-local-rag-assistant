@@ -20,10 +20,32 @@ FALLBACK_ANSWER = (
 )
 
 
+def create_empty_generation_metrics():
+    """
+    Generation calismadiginda veya henuz
+    baslamadiginda kullanilacak bos metrik
+    sozlugunu olusturur.
+
+    Cevaplanamaz sorularda bu alanlar sifir
+    olarak kalir.
+    """
+    return {
+        "time_to_first_token_seconds": 0.0,
+        "generation_total_seconds": 0.0,
+        "streaming_seconds": 0.0,
+        "streaming_chunk_count": 0,
+        "answer_character_count": 0,
+    }
+
+
 def create_empty_performance_metrics():
     """
-    Tek bir RAG isteginde olculecek performans
-    metriklerini olusturur.
+    Tek bir RAG isteginde olculecek tum
+    performans metriklerini olusturur.
+
+    Retrieval, model yasam dongusu, generation
+    ve toplam servis sureleri ayni sozlukte
+    tutulur.
     """
     return {
         "database_read_seconds": 0.0,
@@ -36,20 +58,28 @@ def create_empty_performance_metrics():
         "context_selection_seconds": 0.0,
         "prompt_build_seconds": 0.0,
         "chat_model_load_seconds": 0.0,
+        "time_to_first_token_seconds": 0.0,
         "generation_seconds": 0.0,
+        "streaming_seconds": 0.0,
+        "streaming_chunk_count": 0,
+        "answer_character_count": 0,
         "chat_model_unload_seconds": 0.0,
         "service_total_seconds": 0.0,
     }
 
 
-def print_performance_metrics(performance_metrics):
+def print_performance_metrics(
+    performance_metrics,
+):
     """
     RAG isteginin performans metriklerini
-    terminale yazdirir.
+    okunabilir bicimde terminale yazdirir.
     """
-    print("\nRAG SERVISI PERFORMANS METRIKLERI")
+    print(
+        "\nRAG SERVISI PERFORMANS METRIKLERI"
+    )
 
-    metric_labels = {
+    duration_metric_labels = {
         "database_read_seconds": (
             "SQLite okuma"
         ),
@@ -80,8 +110,14 @@ def print_performance_metrics(performance_metrics):
         "chat_model_load_seconds": (
             "Chat modeli yukleme"
         ),
+        "time_to_first_token_seconds": (
+            "Ilk metin parcasina kadar gecen sure"
+        ),
         "generation_seconds": (
-            "Cevap uretme"
+            "Toplam cevap uretme"
+        ),
+        "streaming_seconds": (
+            "Ilk parcadan sonra streaming"
         ),
         "chat_model_unload_seconds": (
             "Chat modeli kapatma"
@@ -91,16 +127,44 @@ def print_performance_metrics(performance_metrics):
         ),
     }
 
-    for metric_name, label in metric_labels.items():
-        value = performance_metrics.get(
-            metric_name,
-            0.0,
+    for metric_name, label in (
+        duration_metric_labels.items()
+    ):
+        value = float(
+            performance_metrics.get(
+                metric_name,
+                0.0,
+            )
         )
 
         print(
             f"- {label}: "
             f"{value:.4f} saniye"
         )
+
+    streaming_chunk_count = int(
+        performance_metrics.get(
+            "streaming_chunk_count",
+            0,
+        )
+    )
+
+    answer_character_count = int(
+        performance_metrics.get(
+            "answer_character_count",
+            0,
+        )
+    )
+
+    print(
+        "- Streaming parca sayisi: "
+        f"{streaming_chunk_count}"
+    )
+
+    print(
+        "- Cevap karakter sayisi: "
+        f"{answer_character_count}"
+    )
 
 
 def answer_question(
@@ -124,15 +188,25 @@ def answer_question(
     - Embedding modeli yuklenir
     - Retrieval yapilir
     - Embedding modeli kapatilir
-    - Gerekirse chat modeli yuklenir
-    - Cevap uretilir
+    - Yeterli context varsa chat modeli yuklenir
+    - Streaming cevap uretilir
     - Chat modeli kapatilir
 
     Disaridan embedder ve generator verilirse
-    ayni model nesneleri birden fazla soruda
-    tekrar kullanilabilir.
+    model nesneleri birden fazla soruda yeniden
+    kullanilabilir.
+
+    Generation asamasinda su metrikler olculur:
+
+    - Ilk metin parcasina kadar gecen sure
+    - Toplam generation suresi
+    - Ilk parcadan sonraki streaming suresi
+    - Streaming parca sayisi
+    - Cevap karakter sayisi
     """
-    cleaned_question = str(question).strip()
+    cleaned_question = str(
+        question
+    ).strip()
 
     if not cleaned_question:
         raise ValueError(
@@ -158,6 +232,10 @@ def answer_question(
 
     performance_metrics = (
         create_empty_performance_metrics()
+    )
+
+    generation_metrics = (
+        create_empty_generation_metrics()
     )
 
     owns_embedder = embedder is None
@@ -186,8 +264,10 @@ def answer_question(
         )
 
     retrieval_candidate_k = max(
-        top_k
-        * DEFAULT_RETRIEVAL_CANDIDATE_MULTIPLIER,
+        (
+            top_k
+            * DEFAULT_RETRIEVAL_CANDIDATE_MULTIPLIER
+        ),
         top_k,
     )
 
@@ -254,11 +334,17 @@ def answer_question(
     primary_source = None
 
     if has_sufficient_context:
-        source_ranking_start = perf_counter()
+        source_ranking_start = (
+            perf_counter()
+        )
 
-        source_rankings = rank_candidate_sources(
-            question=cleaned_question,
-            candidate_chunks=candidate_chunks,
+        source_rankings = (
+            rank_candidate_sources(
+                question=cleaned_question,
+                candidate_chunks=(
+                    candidate_chunks
+                ),
+            )
         )
 
         performance_metrics[
@@ -281,9 +367,13 @@ def answer_question(
         relevant_chunks = (
             select_context_chunks_by_primary_source(
                 question=cleaned_question,
-                candidate_chunks=candidate_chunks,
+                candidate_chunks=(
+                    candidate_chunks
+                ),
                 context_top_k=top_k,
-                source_rankings=source_rankings,
+                source_rankings=(
+                    source_rankings
+                ),
             )
         )
 
@@ -334,7 +424,9 @@ def answer_question(
     )
 
     if source_rankings:
-        print("Kaynak secim skorlari:")
+        print(
+            "Kaynak secim skorlari:"
+        )
 
         for ranking in source_rankings:
             print(
@@ -354,7 +446,9 @@ def answer_question(
         )
 
         if on_token is not None:
-            on_token(FALLBACK_ANSWER)
+            on_token(
+                FALLBACK_ANSWER
+            )
             print()
 
         performance_metrics[
@@ -374,7 +468,9 @@ def answer_question(
             "status": "insufficient_context",
             "source_references": [],
             "retrieved_chunks": [],
-            "candidate_chunks": candidate_chunks,
+            "candidate_chunks": (
+                candidate_chunks
+            ),
             "model_alias": None,
             "top_similarity_score": (
                 top_similarity_score
@@ -393,6 +489,9 @@ def answer_question(
             "source_rankings": [],
             "performance_metrics": (
                 performance_metrics
+            ),
+            "generation_metrics": (
+                generation_metrics
             ),
             "embedding_model_reused": (
                 embedding_model_reused
@@ -430,7 +529,10 @@ def answer_question(
         active_generator.is_loaded
     )
 
-    model_alias = active_generator.model_alias
+    model_alias = (
+        active_generator.model_alias
+    )
+
     answer = ""
 
     try:
@@ -439,6 +541,7 @@ def answer_question(
                 "\nRAG servisi: yuklu chat modeli "
                 "yeniden kullaniliyor..."
             )
+
         else:
             print(
                 "\nRAG servisi: yerel chat modeli "
@@ -462,23 +565,66 @@ def answer_question(
             "\nRAG servisi: cevap uretiliyor..."
         )
 
-        generation_start = perf_counter()
+        generation_result = (
+            active_generator.generate_with_metrics(
+                system_prompt=rag_prompt[
+                    "system_prompt"
+                ],
+                user_prompt=rag_prompt[
+                    "user_prompt"
+                ],
+                on_token=on_token,
+            )
+        )
 
-        answer = active_generator.generate(
-            system_prompt=rag_prompt[
-                "system_prompt"
-            ],
-            user_prompt=rag_prompt[
-                "user_prompt"
-            ],
-            on_token=on_token,
+        answer = generation_result[
+            "answer"
+        ]
+
+        generation_metrics = (
+            generation_result[
+                "metrics"
+            ]
+        )
+
+        performance_metrics[
+            "time_to_first_token_seconds"
+        ] = float(
+            generation_metrics[
+                "time_to_first_token_seconds"
+            ]
         )
 
         performance_metrics[
             "generation_seconds"
-        ] = (
-            perf_counter()
-            - generation_start
+        ] = float(
+            generation_metrics[
+                "generation_total_seconds"
+            ]
+        )
+
+        performance_metrics[
+            "streaming_seconds"
+        ] = float(
+            generation_metrics[
+                "streaming_seconds"
+            ]
+        )
+
+        performance_metrics[
+            "streaming_chunk_count"
+        ] = int(
+            generation_metrics[
+                "streaming_chunk_count"
+            ]
+        )
+
+        performance_metrics[
+            "answer_character_count"
+        ] = int(
+            generation_metrics[
+                "answer_character_count"
+            ]
         )
 
     finally:
@@ -499,7 +645,9 @@ def answer_question(
                 - chat_model_unload_start
             )
 
-    cleaned_answer = str(answer).strip()
+    cleaned_answer = str(
+        answer
+    ).strip()
 
     performance_metrics[
         "service_total_seconds"
@@ -524,8 +672,12 @@ def answer_question(
         "source_references": rag_prompt[
             "source_references"
         ],
-        "retrieved_chunks": relevant_chunks,
-        "candidate_chunks": candidate_chunks,
+        "retrieved_chunks": (
+            relevant_chunks
+        ),
+        "candidate_chunks": (
+            candidate_chunks
+        ),
         "model_alias": model_alias,
         "top_similarity_score": (
             top_similarity_score
@@ -542,10 +694,17 @@ def answer_question(
         "ranked_primary_source": (
             ranked_primary_source
         ),
-        "primary_source": primary_source,
-        "source_rankings": source_rankings,
+        "primary_source": (
+            primary_source
+        ),
+        "source_rankings": (
+            source_rankings
+        ),
         "performance_metrics": (
             performance_metrics
+        ),
+        "generation_metrics": (
+            generation_metrics
         ),
         "embedding_model_reused": (
             embedding_model_reused

@@ -1289,3 +1289,231 @@ Potential future experiments:
 - Compare answer quality and latency across model aliases
 - Cache SQLite documents and deserialized embeddings in memory
 - Test whether shorter prompts reduce generation latency
+
+
+## Day 19 — Generation Latency and TTFT Measurement
+
+### Goal
+
+Measure user-perceived generation latency, compare maximum token configurations, and reduce answer-generation time without reducing retrieval or answer quality.
+
+### Why total generation time was not enough
+
+The previous performance instrumentation measured only the complete generation duration.
+
+For an interactive assistant, two separate timings matter:
+
+1. Time until the first visible response text
+2. Time until the complete answer is generated
+
+A user may perceive an application as responsive when the first text arrives quickly, even if the full answer continues streaming afterward.
+
+### New generation metrics
+
+`LocalGenerator` now provides:
+
+    generate_with_metrics()
+
+It returns:
+
+    {
+        "answer": "...",
+        "metrics": {
+            "time_to_first_token_seconds": ...,
+            "generation_total_seconds": ...,
+            "streaming_seconds": ...,
+            "streaming_chunk_count": ...,
+            "answer_character_count": ...
+        }
+    }
+
+The original interface remains available:
+
+    generate()
+
+This preserves backward compatibility for code that only requires the generated answer.
+
+### Time-to-first-token definition
+
+In this implementation, time to first token means the time until the first non-empty streaming text chunk is returned by the Foundry Local SDK.
+
+A streaming chunk may contain:
+
+- One tokenizer token
+- Multiple tokenizer tokens
+- A word fragment
+- One or more complete words
+
+The metric is therefore more precisely a time-to-first-text-chunk measurement.
+
+### Smoke-test result
+
+A persistent-session smoke test produced:
+
+- Retrieval time: `1.0277 seconds`
+- Chat model loading: `0.0000 seconds`
+- Time to first text chunk: `5.7533 seconds`
+- Total generation: `10.9279 seconds`
+- Streaming after first chunk: `5.1745 seconds`
+- Streaming chunks: `49`
+- Answer characters: `198`
+- Total service time: `11.9592 seconds`
+
+Validation checks passed:
+
+- TTFT was positive
+- Total generation time was greater than or equal to TTFT
+- Measured character count matched the answer length
+- The legacy `generation_seconds` value matched the new total-generation metric
+
+### Max-token experiment
+
+The same chat model was evaluated with:
+
+- `120` maximum tokens
+- `160` maximum tokens
+- `220` maximum tokens
+
+The benchmark used four supported questions:
+
+- RAG reliability
+- Foundry Local purpose
+- SQLite suitability
+- Project purpose
+
+Each question was executed twice for every configuration.
+
+Total measured executions:
+
+    3 configurations
+    × 4 questions
+    × 2 repetitions
+    = 24 runs
+
+### Quality checks
+
+Every benchmark run checked:
+
+- Answered status
+- Expected primary source
+- Required answer concepts
+- No unexpected fallback
+- Answer-length range
+- Clean sentence ending
+- Embedding model reuse
+- Chat model reuse
+
+### Results for 120 tokens
+
+- Passed: `8/8`
+- Quality: `100%`
+- TTFT mean: `7.6239 seconds`
+- TTFT median: `7.9451 seconds`
+- Generation mean: `13.3649 seconds`
+- Generation median: `14.3824 seconds`
+- Streaming median: `6.1411 seconds`
+- Median answer length: `183 characters`
+
+### Results for 160 tokens
+
+- Passed: `8/8`
+- Quality: `100%`
+- TTFT mean: `5.8690 seconds`
+- TTFT median: `5.9535 seconds`
+- Generation mean: `10.6564 seconds`
+- Generation median: `10.9946 seconds`
+- Streaming median: `4.9686 seconds`
+- Median answer length: `183 characters`
+
+### Results for 220 tokens
+
+- Passed: `8/8`
+- Quality: `100%`
+- TTFT mean: `8.1017 seconds`
+- TTFT median: `8.3424 seconds`
+- Generation mean: `13.8037 seconds`
+- Generation median: `14.3730 seconds`
+- Streaming median: `6.0970 seconds`
+- Median answer length: `183 characters`
+
+### Configuration decision
+
+The default maximum generation limit was reduced from `220` to `160`.
+
+Measured comparison against `220`:
+
+- TTFT median improvement: approximately `28.6%`
+- Generation median improvement: approximately `23.5%`
+- Quality difference: none in the current tests
+- Median answer-length difference: none
+- Truncated answers: none detected
+
+`120` was not automatically selected merely because it had the smallest upper limit. The model generated the same answers below all three limits, and `120` was slower in this measurement.
+
+This demonstrates that `max_tokens` is an output ceiling rather than a requested output length. Lowering it does not guarantee proportionally faster inference when the model naturally finishes before reaching the ceiling.
+
+### Measurement limitation
+
+The test used only two repetitions for each case and ran configurations sequentially.
+
+Local inference latency may be influenced by:
+
+- CPU scheduling
+- Memory pressure
+- Thermal state
+- Model runtime caching
+- Background applications
+- Configuration execution order
+
+The selected value is therefore the best measured candidate, not a universal performance guarantee.
+
+### Generation regression
+
+The standard five-case generation evaluation was rerun after changing the default to `160`.
+
+Results:
+
+- Supported cases: `4`
+- Unsupported cases: `1`
+- Passed: `5`
+- Failed: `0`
+- Overall accuracy: `100%`
+- Status accuracy: `100%`
+- Source accuracy: `100%`
+- Concept accuracy: `100%`
+- Answer-length accuracy: `100%`
+- Clean-answer accuracy: `100%`
+- Fallback accuracy: `100%`
+
+The unsupported Jupiter question:
+
+- Returned `insufficient_context`
+- Did not load the chat model
+- Had zero TTFT
+- Had zero generation time
+- Returned the fixed fallback answer
+
+### Key learning
+
+Generation latency is composed of two meaningful periods:
+
+    Request submitted
+    → model processing before first text
+    → streaming response completion
+
+Reducing maximum tokens may help, but performance must be measured instead of assumed.
+
+The current main latency component is the time before the first generated text chunk.
+
+### Future experiments
+
+Potential next steps:
+
+- Compare different chat model aliases
+- Randomize benchmark configuration order
+- Increase repetition count
+- Measure tokens per second when token usage becomes available
+- Compare shorter and longer prompts
+- Measure prompt token count
+- Cache deserialized document embeddings in memory
+- Evaluate answer quality with a larger question set

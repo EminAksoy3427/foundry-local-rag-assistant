@@ -1,0 +1,1607 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-20T11:29:23.599522+00:00",
+  "benchmark_type": "generation_max_tokens",
+  "model_alias": "phi-4-mini",
+  "temperature": 0.0,
+  "max_token_configurations": [
+    120,
+    160,
+    220
+  ],
+  "repeats": 2,
+  "case_count": 4,
+  "measured_run_count": 24,
+  "embedding_model_load_seconds": 4.191830199997639,
+  "chat_model_load_metrics": {
+    "120": {
+      "chat_model_load_seconds": 12.554137
+    },
+    "160": {
+      "chat_model_load_seconds": 7.860814
+    },
+    "220": {
+      "chat_model_load_seconds": 7.350851
+    }
+  },
+  "configuration_summaries": [
+    {
+      "max_tokens": 120,
+      "total_runs": 8,
+      "passed_runs": 8,
+      "failed_runs": 0,
+      "quality_rate": 100.0,
+      "all_quality_checks_passed": true,
+      "time_to_first_token_seconds": {
+        "count": 8,
+        "mean": 7.623927712499608,
+        "median": 7.945079699999042,
+        "minimum": 5.538884600002348,
+        "maximum": 8.323015599999053
+      },
+      "generation_total_seconds": {
+        "count": 8,
+        "mean": 13.364922324999952,
+        "median": 14.382408400000713,
+        "minimum": 8.314949200001138,
+        "maximum": 16.12802069999816
+      },
+      "streaming_seconds": {
+        "count": 8,
+        "mean": 5.740994612500344,
+        "median": 6.141137950000484,
+        "minimum": 2.77606459999879,
+        "maximum": 8.168890000000829
+      },
+      "streaming_chunk_count": {
+        "count": 8,
+        "mean": 45.0,
+        "median": 47.0,
+        "minimum": 26.0,
+        "maximum": 60.0
+      },
+      "answer_character_count": {
+        "count": 8,
+        "mean": 176.75,
+        "median": 183.0,
+        "minimum": 88.0,
+        "maximum": 253.0
+      },
+      "service_total_seconds": {
+        "count": 8,
+        "mean": 13.986316462500326,
+        "median": 15.043823849999171,
+        "minimum": 8.7977755000029,
+        "maximum": 16.876458700000512
+      }
+    },
+    {
+      "max_tokens": 160,
+      "total_runs": 8,
+      "passed_runs": 8,
+      "failed_runs": 0,
+      "quality_rate": 100.0,
+      "all_quality_checks_passed": true,
+      "time_to_first_token_seconds": {
+        "count": 8,
+        "mean": 5.8689878999998655,
+        "median": 5.953503799999453,
+        "minimum": 5.463600099999894,
+        "maximum": 6.188203900001099
+      },
+      "generation_total_seconds": {
+        "count": 8,
+        "mean": 10.65643689999979,
+        "median": 10.994627899999614,
+        "minimum": 8.523972200000571,
+        "maximum": 12.078920799998741
+      },
+      "streaming_seconds": {
+        "count": 8,
+        "mean": 4.787448999999924,
+        "median": 4.968557899999723,
+        "minimum": 2.7582132000025013,
+        "maximum": 6.534912199997052
+      },
+      "streaming_chunk_count": {
+        "count": 8,
+        "mean": 45.0,
+        "median": 47.0,
+        "minimum": 26.0,
+        "maximum": 60.0
+      },
+      "answer_character_count": {
+        "count": 8,
+        "mean": 176.75,
+        "median": 183.0,
+        "minimum": 88.0,
+        "maximum": 253.0
+      },
+      "service_total_seconds": {
+        "count": 8,
+        "mean": 11.205753299999742,
+        "median": 11.514176999999108,
+        "minimum": 9.05690770000001,
+        "maximum": 12.603653199999826
+      }
+    },
+    {
+      "max_tokens": 220,
+      "total_runs": 8,
+      "passed_runs": 8,
+      "failed_runs": 0,
+      "quality_rate": 100.0,
+      "all_quality_checks_passed": true,
+      "time_to_first_token_seconds": {
+        "count": 8,
+        "mean": 8.10174996250089,
+        "median": 8.342366950000724,
+        "minimum": 5.760440900001413,
+        "maximum": 10.085984299999836
+      },
+      "generation_total_seconds": {
+        "count": 8,
+        "mean": 13.803720875000636,
+        "median": 14.373015000001033,
+        "minimum": 10.09238280000136,
+        "maximum": 16.744996500001434
+      },
+      "streaming_seconds": {
+        "count": 8,
+        "mean": 5.701970912499746,
+        "median": 6.096987449998778,
+        "minimum": 2.8647392999992007,
+        "maximum": 7.784068799999659
+      },
+      "streaming_chunk_count": {
+        "count": 8,
+        "mean": 45.0,
+        "median": 47.0,
+        "minimum": 26.0,
+        "maximum": 60.0
+      },
+      "answer_character_count": {
+        "count": 8,
+        "mean": 176.75,
+        "median": 183.0,
+        "minimum": 88.0,
+        "maximum": 253.0
+      },
+      "service_total_seconds": {
+        "count": 8,
+        "mean": 14.50704979999955,
+        "median": 15.023417399999744,
+        "minimum": 11.138593399999081,
+        "maximum": 17.449806600001466
+      }
+    }
+  ],
+  "fastest_valid_configuration": {
+    "max_tokens": 160,
+    "total_runs": 8,
+    "passed_runs": 8,
+    "failed_runs": 0,
+    "quality_rate": 100.0,
+    "all_quality_checks_passed": true,
+    "time_to_first_token_seconds": {
+      "count": 8,
+      "mean": 5.8689878999998655,
+      "median": 5.953503799999453,
+      "minimum": 5.463600099999894,
+      "maximum": 6.188203900001099
+    },
+    "generation_total_seconds": {
+      "count": 8,
+      "mean": 10.65643689999979,
+      "median": 10.994627899999614,
+      "minimum": 8.523972200000571,
+      "maximum": 12.078920799998741
+    },
+    "streaming_seconds": {
+      "count": 8,
+      "mean": 4.787448999999924,
+      "median": 4.968557899999723,
+      "minimum": 2.7582132000025013,
+      "maximum": 6.534912199997052
+    },
+    "streaming_chunk_count": {
+      "count": 8,
+      "mean": 45.0,
+      "median": 47.0,
+      "minimum": 26.0,
+      "maximum": 60.0
+    },
+    "answer_character_count": {
+      "count": 8,
+      "mean": 176.75,
+      "median": 183.0,
+      "minimum": 88.0,
+      "maximum": 253.0
+    },
+    "service_total_seconds": {
+      "count": 8,
+      "mean": 11.205753299999742,
+      "median": 11.514176999999108,
+      "minimum": 9.05690770000001,
+      "maximum": 12.603653199999826
+    }
+  },
+  "runs": [
+    {
+      "case_id": "latency_rag",
+      "repetition": 1,
+      "max_tokens": 120,
+      "question": "RAG cevaplari nasil daha guvenilir hale getirir?",
+      "expected_source": "rag_notes.txt",
+      "actual_source": "rag_notes.txt",
+      "answer": "RAG cevapları daha güvenilir hale getirir çünkü once kullanici sorusuyla ilgili dokuman parcalari retrieval, augment ve generate adımları kullanarak modelin baglam olarak verildiği için. Bu, modelin daha doğru ve ilgili cevaplar üretmesine olanak tanır.",
+      "answer_length": 253,
+      "status_correct": true,
+      "source_correct": true,
+      "fallback_not_used": true,
+      "concepts_correct": true,
+      "concept_groups": [
+        {
+          "terms": [
+            "dokuman",
+            "belge"
+          ],
+          "matched_terms": [
+            "dokuman"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "baglam",
+            "context",
+            "destek",
+            "dayan"
+          ],
+          "matched_terms": [
+            "baglam"
+          ],
+          "passed": true
+        }
+      ],
+      "clean_ending": true,
+      "answer_length_valid": true,
+      "chat_reuse_correct": true,
+      "embedding_reuse_correct": true,
+      "passed": true,
+      "generation_metrics": {
+        "time_to_first_token_seconds": 7.959130699997331,
+        "generation_total_seconds": 16.12802069999816,
+        "streaming_seconds": 8.168890000000829,
+        "streaming_chunk_count": 60,
+        "answer_character_count": 253
+      },
+      "service_total_seconds": 16.876458700000512
+    },
+    {
+      "case_id": "latency_foundry_local",
+      "repetition": 1,
+      "max_tokens": 120,
+      "question": "Foundry Local ne ise yarar?",
+      "expected_source": "foundry_local_notes.txt",
+      "actual_source": "foundry_local_notes.txt",
+      "answer": "Foundry Local, yapay zeka modellerini kullanicinin kendi cihazinda calistirmayi saglayan bir Microsoft aracidir. Bu, bulut hizmetlerine girmeden modelleri yerel bilgisayarda kullanabilmenizi sağlar.",
+      "answer_length": 198,
+      "status_correct": true,
+      "source_correct": true,
+      "fallback_not_used": true,
+      "concepts_correct": true,
+      "concept_groups": [
+        {
+          "terms": [
+            "model",
+            "yapay zeka"
+          ],
+          "matched_terms": [
+            "model",
+            "yapay zeka"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "cihaz",
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "cihaz",
+            "yerel",
+            "local"
+          ],
+          "passed": true
+        }
+      ],
+      "clean_ending": true,
+      "answer_length_valid": true,
+      "chat_reuse_correct": true,
+      "embedding_reuse_correct": true,
+      "passed": true,
+      "generation_metrics": {
+        "time_to_first_token_seconds": 8.17778890000045,
+        "generation_total_seconds": 14.636747500000638,
+        "streaming_seconds": 6.458958600000187,
+        "streaming_chunk_count": 49,
+        "answer_character_count": 198
+      },
+      "service_total_seconds": 15.308482799999183
+    },
+    {
+      "case_id": "latency_sqlite",
+      "repetition": 1,
+      "max_tokens": 120,
+      "question": "SQLite neden yerel bir RAG uygulamasi icin uygundur?",
+      "expected_source": "sqlite_notes.txt",
+      "actual_source": "sqlite_notes.txt",
+      "answer": "SQLite, hafif, dosya tabanlı bir veritabani sistemdir ve tek bir dosya olarak storage klasorunda tutulabilir, bu nedenle tamamen yerel bir RAG uygulamasi icin uygundur.",
+      "answer_length": 168,
+      "status_correct": true,
+      "source_correct": true,
+      "fallback_not_used": true,
+      "concepts_correct": true,
+      "concept_groups": [
+        {
+          "terms": [
+            "sqlite"
+          ],
+          "matched_terms": [
+            "sqlite"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "yerel"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "dosya",
+            "sunucu",
+            "serverless",
+            "hafif"
+          ],
+          "matched_terms": [
+            "dosya",
+            "hafif"
+          ],
+          "passed": true
+        }
+      ],
+      "clean_ending": true,
+      "answer_length_valid": true,
+      "chat_reuse_correct": true,
+      "embedding_reuse_correct": true,
+      "passed": true,
+      "generation_metrics": {
+        "time_to_first_token_seconds": 8.304752000000008,
+        "generation_total_seconds": 14.128069300000789,
+        "streaming_seconds": 5.823317300000781,
+        "streaming_chunk_count": 45,
+        "answer_character_count": 168
+      },
+      "service_total_seconds": 14.77916489999916
+    },
+    {
+      "case_id": "latency_project",
+      "repetition": 1,
+      "max_tokens": 120,
+      "question": "Bu projenin temel amaci nedir?",
+      "expected_source": "project_overview.txt",
+      "actual_source": "project_overview.txt",
+      "answer": "Bu projenin temel amaci, yerel calisan bir dokuman soru-cevap asistanini geliştirmektir.",
+      "answer_length": 88,
+      "status_correct": true,
+      "source_correct": true,
+      "fallback_not_used": true,
+      "concepts_correct": true,
+      "concept_groups": [
+        {
+          "terms": [
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "yerel"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "dokuman",
+            "belge"
+          ],
+          "matched_terms": [
+            "dokuman"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "asistan",
+            "soru-cevap",
+            "soru",
+            "cevap"
+          ],
+          "matched_terms": [
+            "asistan",
+            "soru-cevap",
+            "soru",
+            "cevap"
+          ],
+          "passed": true
+        }
+      ],
+      "clean_ending": true,
+      "answer_length_valid": true,
+      "chat_reuse_correct": true,
+      "embedding_reuse_correct": true,
+      "passed": true,
+      "generation_metrics": {
+        "time_to_first_token_seconds": 7.931028700000752,
+        "generation_total_seconds": 11.466003300000011,
+        "streaming_seconds": 3.5349745999992592,
+        "streaming_chunk_count": 26,
+        "answer_character_count": 88
+      },
+      "service_total_seconds": 12.051844300000084
+    },
+    {
+      "case_id": "latency_rag",
+      "repetition": 2,
+      "max_tokens": 120,
+      "question": "RAG cevaplari nasil daha guvenilir hale getirir?",
+      "expected_source": "rag_notes.txt",
+      "actual_source": "rag_notes.txt",
+      "answer": "RAG cevapları daha güvenilir hale getirir çünkü once kullanici sorusuyla ilgili dokuman parcalari retrieval, augment ve generate adımları kullanarak modelin baglam olarak verildiği için. Bu, modelin daha doğru ve ilgili cevaplar üretmesine olanak tanır.",
+      "answer_length": 253,
+      "status_correct": true,
+      "source_correct": true,
+      "fallback_not_used": true,
+      "concepts_correct": true,
+      "concept_groups": [
+        {
+          "terms": [
+            "dokuman",
+            "belge"
+          ],
+          "matched_terms": [
+            "dokuman"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "baglam",
+            "context",
+            "destek",
+            "dayan"
+          ],
+          "matched_terms": [
+            "baglam"
+          ],
+          "passed": true
+        }
+      ],
+      "clean_ending": true,
+      "answer_length_valid": true,
+      "chat_reuse_correct": true,
+      "embedding_reuse_correct": true,
+      "passed": true,
+      "generation_metrics": {
+        "time_to_first_token_seconds": 7.899987799999508,
+        "generation_total_seconds": 15.674062699999922,
+        "streaming_seconds": 7.774074900000414,
+        "streaming_chunk_count": 60,
+        "answer_character_count": 253
+      },
+      "service_total_seconds": 16.293202299999393
+    },
+    {
+      "case_id": "latency_foundry_local",
+      "repetition": 2,
+      "max_tokens": 120,
+      "question": "Foundry Local ne ise yarar?",
+      "expected_source": "foundry_local_notes.txt",
+      "actual_source": "foundry_local_notes.txt",
+      "answer": "Foundry Local, yapay zeka modellerini kullanicinin kendi cihazinda calistirmayi saglayan bir Microsoft aracidir. Bu, bulut hizmetlerine girmeden modelleri yerel bilgisayarda kullanabilmenizi sağlar.",
+      "answer_length": 198,
+      "status_correct": true,
+      "source_correct": true,
+      "fallback_not_used": true,
+      "concepts_correct": true,
+      "concept_groups": [
+        {
+          "terms": [
+            "model",
+            "yapay zeka"
+          ],
+          "matched_terms": [
+            "model",
+            "yapay zeka"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "cihaz",
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "cihaz",
+            "yerel",
+            "local"
+          ],
+          "passed": true
+        }
+      ],
+      "clean_ending": true,
+      "answer_length_valid": true,
+      "chat_reuse_correct": true,
+      "embedding_reuse_correct": true,
+      "passed": true,
+      "generation_metrics": {
+        "time_to_first_token_seconds": 8.323015599999053,
+        "generation_total_seconds": 14.922673199998826,
+        "streaming_seconds": 6.599657599999773,
+        "streaming_chunk_count": 49,
+        "answer_character_count": 198
+      },
+      "service_total_seconds": 15.511023800001567
+    },
+    {
+      "case_id": "latency_sqlite",
+      "repetition": 2,
+      "max_tokens": 120,
+      "question": "SQLite neden yerel bir RAG uygulamasi icin uygundur?",
+      "expected_source": "sqlite_notes.txt",
+      "actual_source": "sqlite_notes.txt",
+      "answer": "SQLite, hafif, dosya tabanlı bir veritabani sistemdir ve tek bir dosya olarak storage klasorunda tutulabilir, bu nedenle tamamen yerel bir RAG uygulamasi icin uygundur.",
+      "answer_length": 168,
+      "status_correct": true,
+      "source_correct": true,
+      "fallback_not_used": true,
+      "concepts_correct": true,
+      "concept_groups": [
+        {
+          "terms": [
+            "sqlite"
+          ],
+          "matched_terms": [
+            "sqlite"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "yerel"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "dosya",
+            "sunucu",
+            "serverless",
+            "hafif"
+          ],
+          "matched_terms": [
+            "dosya",
+            "hafif"
+          ],
+          "passed": true
+        }
+      ],
+      "clean_ending": true,
+      "answer_length_valid": true,
+      "chat_reuse_correct": true,
+      "embedding_reuse_correct": true,
+      "passed": true,
+      "generation_metrics": {
+        "time_to_first_token_seconds": 6.856833399997413,
+        "generation_total_seconds": 11.648852700000134,
+        "streaming_seconds": 4.792019300002721,
+        "streaming_chunk_count": 45,
+        "answer_character_count": 168
+      },
+      "service_total_seconds": 12.272579399999813
+    },
+    {
+      "case_id": "latency_project",
+      "repetition": 2,
+      "max_tokens": 120,
+      "question": "Bu projenin temel amaci nedir?",
+      "expected_source": "project_overview.txt",
+      "actual_source": "project_overview.txt",
+      "answer": "Bu projenin temel amaci, yerel calisan bir dokuman soru-cevap asistanini geliştirmektir.",
+      "answer_length": 88,
+      "status_correct": true,
+      "source_correct": true,
+      "fallback_not_used": true,
+      "concepts_correct": true,
+      "concept_groups": [
+        {
+          "terms": [
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "yerel"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "dokuman",
+            "belge"
+          ],
+          "matched_terms": [
+            "dokuman"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "asistan",
+            "soru-cevap",
+            "soru",
+            "cevap"
+          ],
+          "matched_terms": [
+            "asistan",
+            "soru-cevap",
+            "soru",
+            "cevap"
+          ],
+          "passed": true
+        }
+      ],
+      "clean_ending": true,
+      "answer_length_valid": true,
+      "chat_reuse_correct": true,
+      "embedding_reuse_correct": true,
+      "passed": true,
+      "generation_metrics": {
+        "time_to_first_token_seconds": 5.538884600002348,
+        "generation_total_seconds": 8.314949200001138,
+        "streaming_seconds": 2.77606459999879,
+        "streaming_chunk_count": 26,
+        "answer_character_count": 88
+      },
+      "service_total_seconds": 8.7977755000029
+    },
+    {
+      "case_id": "latency_rag",
+      "repetition": 1,
+      "max_tokens": 160,
+      "question": "RAG cevaplari nasil daha guvenilir hale getirir?",
+      "expected_source": "rag_notes.txt",
+      "actual_source": "rag_notes.txt",
+      "answer": "RAG cevapları daha güvenilir hale getirir çünkü once kullanici sorusuyla ilgili dokuman parcalari retrieval, augment ve generate adımları kullanarak modelin baglam olarak verildiği için. Bu, modelin daha doğru ve ilgili cevaplar üretmesine olanak tanır.",
+      "answer_length": 253,
+      "status_correct": true,
+      "source_correct": true,
+      "fallback_not_used": true,
+      "concepts_correct": true,
+      "concept_groups": [
+        {
+          "terms": [
+            "dokuman",
+            "belge"
+          ],
+          "matched_terms": [
+            "dokuman"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "baglam",
+            "context",
+            "destek",
+            "dayan"
+          ],
+          "matched_terms": [
+            "baglam"
+          ],
+          "passed": true
+        }
+      ],
+      "clean_ending": true,
+      "answer_length_valid": true,
+      "chat_reuse_correct": true,
+      "embedding_reuse_correct": true,
+      "passed": true,
+      "generation_metrics": {
+        "time_to_first_token_seconds": 5.463600099999894,
+        "generation_total_seconds": 11.82718499999828,
+        "streaming_seconds": 6.363584899998386,
+        "streaming_chunk_count": 60,
+        "answer_character_count": 253
+      },
+      "service_total_seconds": 12.413205699998798
+    },
+    {
+      "case_id": "latency_foundry_local",
+      "repetition": 1,
+      "max_tokens": 160,
+      "question": "Foundry Local ne ise yarar?",
+      "expected_source": "foundry_local_notes.txt",
+      "actual_source": "foundry_local_notes.txt",
+      "answer": "Foundry Local, yapay zeka modellerini kullanicinin kendi cihazinda calistirmayi saglayan bir Microsoft aracidir. Bu, bulut hizmetlerine girmeden modelleri yerel bilgisayarda kullanabilmenizi sağlar.",
+      "answer_length": 198,
+      "status_correct": true,
+      "source_correct": true,
+      "fallback_not_used": true,
+      "concepts_correct": true,
+      "concept_groups": [
+        {
+          "terms": [
+            "model",
+            "yapay zeka"
+          ],
+          "matched_terms": [
+            "model",
+            "yapay zeka"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "cihaz",
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "cihaz",
+            "yerel",
+            "local"
+          ],
+          "passed": true
+        }
+      ],
+      "clean_ending": true,
+      "answer_length_valid": true,
+      "chat_reuse_correct": true,
+      "embedding_reuse_correct": true,
+      "passed": true,
+      "generation_metrics": {
+        "time_to_first_token_seconds": 6.188203900001099,
+        "generation_total_seconds": 11.358582100001513,
+        "streaming_seconds": 5.170378200000414,
+        "streaming_chunk_count": 49,
+        "answer_character_count": 198
+      },
+      "service_total_seconds": 11.952018600000883
+    },
+    {
+      "case_id": "latency_sqlite",
+      "repetition": 1,
+      "max_tokens": 160,
+      "question": "SQLite neden yerel bir RAG uygulamasi icin uygundur?",
+      "expected_source": "sqlite_notes.txt",
+      "actual_source": "sqlite_notes.txt",
+      "answer": "SQLite, hafif, dosya tabanlı bir veritabani sistemdir ve tek bir dosya olarak storage klasorunda tutulabilir, bu nedenle tamamen yerel bir RAG uygulamasi icin uygundur.",
+      "answer_length": 168,
+      "status_correct": true,
+      "source_correct": true,
+      "fallback_not_used": true,
+      "concepts_correct": true,
+      "concept_groups": [
+        {
+          "terms": [
+            "sqlite"
+          ],
+          "matched_terms": [
+            "sqlite"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "yerel"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "dosya",
+            "sunucu",
+            "serverless",
+            "hafif"
+          ],
+          "matched_terms": [
+            "dosya",
+            "hafif"
+          ],
+          "passed": true
+        }
+      ],
+      "clean_ending": true,
+      "answer_length_valid": true,
+      "chat_reuse_correct": true,
+      "embedding_reuse_correct": true,
+      "passed": true,
+      "generation_metrics": {
+        "time_to_first_token_seconds": 5.93186760000026,
+        "generation_total_seconds": 10.732297099999414,
+        "streaming_seconds": 4.800429499999154,
+        "streaming_chunk_count": 45,
+        "answer_character_count": 168
+      },
+      "service_total_seconds": 11.276426399999764
+    },
+    {
+      "case_id": "latency_project",
+      "repetition": 1,
+      "max_tokens": 160,
+      "question": "Bu projenin temel amaci nedir?",
+      "expected_source": "project_overview.txt",
+      "actual_source": "project_overview.txt",
+      "answer": "Bu projenin temel amaci, yerel calisan bir dokuman soru-cevap asistanini geliştirmektir.",
+      "answer_length": 88,
+      "status_correct": true,
+      "source_correct": true,
+      "fallback_not_used": true,
+      "concepts_correct": true,
+      "concept_groups": [
+        {
+          "terms": [
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "yerel"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "dokuman",
+            "belge"
+          ],
+          "matched_terms": [
+            "dokuman"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "asistan",
+            "soru-cevap",
+            "soru",
+            "cevap"
+          ],
+          "matched_terms": [
+            "asistan",
+            "soru-cevap",
+            "soru",
+            "cevap"
+          ],
+          "passed": true
+        }
+      ],
+      "clean_ending": true,
+      "answer_length_valid": true,
+      "chat_reuse_correct": true,
+      "embedding_reuse_correct": true,
+      "passed": true,
+      "generation_metrics": {
+        "time_to_first_token_seconds": 5.753774400000111,
+        "generation_total_seconds": 8.523972200000571,
+        "streaming_seconds": 2.77019780000046,
+        "streaming_chunk_count": 26,
+        "answer_character_count": 88
+      },
+      "service_total_seconds": 9.05690770000001
+    },
+    {
+      "case_id": "latency_rag",
+      "repetition": 2,
+      "max_tokens": 160,
+      "question": "RAG cevaplari nasil daha guvenilir hale getirir?",
+      "expected_source": "rag_notes.txt",
+      "actual_source": "rag_notes.txt",
+      "answer": "RAG cevapları daha güvenilir hale getirir çünkü once kullanici sorusuyla ilgili dokuman parcalari retrieval, augment ve generate adımları kullanarak modelin baglam olarak verildiği için. Bu, modelin daha doğru ve ilgili cevaplar üretmesine olanak tanır.",
+      "answer_length": 253,
+      "status_correct": true,
+      "source_correct": true,
+      "fallback_not_used": true,
+      "concepts_correct": true,
+      "concept_groups": [
+        {
+          "terms": [
+            "dokuman",
+            "belge"
+          ],
+          "matched_terms": [
+            "dokuman"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "baglam",
+            "context",
+            "destek",
+            "dayan"
+          ],
+          "matched_terms": [
+            "baglam"
+          ],
+          "passed": true
+        }
+      ],
+      "clean_ending": true,
+      "answer_length_valid": true,
+      "chat_reuse_correct": true,
+      "embedding_reuse_correct": true,
+      "passed": true,
+      "generation_metrics": {
+        "time_to_first_token_seconds": 5.544008600001689,
+        "generation_total_seconds": 12.078920799998741,
+        "streaming_seconds": 6.534912199997052,
+        "streaming_chunk_count": 60,
+        "answer_character_count": 253
+      },
+      "service_total_seconds": 12.603653199999826
+    },
+    {
+      "case_id": "latency_foundry_local",
+      "repetition": 2,
+      "max_tokens": 160,
+      "question": "Foundry Local ne ise yarar?",
+      "expected_source": "foundry_local_notes.txt",
+      "actual_source": "foundry_local_notes.txt",
+      "answer": "Foundry Local, yapay zeka modellerini kullanicinin kendi cihazinda calistirmayi saglayan bir Microsoft aracidir. Bu, bulut hizmetlerine girmeden modelleri yerel bilgisayarda kullanabilmenizi sağlar.",
+      "answer_length": 198,
+      "status_correct": true,
+      "source_correct": true,
+      "fallback_not_used": true,
+      "concepts_correct": true,
+      "concept_groups": [
+        {
+          "terms": [
+            "model",
+            "yapay zeka"
+          ],
+          "matched_terms": [
+            "model",
+            "yapay zeka"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "cihaz",
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "cihaz",
+            "yerel",
+            "local"
+          ],
+          "passed": true
+        }
+      ],
+      "clean_ending": true,
+      "answer_length_valid": true,
+      "chat_reuse_correct": true,
+      "embedding_reuse_correct": true,
+      "passed": true,
+      "generation_metrics": {
+        "time_to_first_token_seconds": 5.975139999998646,
+        "generation_total_seconds": 11.111826299998938,
+        "streaming_seconds": 5.136686300000292,
+        "streaming_chunk_count": 49,
+        "answer_character_count": 198
+      },
+      "service_total_seconds": 11.611086799999612
+    },
+    {
+      "case_id": "latency_sqlite",
+      "repetition": 2,
+      "max_tokens": 160,
+      "question": "SQLite neden yerel bir RAG uygulamasi icin uygundur?",
+      "expected_source": "sqlite_notes.txt",
+      "actual_source": "sqlite_notes.txt",
+      "answer": "SQLite, hafif, dosya tabanlı bir veritabani sistemdir ve tek bir dosya olarak storage klasorunda tutulabilir, bu nedenle tamamen yerel bir RAG uygulamasi icin uygundur.",
+      "answer_length": 168,
+      "status_correct": true,
+      "source_correct": true,
+      "fallback_not_used": true,
+      "concepts_correct": true,
+      "concept_groups": [
+        {
+          "terms": [
+            "sqlite"
+          ],
+          "matched_terms": [
+            "sqlite"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "yerel"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "dosya",
+            "sunucu",
+            "serverless",
+            "hafif"
+          ],
+          "matched_terms": [
+            "dosya",
+            "hafif"
+          ],
+          "passed": true
+        }
+      ],
+      "clean_ending": true,
+      "answer_length_valid": true,
+      "chat_reuse_correct": true,
+      "embedding_reuse_correct": true,
+      "passed": true,
+      "generation_metrics": {
+        "time_to_first_token_seconds": 6.112239599999157,
+        "generation_total_seconds": 10.87742950000029,
+        "streaming_seconds": 4.765189900001133,
+        "streaming_chunk_count": 45,
+        "answer_character_count": 168
+      },
+      "service_total_seconds": 11.417267199998605
+    },
+    {
+      "case_id": "latency_project",
+      "repetition": 2,
+      "max_tokens": 160,
+      "question": "Bu projenin temel amaci nedir?",
+      "expected_source": "project_overview.txt",
+      "actual_source": "project_overview.txt",
+      "answer": "Bu projenin temel amaci, yerel calisan bir dokuman soru-cevap asistanini geliştirmektir.",
+      "answer_length": 88,
+      "status_correct": true,
+      "source_correct": true,
+      "fallback_not_used": true,
+      "concepts_correct": true,
+      "concept_groups": [
+        {
+          "terms": [
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "yerel"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "dokuman",
+            "belge"
+          ],
+          "matched_terms": [
+            "dokuman"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "asistan",
+            "soru-cevap",
+            "soru",
+            "cevap"
+          ],
+          "matched_terms": [
+            "asistan",
+            "soru-cevap",
+            "soru",
+            "cevap"
+          ],
+          "passed": true
+        }
+      ],
+      "clean_ending": true,
+      "answer_length_valid": true,
+      "chat_reuse_correct": true,
+      "embedding_reuse_correct": true,
+      "passed": true,
+      "generation_metrics": {
+        "time_to_first_token_seconds": 5.983068999998068,
+        "generation_total_seconds": 8.741282200000569,
+        "streaming_seconds": 2.7582132000025013,
+        "streaming_chunk_count": 26,
+        "answer_character_count": 88
+      },
+      "service_total_seconds": 9.315460800000437
+    },
+    {
+      "case_id": "latency_rag",
+      "repetition": 1,
+      "max_tokens": 220,
+      "question": "RAG cevaplari nasil daha guvenilir hale getirir?",
+      "expected_source": "rag_notes.txt",
+      "actual_source": "rag_notes.txt",
+      "answer": "RAG cevapları daha güvenilir hale getirir çünkü once kullanici sorusuyla ilgili dokuman parcalari retrieval, augment ve generate adımları kullanarak modelin baglam olarak verildiği için. Bu, modelin daha doğru ve ilgili cevaplar üretmesine olanak tanır.",
+      "answer_length": 253,
+      "status_correct": true,
+      "source_correct": true,
+      "fallback_not_used": true,
+      "concepts_correct": true,
+      "concept_groups": [
+        {
+          "terms": [
+            "dokuman",
+            "belge"
+          ],
+          "matched_terms": [
+            "dokuman"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "baglam",
+            "context",
+            "destek",
+            "dayan"
+          ],
+          "matched_terms": [
+            "baglam"
+          ],
+          "passed": true
+        }
+      ],
+      "clean_ending": true,
+      "answer_length_valid": true,
+      "chat_reuse_correct": true,
+      "embedding_reuse_correct": true,
+      "passed": true,
+      "generation_metrics": {
+        "time_to_first_token_seconds": 5.760440900001413,
+        "generation_total_seconds": 12.43854680000004,
+        "streaming_seconds": 6.678105899998627,
+        "streaming_chunk_count": 60,
+        "answer_character_count": 253
+      },
+      "service_total_seconds": 13.063940000000002
+    },
+    {
+      "case_id": "latency_foundry_local",
+      "repetition": 1,
+      "max_tokens": 220,
+      "question": "Foundry Local ne ise yarar?",
+      "expected_source": "foundry_local_notes.txt",
+      "actual_source": "foundry_local_notes.txt",
+      "answer": "Foundry Local, yapay zeka modellerini kullanicinin kendi cihazinda calistirmayi saglayan bir Microsoft aracidir. Bu, bulut hizmetlerine girmeden modelleri yerel bilgisayarda kullanabilmenizi sağlar.",
+      "answer_length": 198,
+      "status_correct": true,
+      "source_correct": true,
+      "fallback_not_used": true,
+      "concepts_correct": true,
+      "concept_groups": [
+        {
+          "terms": [
+            "model",
+            "yapay zeka"
+          ],
+          "matched_terms": [
+            "model",
+            "yapay zeka"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "cihaz",
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "cihaz",
+            "yerel",
+            "local"
+          ],
+          "passed": true
+        }
+      ],
+      "clean_ending": true,
+      "answer_length_valid": true,
+      "chat_reuse_correct": true,
+      "embedding_reuse_correct": true,
+      "passed": true,
+      "generation_metrics": {
+        "time_to_first_token_seconds": 10.085984299999836,
+        "generation_total_seconds": 16.744996500001434,
+        "streaming_seconds": 6.659012200001598,
+        "streaming_chunk_count": 49,
+        "answer_character_count": 198
+      },
+      "service_total_seconds": 17.449806600001466
+    },
+    {
+      "case_id": "latency_sqlite",
+      "repetition": 1,
+      "max_tokens": 220,
+      "question": "SQLite neden yerel bir RAG uygulamasi icin uygundur?",
+      "expected_source": "sqlite_notes.txt",
+      "actual_source": "sqlite_notes.txt",
+      "answer": "SQLite, hafif, dosya tabanlı bir veritabani sistemdir ve tek bir dosya olarak storage klasorunda tutulabilir, bu nedenle tamamen yerel bir RAG uygulamasi icin uygundur.",
+      "answer_length": 168,
+      "status_correct": true,
+      "source_correct": true,
+      "fallback_not_used": true,
+      "concepts_correct": true,
+      "concept_groups": [
+        {
+          "terms": [
+            "sqlite"
+          ],
+          "matched_terms": [
+            "sqlite"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "yerel"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "dosya",
+            "sunucu",
+            "serverless",
+            "hafif"
+          ],
+          "matched_terms": [
+            "dosya",
+            "hafif"
+          ],
+          "passed": true
+        }
+      ],
+      "clean_ending": true,
+      "answer_length_valid": true,
+      "chat_reuse_correct": true,
+      "embedding_reuse_correct": true,
+      "passed": true,
+      "generation_metrics": {
+        "time_to_first_token_seconds": 8.496219399999973,
+        "generation_total_seconds": 14.529430399998091,
+        "streaming_seconds": 6.0332109999981185,
+        "streaming_chunk_count": 45,
+        "answer_character_count": 168
+      },
+      "service_total_seconds": 15.199546699997882
+    },
+    {
+      "case_id": "latency_project",
+      "repetition": 1,
+      "max_tokens": 220,
+      "question": "Bu projenin temel amaci nedir?",
+      "expected_source": "project_overview.txt",
+      "actual_source": "project_overview.txt",
+      "answer": "Bu projenin temel amaci, yerel calisan bir dokuman soru-cevap asistanini geliştirmektir.",
+      "answer_length": 88,
+      "status_correct": true,
+      "source_correct": true,
+      "fallback_not_used": true,
+      "concepts_correct": true,
+      "concept_groups": [
+        {
+          "terms": [
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "yerel"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "dokuman",
+            "belge"
+          ],
+          "matched_terms": [
+            "dokuman"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "asistan",
+            "soru-cevap",
+            "soru",
+            "cevap"
+          ],
+          "matched_terms": [
+            "asistan",
+            "soru-cevap",
+            "soru",
+            "cevap"
+          ],
+          "passed": true
+        }
+      ],
+      "clean_ending": true,
+      "answer_length_valid": true,
+      "chat_reuse_correct": true,
+      "embedding_reuse_correct": true,
+      "passed": true,
+      "generation_metrics": {
+        "time_to_first_token_seconds": 7.227643500002159,
+        "generation_total_seconds": 10.09238280000136,
+        "streaming_seconds": 2.8647392999992007,
+        "streaming_chunk_count": 26,
+        "answer_character_count": 88
+      },
+      "service_total_seconds": 11.138593399999081
+    },
+    {
+      "case_id": "latency_rag",
+      "repetition": 2,
+      "max_tokens": 220,
+      "question": "RAG cevaplari nasil daha guvenilir hale getirir?",
+      "expected_source": "rag_notes.txt",
+      "actual_source": "rag_notes.txt",
+      "answer": "RAG cevapları daha güvenilir hale getirir çünkü once kullanici sorusuyla ilgili dokuman parcalari retrieval, augment ve generate adımları kullanarak modelin baglam olarak verildiği için. Bu, modelin daha doğru ve ilgili cevaplar üretmesine olanak tanır.",
+      "answer_length": 253,
+      "status_correct": true,
+      "source_correct": true,
+      "fallback_not_used": true,
+      "concepts_correct": true,
+      "concept_groups": [
+        {
+          "terms": [
+            "dokuman",
+            "belge"
+          ],
+          "matched_terms": [
+            "dokuman"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "baglam",
+            "context",
+            "destek",
+            "dayan"
+          ],
+          "matched_terms": [
+            "baglam"
+          ],
+          "passed": true
+        }
+      ],
+      "clean_ending": true,
+      "answer_length_valid": true,
+      "chat_reuse_correct": true,
+      "embedding_reuse_correct": true,
+      "passed": true,
+      "generation_metrics": {
+        "time_to_first_token_seconds": 8.377944500000012,
+        "generation_total_seconds": 16.16201329999967,
+        "streaming_seconds": 7.784068799999659,
+        "streaming_chunk_count": 60,
+        "answer_character_count": 253
+      },
+      "service_total_seconds": 16.809969199999614
+    },
+    {
+      "case_id": "latency_foundry_local",
+      "repetition": 2,
+      "max_tokens": 220,
+      "question": "Foundry Local ne ise yarar?",
+      "expected_source": "foundry_local_notes.txt",
+      "actual_source": "foundry_local_notes.txt",
+      "answer": "Foundry Local, yapay zeka modellerini kullanicinin kendi cihazinda calistirmayi saglayan bir Microsoft aracidir. Bu, bulut hizmetlerine girmeden modelleri yerel bilgisayarda kullanabilmenizi sağlar.",
+      "answer_length": 198,
+      "status_correct": true,
+      "source_correct": true,
+      "fallback_not_used": true,
+      "concepts_correct": true,
+      "concept_groups": [
+        {
+          "terms": [
+            "model",
+            "yapay zeka"
+          ],
+          "matched_terms": [
+            "model",
+            "yapay zeka"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "cihaz",
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "cihaz",
+            "yerel",
+            "local"
+          ],
+          "passed": true
+        }
+      ],
+      "clean_ending": true,
+      "answer_length_valid": true,
+      "chat_reuse_correct": true,
+      "embedding_reuse_correct": true,
+      "passed": true,
+      "generation_metrics": {
+        "time_to_first_token_seconds": 8.328062100001262,
+        "generation_total_seconds": 14.4888260000007,
+        "streaming_seconds": 6.160763899999438,
+        "streaming_chunk_count": 49,
+        "answer_character_count": 198
+      },
+      "service_total_seconds": 15.123788199998671
+    },
+    {
+      "case_id": "latency_sqlite",
+      "repetition": 2,
+      "max_tokens": 220,
+      "question": "SQLite neden yerel bir RAG uygulamasi icin uygundur?",
+      "expected_source": "sqlite_notes.txt",
+      "actual_source": "sqlite_notes.txt",
+      "answer": "SQLite, hafif, dosya tabanlı bir veritabani sistemdir ve tek bir dosya olarak storage klasorunda tutulabilir, bu nedenle tamamen yerel bir RAG uygulamasi icin uygundur.",
+      "answer_length": 168,
+      "status_correct": true,
+      "source_correct": true,
+      "fallback_not_used": true,
+      "concepts_correct": true,
+      "concept_groups": [
+        {
+          "terms": [
+            "sqlite"
+          ],
+          "matched_terms": [
+            "sqlite"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "yerel"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "dosya",
+            "sunucu",
+            "serverless",
+            "hafif"
+          ],
+          "matched_terms": [
+            "dosya",
+            "hafif"
+          ],
+          "passed": true
+        }
+      ],
+      "clean_ending": true,
+      "answer_length_valid": true,
+      "chat_reuse_correct": true,
+      "embedding_reuse_correct": true,
+      "passed": true,
+      "generation_metrics": {
+        "time_to_first_token_seconds": 8.356671800000186,
+        "generation_total_seconds": 14.257204000001366,
+        "streaming_seconds": 5.90053220000118,
+        "streaming_chunk_count": 45,
+        "answer_character_count": 168
+      },
+      "service_total_seconds": 14.923046600000816
+    },
+    {
+      "case_id": "latency_project",
+      "repetition": 2,
+      "max_tokens": 220,
+      "question": "Bu projenin temel amaci nedir?",
+      "expected_source": "project_overview.txt",
+      "actual_source": "project_overview.txt",
+      "answer": "Bu projenin temel amaci, yerel calisan bir dokuman soru-cevap asistanini geliştirmektir.",
+      "answer_length": 88,
+      "status_correct": true,
+      "source_correct": true,
+      "fallback_not_used": true,
+      "concepts_correct": true,
+      "concept_groups": [
+        {
+          "terms": [
+            "yerel",
+            "local"
+          ],
+          "matched_terms": [
+            "yerel"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "dokuman",
+            "belge"
+          ],
+          "matched_terms": [
+            "dokuman"
+          ],
+          "passed": true
+        },
+        {
+          "terms": [
+            "asistan",
+            "soru-cevap",
+            "soru",
+            "cevap"
+          ],
+          "matched_terms": [
+            "asistan",
+            "soru-cevap",
+            "soru",
+            "cevap"
+          ],
+          "passed": true
+        }
+      ],
+      "clean_ending": true,
+      "answer_length_valid": true,
+      "chat_reuse_correct": true,
+      "embedding_reuse_correct": true,
+      "passed": true,
+      "generation_metrics": {
+        "time_to_first_token_seconds": 8.181033200002275,
+        "generation_total_seconds": 11.716367200002423,
+        "streaming_seconds": 3.535334000000148,
+        "streaming_chunk_count": 26,
+        "answer_character_count": 88
+      },
+      "service_total_seconds": 12.347707699998864
+    }
+  ],
+  "measurement_note": "Time to first token represents the first non-empty streaming text chunk returned by the Foundry Local SDK, not necessarily one tokenizer token.",
+  "truncation_note": "Clean answer ending is a heuristic and does not prove whether the model reached its token limit."
+}

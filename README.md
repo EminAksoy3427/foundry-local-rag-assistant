@@ -685,3 +685,150 @@ Run the persistent-session benchmark:
 Run the optimized interactive CLI:
 
     python -m src.main
+
+
+### Day 19 — Generation Latency and Time to First Token
+
+Generation performance instrumentation was extended beyond total response time.
+
+The project now measures:
+
+- Time to first non-empty streaming text chunk
+- Total answer-generation time
+- Streaming time after the first chunk
+- Streaming chunk count
+- Generated answer character count
+
+The existing `generation_seconds` metric remains available for backward compatibility.
+
+Detailed metrics are also returned through:
+
+    result["generation_metrics"]
+
+Example:
+
+    {
+        "time_to_first_token_seconds": 5.7533,
+        "generation_total_seconds": 10.9279,
+        "streaming_seconds": 5.1745,
+        "streaming_chunk_count": 49,
+        "answer_character_count": 198
+    }
+
+Time to first token in this project represents the first non-empty text chunk returned by the Foundry Local streaming API. A streaming chunk is not necessarily equal to one tokenizer token.
+
+## Max-token benchmark
+
+The `phi-4-mini` chat model was tested with three maximum generation limits:
+
+- `120`
+- `160`
+- `220`
+
+The benchmark used:
+
+- 4 answerable test questions
+- 2 repetitions per question
+- 8 measured runs per configuration
+- 24 total measured runs
+- Persistent embedding model reuse
+- Persistent chat model reuse inside each configuration
+- One warm-up request per configuration
+
+All configurations passed every quality check:
+
+- Correct answer status
+- Correct primary source
+- Required concepts present
+- No fallback on supported questions
+- Acceptable answer length
+- Clean answer ending
+- Embedding model reuse
+- Chat model reuse
+
+## Benchmark results
+
+### Max tokens: 120
+
+- Passed runs: `8/8`
+- Quality rate: `100%`
+- TTFT median: `7.9451 seconds`
+- Generation median: `14.3824 seconds`
+- Streaming median: `6.1411 seconds`
+- Median answer length: `183 characters`
+
+### Max tokens: 160
+
+- Passed runs: `8/8`
+- Quality rate: `100%`
+- TTFT median: `5.9535 seconds`
+- Generation median: `10.9946 seconds`
+- Streaming median: `4.9686 seconds`
+- Median answer length: `183 characters`
+
+### Max tokens: 220
+
+- Passed runs: `8/8`
+- Quality rate: `100%`
+- TTFT median: `8.3424 seconds`
+- Generation median: `14.3730 seconds`
+- Streaming median: `6.0970 seconds`
+- Median answer length: `183 characters`
+
+## Selected configuration
+
+The default maximum generation limit was changed from:
+
+    DEFAULT_MAX_TOKENS = 220
+
+to:
+
+    DEFAULT_MAX_TOKENS = 160
+
+Compared with the previous `220` setting, the benchmark measured:
+
+- Approximately `28.6%` lower median TTFT
+- Approximately `23.5%` lower median generation time
+- No measured answer-quality loss
+- No truncated answers in the evaluation cases
+
+The results do not prove that `160` will always outperform every other value because local inference time can vary between runs. It was selected as the strongest measured latency-quality candidate for the current model, prompts, hardware, and test set.
+
+## Regression result
+
+The full generation evaluation was rerun with the new default.
+
+Results:
+
+- Total cases: `5`
+- Passed: `5`
+- Failed: `0`
+- Overall accuracy: `100%`
+- Status accuracy: `100%`
+- Source accuracy: `100%`
+- Concept accuracy: `100%`
+- Answer-length accuracy: `100%`
+- Clean-answer accuracy: `100%`
+- Fallback accuracy: `100%`
+
+Unsupported questions still skip the chat model and return the deterministic fallback response.
+
+## New files
+
+- `src/generation_latency.py`
+- `src/generation_latency_demo.py`
+- `reports/generation_latency_report.json`
+
+## Updated files
+
+- `src/generator.py`
+- `src/rag_service.py`
+- `reports/generation_evaluation_report.json`
+
+## Running the generation benchmark
+
+    python -m src.generation_latency_demo
+
+## Running the generation regression test
+
+    python -m src.generation_evaluation_demo

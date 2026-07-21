@@ -1,10 +1,11 @@
 from collections.abc import Callable
+from time import perf_counter
 
 from src.foundry_manager import get_foundry_manager
 
 
 CHAT_MODEL_ALIAS = "phi-4-mini"
-DEFAULT_MAX_TOKENS = 220
+DEFAULT_MAX_TOKENS = 160
 DEFAULT_TEMPERATURE = 0.0
 
 
@@ -19,6 +20,7 @@ class LocalGenerator:
     - Modeli indirir ve yukler
     - Modelin tekrar kullanilmasini saglar
     - Streaming cevap uretir
+    - Generation performans metriklerini olcer
     - Is bitince modeli guvenli sekilde kapatir
     """
 
@@ -28,6 +30,16 @@ class LocalGenerator:
         max_tokens=DEFAULT_MAX_TOKENS,
         temperature=DEFAULT_TEMPERATURE,
     ):
+        if max_tokens <= 0:
+            raise ValueError(
+                "max_tokens sifirdan buyuk olmalidir."
+            )
+
+        if temperature < 0:
+            raise ValueError(
+                "temperature negatif olamaz."
+            )
+
         self.model_alias = model_alias
         self.max_tokens = max_tokens
         self.temperature = temperature
@@ -70,7 +82,7 @@ class LocalGenerator:
         self.manager = get_foundry_manager()
 
         print(
-            f"Chat modeli aliniyor: "
+            "Chat modeli aliniyor: "
             f"{self.model_alias}"
         )
 
@@ -82,8 +94,7 @@ class LocalGenerator:
 
         if self.model is None:
             raise ValueError(
-                "Chat modeli katalogda "
-                "bulunamadi: "
+                "Chat modeli katalogda bulunamadi: "
                 f"{self.model_alias}"
             )
 
@@ -123,18 +134,23 @@ class LocalGenerator:
 
         return True
 
-    def generate(
+    def generate_with_metrics(
         self,
         system_prompt,
         user_prompt,
         on_token: Callable[[str], None] | None = None,
     ):
         """
-        System ve user prompt'larini kullanarak
-        streaming cevap uretir.
+        Streaming cevap uretir ve generation
+        performans metriklerini dondurur.
 
-        on_token verilirse her yeni cevap parcasi
-        bu fonksiyona gonderilir.
+        Olculen degerler:
+
+        - Ilk metin parcasina kadar gecen sure
+        - Toplam generation suresi
+        - Ilk parcadan son parcaya kadar gecen sure
+        - Streaming parca sayisi
+        - Cevap karakter sayisi
         """
         if self.client is None:
             raise RuntimeError(
@@ -172,6 +188,10 @@ class LocalGenerator:
         ]
 
         answer_parts = []
+        streaming_chunk_count = 0
+        first_token_seconds = None
+
+        generation_start = perf_counter()
 
         for chunk in (
             self.client.complete_streaming_chat(
@@ -192,10 +212,22 @@ class LocalGenerator:
             if not content:
                 continue
 
+            if first_token_seconds is None:
+                first_token_seconds = (
+                    perf_counter()
+                    - generation_start
+                )
+
             answer_parts.append(content)
+            streaming_chunk_count += 1
 
             if on_token is not None:
                 on_token(content)
+
+        generation_total_seconds = (
+            perf_counter()
+            - generation_start
+        )
 
         answer = "".join(
             answer_parts
@@ -207,7 +239,61 @@ class LocalGenerator:
                 "uretti."
             )
 
-        return answer
+        if first_token_seconds is None:
+            first_token_seconds = (
+                generation_total_seconds
+            )
+
+        streaming_seconds = max(
+            generation_total_seconds
+            - first_token_seconds,
+            0.0,
+        )
+
+        return {
+            "answer": answer,
+            "metrics": {
+                "time_to_first_token_seconds": (
+                    first_token_seconds
+                ),
+                "generation_total_seconds": (
+                    generation_total_seconds
+                ),
+                "streaming_seconds": (
+                    streaming_seconds
+                ),
+                "streaming_chunk_count": (
+                    streaming_chunk_count
+                ),
+                "answer_character_count": len(
+                    answer
+                ),
+            },
+        }
+
+    def generate(
+        self,
+        system_prompt,
+        user_prompt,
+        on_token: Callable[[str], None] | None = None,
+    ):
+        """
+        Geriye donuk uyumluluk icin yalnizca
+        uretilen cevap metnini dondurur.
+
+        Ayrintili generation metrikleri gereken
+        durumlarda generate_with_metrics()
+        kullanilmalidir.
+        """
+        generation_result = (
+            self.generate_with_metrics(
+                system_prompt=system_prompt,
+                user_prompt=user_prompt,
+                on_token=on_token,
+            )
+        )
+
+        return generation_result["answer"]
 
     def unload(self):
         """
