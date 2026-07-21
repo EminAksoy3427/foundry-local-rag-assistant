@@ -957,3 +957,43 @@ For this project, answer quality and reliable completion were prioritized over r
 ## Running the model comparison
 
     python -m src.model_comparison_demo
+
+
+
+    ## v1.0.0 Release
+
+The first stable release of the Foundry Local RAG Assistant has completed its final technical audit.
+
+### Release status
+
+- Target release: `v1.0.0`
+- Final audit: `14/14`
+- Release ready: `true`
+- Retrieval regression: `12/12`
+- Generation regression: `5/5`
+- Default chat model: `phi-4-mini`
+- Default max tokens: `160`
+- Temperature: `0.0`
+
+### Final architecture
+
+```text
+Local documents
+      ↓
+Document loading and chunking
+      ↓
+Foundry Local embeddings
+      ↓
+SQLite vector storage
+      ↓
+Semantic retrieval
+      ↓
+Retrieval confidence validation
+      ↓
+Hybrid source ranking
+      ↓
+Context and prompt construction
+      ↓
+Foundry Local chat generation
+      ↓
+Answer with source references

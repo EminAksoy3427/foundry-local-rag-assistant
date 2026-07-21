@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-07-21T07:14:57.254316+00:00",
+  "generated_at_utc": "2026-07-21T11:47:53.460298+00:00",
   "configuration": {
     "embedding_model": "qwen3-embedding-0.6b",
     "top_k": 3,

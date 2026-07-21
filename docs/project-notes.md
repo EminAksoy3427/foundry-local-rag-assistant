@@ -1692,3 +1692,172 @@ Potential follow-up work:
 - Measure memory usage for each model
 - Randomize benchmark model order
 - Use more repetitions to reduce timing variance
+
+
+
+# Adım 19 — Project notes’a Gün 21’i ekle
+
+`docs/project-notes.md` dosyasının sonuna ekle:
+
+```markdown
+## Day 21 — Final Audit and v1.0.0 Release Preparation
+
+### Goal
+
+Validate the complete project before creating the first stable release.
+
+This day focused on release readiness rather than adding a new RAG capability.
+
+### Environment validation
+
+The following runtime settings were confirmed:
+
+- Branch: `main`
+- Chat model: `phi-4-mini`
+- Maximum generation tokens: `160`
+- Temperature: `0.0`
+- Working tree initially clean
+
+### Python compilation
+
+All Python files under `src` were compiled together.
+
+Result:
+
+    Python files: 39
+    Compile exit code: 0
+
+Generated `__pycache__` directories remained excluded from Git.
+
+### JSON report validation
+
+Seven existing JSON reports were loaded and validated:
+
+- `evaluation_report.json`
+- `generation_evaluation_report.json`
+- `generation_latency_report.json`
+- `model_comparison_report.json`
+- `performance_baseline.json`
+- `performance_optimized.json`
+- `performance_report.json`
+
+Result:
+
+    Valid reports: 7/7
+    Schema version: 1
+    Validation exit code: 0
+
+### Retrieval regression
+
+The retrieval evaluation was executed again.
+
+Result:
+
+- Strict cases: `12`
+- Passed: `12`
+- Failed: `0`
+- Overall accuracy: `100%`
+- Status accuracy: `100%`
+- Source accuracy: `100%`
+- False positives: `0`
+- False negatives: `0`
+- Score-separation margin: `0.289075`
+
+No retrieval regression was detected.
+
+### Generation regression
+
+The generation evaluation was executed again using `phi-4-mini`.
+
+Result:
+
+- Total cases: `5`
+- Passed: `5`
+- Failed: `0`
+- Status accuracy: `100%`
+- Source accuracy: `100%`
+- Concept accuracy: `100%`
+- Clean-answer accuracy: `100%`
+- Fallback accuracy: `100%`
+
+The unsupported Jupiter question did not invoke the chat model and produced zero generation time.
+
+### End-to-end CLI smoke test
+
+The persistent CLI was tested with one supported and one unsupported question.
+
+Supported question:
+
+    Foundry Local ne işe yarar?
+
+Result:
+
+- Status: `answered`
+- Primary source: `foundry_local_notes.txt`
+- Embedding model reused
+- Chat model loaded lazily
+- Answer generated with `phi-4-mini`
+
+Unsupported question:
+
+    Jupiter'in kaç uydusu vardır?
+
+Result:
+
+- Status: `insufficient_context`
+- No source selected
+- Embedding model reused
+- Chat model not invoked
+- Generation time: `0`
+- Deterministic fallback returned
+
+The CLI then closed both local models safely.
+
+### Repository hygiene
+
+The final repository checks confirmed:
+
+- `.venv` is not tracked
+- `__pycache__` is not tracked
+- Python bytecode is not tracked
+- `storage/rag.db` is not tracked
+- `.env` files are not tracked
+- No common secret or API-key patterns were detected
+
+### Automated final audit
+
+New modules:
+
+- `src/final_audit.py`
+- `src/final_audit_demo.py`
+
+Generated reports:
+
+- `reports/final_audit_report.json`
+- `reports/final_audit_report.md`
+
+Final result:
+
+    Total checks: 14
+    Passed checks: 14
+    Failed checks: 0
+    Blocking checks: 14/14
+    Release ready: true
+
+### Release documentation
+
+The following release documents were prepared:
+
+- `CHANGELOG.md`
+- `docs/release-notes-v1.0.0.md`
+
+### Final release decision
+
+The project is eligible for the `v1.0.0` release workflow.
+
+The release tag must only be created after:
+
+1. All Day 21 files are staged
+2. The final audit is rerun against the staged repository
+3. The audit still reports `14/14`
+4. The final commit is pushed to `main`

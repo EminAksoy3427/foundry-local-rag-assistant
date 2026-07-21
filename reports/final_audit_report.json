@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-21T13:07:58.053626+00:00",
+  "audit_type": "foundry_local_rag_final_release",
+  "target_release": "v1.0.0",
+  "summary": {
+    "release_ready": true,
+    "total_checks": 14,
+    "passed_checks": 14,
+    "failed_checks": 0,
+    "blocking_total": 14,
+    "blocking_passed": 14,
+    "blocking_failed": 0
+  },
+  "project_configuration": {
+    "chat_model": "phi-4-mini",
+    "max_tokens": 160,
+    "temperature": 0.0
+  },
+  "checks": [
+    {
+      "name": "JSON report loading",
+      "passed": true,
+      "blocking": true,
+      "details": "7/7 reports loaded successfully."
+    },
+    {
+      "name": "Report schema versions",
+      "passed": true,
+      "blocking": true,
+      "details": "{'retrieval': 1, 'generation': 1, 'generation_latency': 1, 'model_comparison': 1, 'performance_baseline': 1, 'performance_optimized': 1, 'performance_report': 1}"
+    },
+    {
+      "name": "Retrieval regression",
+      "passed": true,
+      "blocking": true,
+      "details": "passed=12, failed=0, accuracy=100.00%, FP=0, FN=0"
+    },
+    {
+      "name": "Generation regression",
+      "passed": true,
+      "blocking": true,
+      "details": "passed=5, failed=0, accuracy=100.00%"
+    },
+    {
+      "name": "Generation latency selection",
+      "passed": true,
+      "blocking": true,
+      "details": "selected_max_tokens=160, runtime_default=160"
+    },
+    {
+      "name": "Chat model selection",
+      "passed": true,
+      "blocking": true,
+      "details": "selected_model=phi-4-mini, runtime_default=phi-4-mini, quality=100.00%"
+    },
+    {
+      "name": "Baseline performance correctness",
+      "passed": true,
+      "blocking": true,
+      "details": "passed=9, failed=0"
+    },
+    {
+      "name": "Persistent session performance",
+      "passed": true,
+      "blocking": true,
+      "details": "passed=9, failed=0, answered_reuse=True, unsupported_behavior=True"
+    },
+    {
+      "name": "Performance benchmark report",
+      "passed": true,
+      "blocking": true,
+      "details": "passed=9, failed=0"
+    },
+    {
+      "name": "Python source compilation",
+      "passed": true,
+      "blocking": true,
+      "details": "All src Python files compiled."
+    },
+    {
+      "name": "Required project files",
+      "passed": true,
+      "blocking": true,
+      "details": "All required files exist."
+    },
+    {
+      "name": "Tracked-file hygiene",
+      "passed": true,
+      "blocking": true,
+      "details": "No forbidden generated or environment files are tracked."
+    },
+    {
+      "name": "Secret-pattern scan",
+      "passed": true,
+      "blocking": true,
+      "details": "No secret patterns detected."
+    },
+    {
+      "name": "Runtime default configuration",
+      "passed": true,
+      "blocking": true,
+      "details": "model=phi-4-mini, max_tokens=160, temperature=0.0"
+    }
+  ],
+  "report_snapshots": {
+    "retrieval": {
+      "strict_cases": 12,
+      "passed_cases": 12,
+      "failed_cases": 0,
+      "overall_accuracy": 100.0,
+      "false_positive": 0,
+      "false_negative": 0
+    },
+    "generation": {
+      "total_cases": 5,
+      "passed_cases": 5,
+      "failed_cases": 0,
+      "overall_accuracy": 100.0
+    },
+    "generation_latency": {
+      "selected_max_tokens": 160,
+      "measured_run_count": 24
+    },
+    "model_comparison": {
+      "selected_model": "phi-4-mini",
+      "quality_rate": 100.0,
+      "measured_run_count": 30
+    },
+    "performance": {
+      "baseline_passed_runs": 9,
+      "optimized_passed_runs": 9,
+      "persistent_reuse_correct": true
+    }
+  },
+  "git_hygiene": {
+    "tracked_file_count": 65,
+    "forbidden_tracked_files": [],
+    "secret_matches": [],
+    "secret_scan_error": null,
+    "worktree_status": [
+      "A  CHANGELOG.md",
+      "M  README.md",
+      "M  docs/project-notes.md",
+      "A  docs/release-notes-v1.0.0.md",
+      "M  reports/evaluation_report.json",
+      "A  reports/final_audit_report.json",
+      "A  reports/final_audit_report.md",
+      "M  reports/generation_evaluation_report.json",
+      "A  src/final_audit.py",
+      "A  src/final_audit_demo.py"
+    ]
+  },
+  "report_sources": {
+    "retrieval": "evaluation_report.json",
+    "generation": "generation_evaluation_report.json",
+    "generation_latency": "generation_latency_report.json",
+    "model_comparison": "model_comparison_report.json",
+    "performance_baseline": "performance_baseline.json",
+    "performance_optimized": "performance_optimized.json",
+    "performance_report": "performance_report.json"
+  },
+  "report_errors": {}
+}
